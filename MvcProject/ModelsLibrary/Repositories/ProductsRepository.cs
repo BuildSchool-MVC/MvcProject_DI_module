@@ -17,7 +17,7 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
             var sql = @"INSERT INTO Products (ProductID,ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime)
                                             VALUES (@ProductID,@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime)";
-            var command=connection.Execute(sql,new { model.ProductID, model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime });
+            connection.Execute(sql,new { model.ProductID, model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime });
         }
 
         public void UpdateUnitPrice(Products model)
@@ -25,7 +25,7 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "UPDATE Products SET UnitPrice=@UnitPrice WHERE ProductID=@ProductID";
-            var command = connection.Execute(sql, new { model.ProductID,  model.UnitPrice });
+            connection.Execute(sql, new { model.ProductID,  model.UnitPrice });
         }
 
         public void UpdateStock(Products model)
@@ -33,7 +33,7 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "UPDATE Products SET UnitsInStock=@UnitsInStock WHERE ProductID=@ProductID";
-            var command = connection.Execute(sql, new { model.ProductID, model.UnitsInStock });
+            connection.Execute(sql, new { model.ProductID, model.UnitsInStock });
         }
 
         public void UpdateDowntime(Products model)
@@ -41,7 +41,7 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "UPDATE Products SET Downtime=@Downtime WHERE ProductID=@ProductID";
-            var command = connection.Execute(sql, new { model.ProductID, model.Downtime });
+            connection.Execute(sql, new { model.ProductID, model.Downtime });
         }
 
         public Products FindByID(string productid)
