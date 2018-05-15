@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
+using Abstracts;
 
 namespace ModelsLibrary.Repositories
 {
-    public class ShoppingcartDetailsRepository
+    public class ShoppingcartDetailsRepository : IRepository<ShoppingcartDetails>
     {
         public void Create(ShoppingcartDetails model)
         {

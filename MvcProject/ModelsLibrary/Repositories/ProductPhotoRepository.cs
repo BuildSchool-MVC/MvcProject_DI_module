@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
+using Abstracts;
 
 namespace ModelsLibrary.Repositories
 {
-    public class ProductPhotoRepository
+    public class ProductPhotoRepository : IRepository<ProductPhoto>
     {
         public void Create(ProductPhoto model)
         {

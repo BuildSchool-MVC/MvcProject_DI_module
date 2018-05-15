@@ -7,12 +7,13 @@ using System.Data;
 using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Dapper;
+using Abstracts;
 
 namespace ModelsLibrary.Repositories
 {
-   public class CustomerRepository
+   public class CustomerRepository : IRepository<Customer>
     {
-        public void Cterae(Customer model)
+        public void Create(Customer model)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
             var sql = "INSERT INTO Customer VALUES(@CustomerID,@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";

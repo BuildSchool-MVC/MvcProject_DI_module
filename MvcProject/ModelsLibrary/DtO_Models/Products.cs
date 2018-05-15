@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.DtO_Models
 {
-    public class Products
+    public class Products: IModel
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F19E93E7-E452-4E85-B3E3-ACC9B276CCB9}</ProjectGuid>
+    <ProjectGuid>{0FE13598-FB39-4A52-AF85-DADAE7CAC3EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModelsLibrary</RootNamespace>
-    <AssemblyName>ModelsLibrary</AssemblyName>
+    <RootNamespace>Abstracts</RootNamespace>
+    <AssemblyName>Abstracts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="SimpleInjector, Version=4.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.4.2.2\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -46,30 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DtO_Models\Categories.cs" />
-    <Compile Include="DtO_Models\Customer.cs" />
-    <Compile Include="DtO_Models\Order.cs" />
-    <Compile Include="DtO_Models\OrderDetails.cs" />
-    <Compile Include="DtO_Models\ProductPhoto.cs" />
-    <Compile Include="DtO_Models\Products.cs" />
-    <Compile Include="DtO_Models\ShoppingcartDetails.cs" />
+    <Compile Include="IModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CategoriesRepository.cs" />
-    <Compile Include="Repositories\CustomerRepository.cs" />
-    <Compile Include="Repositories\OrderDetailsRepository.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\ProductPhotoRepository.cs" />
-    <Compile Include="Repositories\ProductsRepository.cs" />
-    <Compile Include="Repositories\ShoppingcartDetailsRepository.cs" />
+    <Compile Include="IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Abstracts\Abstracts.csproj">
-      <Project>{0fe13598-fb39-4a52-af85-dadae7cac3eb}</Project>
-      <Name>Abstracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

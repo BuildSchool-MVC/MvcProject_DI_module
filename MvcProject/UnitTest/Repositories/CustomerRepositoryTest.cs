@@ -38,7 +38,7 @@ namespace CustomerTest
                 Email="qwe"
             };
             CustomerRepository Repository = new CustomerRepository();
-            Repository.Cterae(customer);
+            Repository.Create(customer);
             var list = Repository.FindById(customer.CustomerID);
             Assert.IsTrue(list != null);
         }

@@ -17,7 +17,7 @@ namespace ModelsLibrary.Repositories.Tests
         {
             ProductsRepository repository = new ProductsRepository();
             var list=repository.GetAll();
-            Assert.IsTrue(list.Count()==4);
+            Assert.IsTrue(list.Count()==5);
         }
 
         [TestMethod()]

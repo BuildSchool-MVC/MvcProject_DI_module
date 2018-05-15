@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Abstracts;
 
 namespace ModelsLibrary.Repositories
 {
-    public class CategoriesRepository
+    public class CategoriesRepository : IRepository<Categories>
     {
         public void Create(Categories model)
         {

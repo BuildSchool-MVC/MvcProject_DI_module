@@ -1,4 +1,5 @@
-﻿using ModelsLibrary.DtO_Models;
+﻿using Abstracts;
+using ModelsLibrary.DtO_Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.Repositories
 {
-    public class OrderDetailsRepository
+    public class OrderDetailsRepository : IRepository<OrderDetails>
     {
         public void Create(OrderDetails model)
         {

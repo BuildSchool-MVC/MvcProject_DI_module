@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Abstracts;
+using SimpleInjector;
 
 namespace ModelsLibrary.Repositories
 {
-    public class ProductsRepository
+    public class ProductsRepository: IRepository<Products>
     {
         public void Create(Products model)
         {

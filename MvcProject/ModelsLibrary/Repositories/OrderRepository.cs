@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Abstracts;
+using Dapper;
 using ModelsLibrary.DtO_Models;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace ModelsLibrary.Repositories
 {
-    public class OrderRepository
+    public class OrderRepository : IRepository<Order>
     {
         private string _connectionString = "data source =. ; database = BuildSchool ; integrated security=true";
 
