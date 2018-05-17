@@ -10,11 +10,13 @@ namespace ModelsLibrary.Services
 {
     public class ShoppingcartDetailsService
     {
-        public void ConfirmOrders(ShoppingcartDetails model)
+        public bool ConfirmOrders(ShoppingcartDetails model)
         {
-            ShoppingcartDetailsRepository ShoppingcarRepository = new ShoppingcartDetailsRepository();
             ProductsRepository productsRepository = new ProductsRepository();
-
+            var stock = productsRepository.CheckStock(model.ProductID);
+            return stock;
         }
+
+
     }
 }

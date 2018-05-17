@@ -17,7 +17,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
             var sql = "INSERT INTO Customer VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
-            var result = connection.Execute(sql, 
+            connection.Execute(sql, 
                 new {
                         model.CustomerName,
                         model.Birthday,
@@ -33,7 +33,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
             var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone WHERE Account=@Account";
-            var result = connection.Execute(sql,
+            connection.Execute(sql,
                 new {
                         model.Account,
                         model.CustomerName,    
@@ -47,7 +47,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
             var sql = "DELETE FROM Customer WHERE Account=@Account";
-            var result = connection.Execute(sql,new {model.Account});
+            connection.Execute(sql,new {model.Account});
 
         }
         public Customer FindByCustomerAccount(string Account)
@@ -56,7 +56,6 @@ namespace ModelsLibrary.Repositories
             var sql = "SELECT * FROM Customer WHERE Account=@Account";
             var result = connection.QueryFirstOrDefault<Customer>(sql,new { Account });
             return result;
-
         }
 
         public IEnumerable<Customer> GetAll()

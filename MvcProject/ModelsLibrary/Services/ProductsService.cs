@@ -32,7 +32,7 @@ namespace ModelsLibrary.Services
             repository.UpdateDowntime(model);
         }
 
-        public Products FindByID(string productid)
+        public Products FindByID(int productid)
         {
             return repository.FindByID(productid);
         }
@@ -44,12 +44,35 @@ namespace ModelsLibrary.Services
 
         public IEnumerable<Products> GetColor(string Color)
         {
-            return repository.GetColor(Color);
+            return repository.GetbyColor(Color);
         }
 
         public IEnumerable<Products> GetProductName(string Name)
         {
-            return repository.GetProductName(Name);
+            return repository.GetbyProductName(Name);
+        }
+
+        public bool AddProducttoShoppingcar(ShoppingcartDetails model)//model.Quantity=網頁加入的商品數量
+        {
+            var shoppingcar = new ShoppingcartDetailsRepository();
+            var stock=repository.CheckStock(model.ProductID);
+            if (stock)
+            {
+                var product=shoppingcar.FindById(model.CustomerID, model.ProductID);
+                if(product != null)
+                {
+                    shoppingcar.Create(model);
+                }
+                else
+                {
+                    shoppingcar.Update(model);
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

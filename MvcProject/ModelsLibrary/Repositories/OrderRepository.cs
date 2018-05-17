@@ -93,14 +93,13 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
             var sql = @"UPDATE [Order] 
-                        SET Status = @Status , StatusUpdateDay = @StatusUpdateDay 
+                        SET Status = @Status , StatusUpdateDay = GETDATE() 
                         WHERE OrderID = @OrderID";
             var result = connection.Execute(sql,
                 new
                 {
                     model.OrderID,
-                    model.Status,
-                    model.StatusUpdateDay
+                    model.Status
                 });
 
             /*
