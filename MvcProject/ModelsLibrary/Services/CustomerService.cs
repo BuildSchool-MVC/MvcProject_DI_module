@@ -33,10 +33,10 @@ namespace ModelsLibrary.Services
             var repository = new CustomerRepository();
             return repository.GetAll();
         }
-        public Customer FindById(int customerId)
+        public Customer FindByCustomerAccount(string Account)
         {
             var repository = new CustomerRepository();
-            return repository.FindById(customerId);
+            return repository.FindByCustomerAccount(Account);
         }
     }
 }
