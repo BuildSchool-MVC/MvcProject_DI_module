@@ -30,12 +30,12 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new { model.ProductID,  model.UnitPrice });
         }
 
-        public void UpdateStock(Products model)
+        public void UpdateStock(Products model,int input)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE Products SET UnitsInStock=@UnitsInStock WHERE ProductID=@ProductID";
-            connection.Execute(sql, new { model.ProductID, model.UnitsInStock });
+            var sql = "UPDATE Products SET UnitsInStock=UnitsInStock+@input WHERE ProductID=@ProductID";
+            connection.Execute(sql, new { model.ProductID,input });
         }
 
         public void UpdateDowntime(Products model)
@@ -67,6 +67,15 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
             var sql = "SELECT * FROM Products WHERE Color=@Color";
             var result=connection.QueryMultiple(sql, new {Color});
+            var products = result.Read<Products>().ToList();
+            return products;
+        }
+
+        public IEnumerable<Products> GetProductName(string Name)
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
+            var sql = "SELECT * FROM Products WHERE ProductName LIKE @Name";
+            var result = connection.QueryMultiple(sql, new { Name });
             var products = result.Read<Products>().ToList();
             return products;
         }
