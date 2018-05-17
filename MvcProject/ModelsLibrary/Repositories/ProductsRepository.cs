@@ -74,7 +74,7 @@ namespace ModelsLibrary.Repositories
         public IEnumerable<Products> GetProductName(string Name)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM Products WHERE ProductName LIKE @Name";
+            var sql = "SELECT * FROM Products WHERE ProductName LIKE '%'+ @Name +'%'";
             var result = connection.QueryMultiple(sql, new { Name });
             var products = result.Read<Products>().ToList();
             return products;
