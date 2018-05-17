@@ -87,14 +87,13 @@ namespace ModelsLibrary.Repositories.Tests
         {
             Products model = new Products()
             {
-                ProductID = 4,
-                UnitsInStock=50
+                ProductID = 4
             };
             ProductsRepository products = new ProductsRepository();
-            products.UpdateStock(model);
+            products.UpdateStock(model,-5);
             var list = products.FindByID("4");
 
-            Assert.IsTrue(list.UnitsInStock==50);
+            Assert.IsTrue(list.UnitsInStock==45);
         }
 
         [TestMethod()]
@@ -110,6 +109,15 @@ namespace ModelsLibrary.Repositories.Tests
             var list = products.FindByID("4");
 
             Assert.IsTrue(list.Downtime == model.Downtime);
+        }
+
+        [TestMethod()]
+        public void GetProductName()
+        {
+            ProductsRepository products = new ProductsRepository();
+            var list=products.GetProductName("%高%");
+
+            Assert.IsTrue(list.Count()>0);
         }
 
         //[TestMethod()]
