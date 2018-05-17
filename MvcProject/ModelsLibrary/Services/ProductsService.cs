@@ -46,5 +46,10 @@ namespace ModelsLibrary.Services
         {
             return repository.GetColor(Color);
         }
+
+        public IEnumerable<Products> GetProductName(string Name)
+        {
+            return repository.GetProductName(Name);
+        }
     }
 }
