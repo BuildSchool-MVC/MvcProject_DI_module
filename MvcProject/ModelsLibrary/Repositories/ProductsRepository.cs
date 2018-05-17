@@ -79,5 +79,21 @@ namespace ModelsLibrary.Repositories
             var products = result.Read<Products>().ToList();
             return products;
         }
+
+        public bool CheckStock(string productid)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=BuildSchool; integrated security=true");
+            var sql = "SELECT * FROM Products WHERE ProductID =@ProductID";
+            var result = connection.QueryMultiple(sql, new { productid });
+            var products = result.Read<Products>().Single();
+
+            if (products.UnitsInStock > 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

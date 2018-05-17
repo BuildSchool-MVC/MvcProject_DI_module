@@ -112,12 +112,21 @@ namespace ModelsLibrary.Repositories.Tests
         }
 
         [TestMethod()]
-        public void GetProductName()
+        public void GetProductNameTest()
         {
             ProductsRepository products = new ProductsRepository();
             var list=products.GetProductName("高");
 
             Assert.IsTrue(list.Count()==5);
+        }
+
+        [TestMethod()]
+        public void CheckStockTest()
+        {
+            ProductsRepository products = new ProductsRepository();
+            var list = products.CheckStock("高");
+
+            Assert.IsTrue(list.Count() == 5);
         }
 
         //[TestMethod()]
