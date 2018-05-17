@@ -115,9 +115,9 @@ namespace ModelsLibrary.Repositories.Tests
         public void GetProductName()
         {
             ProductsRepository products = new ProductsRepository();
-            var list=products.GetProductName("%高%");
+            var list=products.GetProductName("高");
 
-            Assert.IsTrue(list.Count()>0);
+            Assert.IsTrue(list.Count()==5);
         }
 
         //[TestMethod()]
