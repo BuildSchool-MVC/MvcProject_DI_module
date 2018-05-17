@@ -1,14 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MvcProject",
-    "\\MvcProject\\Abstracts",
-    "\\MvcProject\\ModelsLibrary",
-    "\\MvcProject\\ModelsLibrary\\DtO_Models",
-    "\\MvcProject\\ModelsLibrary\\Repositories",
-    "\\MvcProject\\UnitTest",
-    "\\MvcProject\\UnitTest\\Repositories"
+    "\\MvcProject"
   ],
-  "SelectedNode": "\\MvcProject\\UnitTest\\Repositories\\ProductsRepositoryTests.cs",
+  "SelectedNode": "\\MvcProject\\MvcProject.sln",
   "PreviewInSolutionExplorer": false
 }
