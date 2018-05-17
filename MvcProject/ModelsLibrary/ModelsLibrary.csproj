@@ -61,6 +61,8 @@
     <Compile Include="Repositories\ProductPhotoRepository.cs" />
     <Compile Include="Repositories\ProductsRepository.cs" />
     <Compile Include="Repositories\ShoppingcartDetailsRepository.cs" />
+    <Compile Include="Services\CategoriesService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
