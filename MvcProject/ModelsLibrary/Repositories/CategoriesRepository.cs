@@ -83,6 +83,23 @@ namespace ModelsLibrary.Repositories
             return category;
         }
 
+        public Categories GetByName(string CName)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=DESKTOP-DO7A434\\BUILDSCHOOLSQL; database=BuildSchool_new; integrated security=true");
+
+            var list = connection.Query<Categories>("SELECT * FROM Categories WHERE CategoryName = @name"
+                , new { name = CName });
+
+            Categories category = null;
+            foreach (var item in list)
+            {
+                category = item;
+            }
+
+            return category;
+        }
+
         public IEnumerable<Categories> GetAll()
         {
             var connection = new SqlConnection("data source=DESKTOP-DO7A434\\BUILDSCHOOLSQL; database=BuildSchool_new; integrated security=true");
