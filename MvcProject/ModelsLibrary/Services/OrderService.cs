@@ -18,12 +18,6 @@ namespace ModelsLibrary.Services
             
         }
 
-        public void Update(Order model)
-        {
-            var repository = new OrderRepository();
-            repository.Update(model);
-        }
-
         public void UpdateStatus(Order model)
         {
             var repository = new OrderRepository();

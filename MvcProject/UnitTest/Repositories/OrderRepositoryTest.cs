@@ -39,24 +39,6 @@ namespace UnitTest.Repositories
             Assert.IsTrue(list != null);
         }
 
-        [TestMethod()]
-        public void TestUpdate()
-        {
-            Order model = new Order()
-            {
-                OrderID = 4,
-                OrderDay = new DateTime(2018, 11, 07),
-                CustomerID = 1,
-                Transport = "宅配",
-                Payment = "信用卡",
-                Status = "處理中",
-                StatusUpdateDay = DateTime.Now
-            };
-            OrderRepository orders = new OrderRepository();
-            orders.Create(model);
-            var list = orders.FindById(model.OrderID.ToString());
-            Assert.IsTrue(list != null);
-        }
 
         [TestMethod()]
         public void TestUpdateStatus()
