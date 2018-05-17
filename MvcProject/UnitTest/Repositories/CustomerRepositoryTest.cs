@@ -17,21 +17,21 @@ namespace CustomerTest
             Assert.IsTrue(customer.Count() > 0);
         }
         [TestMethod]
-        public void CustomerFindById()
+        public void FindByCustomerAccount()
         {
             var repository = new CustomerRepository();
-            var customer = repository.FindById(1);
-            Assert.IsTrue(customer.CustomerID==1);
+            var customer = repository.FindByCustomerAccount("coco");
+            Assert.IsTrue(customer!=null);
         }
+
         [TestMethod]
         public void CreateCustomer()
         {
             Customer customer = new Customer()
             {
-                CustomerID = 2,
-                CustomerName = "Coco",
+                CustomerName = "Jay",
                 Birthday =new DateTime( 1999,12,12),
-                Account = "coco",
+                Account = "JayJay",
                 Password = "123",
                 Phone="0923456432",
                 ShoppingCash = 0,
@@ -39,37 +39,39 @@ namespace CustomerTest
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Create(customer);
-            var list = Repository.FindById(customer.CustomerID);
+            var list = Repository.FindByCustomerAccount("JayJay");
             Assert.IsTrue(list != null);
         }
         [TestMethod]
         public void UpdateCustomer()
         {
+            
             Customer customer = new Customer()
             {
-                CustomerID = 2,
-                CustomerName = "Cococo",
+                Account= "JayJay",
+                CustomerName ="Lin",
                 Password = "123456",
                 Phone = "0911111",
-                ShoppingCash = 100,
-                Email="zxc"
+                ShoppingCash = 1000,
+                Email="zxczxc"
             };
             CustomerRepository Repository = new CustomerRepository();
+            var list = Repository.FindByCustomerAccount("JayJay");
             Repository.Update(customer);
-            var list = Repository.FindById(2);
-            Assert.IsTrue(list.Password==customer.Password);
+            
+            Assert.IsTrue(list.CustomerName== "Lin");
         }
         [TestMethod]
         public void DeleteCustomer()
         {
             Customer customer = new Customer()
             {
-                CustomerID = 2
+                Account="JayJay"
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Delete(customer);
-            var list = Repository.FindById(2);
-            Assert.IsTrue(list != null);
+            var list = Repository.FindByCustomerAccount("JayJay");
+            Assert.IsTrue(list == null);
         }
     }
     
