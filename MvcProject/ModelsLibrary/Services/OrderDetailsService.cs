@@ -10,33 +10,30 @@ namespace ModelsLibrary.Services
 {
     public class OrderDetailsService
     {
+        OrderDetailsRepository repository = new OrderDetailsRepository();
+
         public void Create(OrderDetails model)
         {
-            var repository = new OrderDetailsRepository();
             repository.Create(model);
         }
 
         public void Update(OrderDetails model)
         {
-            var repository = new OrderDetailsRepository();
             repository.Update(model);
         }
 
         public void Delete(OrderDetails model)
         {
-            var repository = new OrderDetailsRepository();
             repository.Delete(model);
         }
 
         public IEnumerable<OrderDetails> FindById(string OrderId)
         {
-            var repository = new OrderDetailsRepository();
             return repository.FindById(OrderId);
         }
 
         public IEnumerable<OrderDetails> GetAll()
         {
-            var repository = new OrderDetailsRepository();
             return repository.GetAll();
         }
     }
