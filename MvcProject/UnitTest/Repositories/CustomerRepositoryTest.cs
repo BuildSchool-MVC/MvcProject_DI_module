@@ -17,10 +17,10 @@ namespace CustomerTest
             Assert.IsTrue(customer.Count() > 0);
         }
         [TestMethod]
-        public void FindByCustomerAccount()
+        public void FindByCustomerId()
         {
             var repository = new CustomerRepository();
-            var customer = repository.FindByCustomerAccount("coco");
+            var customer = repository.FindByCustomerId(1);
             Assert.IsTrue(customer!=null);
         }
 
@@ -39,8 +39,8 @@ namespace CustomerTest
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Create(customer);
-            var list = Repository.FindByCustomerAccount("JayJay");
-            Assert.IsTrue(list != null);
+            //var list = Repository.FindByCustomerId(1);
+            Assert.IsTrue(customer.CustomerName=="Jay");
         }
         [TestMethod]
         public void UpdateCustomer()
@@ -56,21 +56,21 @@ namespace CustomerTest
                 Email="zxczxc"
             };
             CustomerRepository Repository = new CustomerRepository();
-            var list = Repository.FindByCustomerAccount("JayJay");
+            var list = Repository.FindByCustomerId(3);
             Repository.Update(customer);
             
-            Assert.IsTrue(list.CustomerName== "Lin");
+            Assert.IsTrue(list.Account== "JayJay");
         }
         [TestMethod]
         public void DeleteCustomer()
         {
             Customer customer = new Customer()
             {
-                Account="JayJay"
+                CustomerID=2
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Delete(customer);
-            var list = Repository.FindByCustomerAccount("JayJay");
+            var list = Repository.FindByCustomerId(2);
             Assert.IsTrue(list == null);
         }
     }
