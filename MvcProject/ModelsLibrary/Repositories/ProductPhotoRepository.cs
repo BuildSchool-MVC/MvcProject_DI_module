@@ -7,112 +7,53 @@ using System.Data;
 using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Abstracts;
+using Dapper;
 
 namespace ModelsLibrary.Repositories
 {
     public class ProductPhotoRepository : IRepository<ProductPhoto>
     {
-        public void Create(ProductPhoto model)//ID改自動產生
+        public void Create(ProductPhoto model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "INSERT INTO ProductPhoto VALUES (@PhotoID, @ProductID, @PhotoPath)";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@PhotoID", model.PhotoID);
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@PhotoPath", model.PhotoPath);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            var sql = "INSERT INTO [Product Photo](ProductID, PhotoPath) VALUES (@ProductID, @PhotoPath)";
+            connection.Execute(sql, new { model.ProductID, model.PhotoPath });
         }
 
         public void Update(ProductPhoto model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE ProductPhoto SET PhotoPath=@PhotoPath WHERE PhotoID=@PhotoID AND ProductID=@ProductID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@PhotoID", model.PhotoID);
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@PhotoPath", model.PhotoPath);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            var sql = "UPDATE [Product Photo] SET PhotoPath=@PhotoPath WHERE PhotoID=@PhotoID AND ProductID=@ProductID";
+            connection.Execute(sql, new { model.PhotoID, model.ProductID, model.PhotoPath });
         }
 
         public void Delete(ProductPhoto model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "DELETE FROM ProductPhoto WHERE PhotoID=@PhotoID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@PhotoID", model.PhotoID);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            var sql = "DELETE FROM [Product Photo] WHERE PhotoID=@PhotoID";
+            connection.Execute(sql, new { model.PhotoID });
         }
 
         public IEnumerable<ProductPhoto> FindById(int ProductID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM ProductPhoto WHERE ProductID = @ProductID";
-            SqlCommand command = new SqlCommand(sql, connection);
+            var sql = "SELECT * FROM [Product Photo] WHERE ProductID = @ProductID";
+            var result = connection.QueryMultiple(sql, new { ProductID });
+            var productphoto = result.Read<ProductPhoto>().ToList();
 
-            command.Parameters.AddWithValue("@ProductID", ProductID);
-            
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Photos = new List<ProductPhoto>();
-
-            while (reader.Read())
-            {
-                var Photo = new ProductPhoto();
-                Photo.PhotoID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("PhotoID")));
-                Photo.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
-                Photo.PhotoPath = reader.GetValue(reader.GetOrdinal("PhotoPath")).ToString();
-                Photos.Add(Photo);
-            }
-
-            reader.Close();
-
-            return Photos;
+            return productphoto;
         }
 
         public IEnumerable<ProductPhoto> GetAll()
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM ProductPhoto";
-            SqlCommand command = new SqlCommand(sql, connection);
 
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Photos = new List<ProductPhoto>();
-
-            while (reader.Read())
-            {
-                var Photo = new ProductPhoto();
-                Photo.PhotoID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("PhotoID")));
-                Photo.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
-                Photo.PhotoPath = reader.GetValue(reader.GetOrdinal("PhotoPath")).ToString();
-                Photos.Add(Photo);
-            }
-
-            reader.Close();
-
-            return Photos;
+            return connection.Query<ProductPhoto>("SELECT * FROM [Product Photo]");
         }
     }
 }
