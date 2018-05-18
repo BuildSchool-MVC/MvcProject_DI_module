@@ -28,27 +28,38 @@ namespace UnitTest.Repositories
                 CustomerID = 3,
                 Transport = "宅配",
                 Payment = "信用卡",
-                Status = "處理中",
+                Status = "已完成",
             };
             OrderRepository orders = new OrderRepository();
             orders.Create(model);
-            Assert.IsTrue(model.CustomerID == 3);
+            Assert.IsTrue(model.CustomerID ==3);
         }
 
-
+        [TestMethod]
+        public void TestDelete()
+        {
+            Order model = new Order()
+            {
+                OrderID = 12
+            };
+            OrderRepository Repository = new OrderRepository();
+            Repository.Delete(model);
+            var list = Repository.FindById(12);
+            Assert.IsTrue(list == null);
+        }
 
         [TestMethod()]
         public void TestUpdateStatus()
         {
             Order model = new Order()
             {
-                OrderID = 1,
-                Status = "處理中",
+                OrderID = 2,
+                Status = "已完成",
                 StatusUpdateDay = DateTime.Now
             };
             OrderRepository orders = new OrderRepository();
             orders.UpdateStatus(model);
-            Assert.IsTrue(model.Status == "處理中");
+            Assert.IsTrue(model.Status == "已完成");
         }
 
 
@@ -68,12 +79,6 @@ namespace UnitTest.Repositories
             Assert.IsTrue(order != null);
         }
 
-        [TestMethod]
-        public void FindIDByCustomerID()
-        {
-            var repository = new OrderRepository();
-            var order = repository.FindIDByCustomerID(1);
-            Assert.IsTrue(order > 0);
-        }
+
     }
 }

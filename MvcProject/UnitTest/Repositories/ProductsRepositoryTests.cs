@@ -17,7 +17,7 @@ namespace ModelsLibrary.Repositories.Tests
         {
             ProductsRepository repository = new ProductsRepository();
             var list=repository.GetAll();
-            Assert.IsTrue(list.Count()==5);
+            Assert.IsTrue(list.Count()>0);
         }
 
         [TestMethod()]
@@ -41,9 +41,9 @@ namespace ModelsLibrary.Repositories.Tests
         public void FindByID2Test()
         {
             ProductsRepository products = new ProductsRepository();
-            var list = products.FindByID(3);
+            var list = products.FindByID(4);
 
-            Assert.IsTrue(list.CategoryID == 3);
+            Assert.IsTrue(list.CategoryID == 1);
         }
 
         [TestMethod()]
@@ -51,7 +51,6 @@ namespace ModelsLibrary.Repositories.Tests
         {
             Products model = new Products()
             {
-                ProductID = 5,
                 ProductName = "高腰開岔長裙",
                 UnitPrice = 200,
                 UnitsInStock = 50,
@@ -62,7 +61,7 @@ namespace ModelsLibrary.Repositories.Tests
             };
             ProductsRepository products = new ProductsRepository();
             products.Create(model);
-            var list = products.FindByID(model.ProductID);
+            var list = products.FindByID(2);
 
             Assert.IsTrue(list != null);
         }
@@ -90,7 +89,7 @@ namespace ModelsLibrary.Repositories.Tests
                 ProductID = 4
             };
             ProductsRepository products = new ProductsRepository();
-            products.UpdateStock(model,-5);
+            products.UpdateStock(model,20);
             var list = products.FindByID(4);
 
             Assert.IsTrue(list.UnitsInStock==45);
@@ -117,7 +116,7 @@ namespace ModelsLibrary.Repositories.Tests
             ProductsRepository products = new ProductsRepository();
             var list=products.GetbyProductName("高");
 
-            Assert.IsTrue(list.Count()==5);
+            Assert.IsTrue(list.Count()>0);
         }
 
         [TestMethod()]
