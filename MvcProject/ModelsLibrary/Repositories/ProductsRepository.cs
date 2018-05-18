@@ -17,9 +17,9 @@ namespace ModelsLibrary.Repositories
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
-            var sql = @"INSERT INTO Products (ProductID,ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime)
-                                            VALUES (@ProductID,@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime)";
-            connection.Execute(sql,new { model.ProductID, model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime });
+            var sql = @"INSERT INTO Products (ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime)
+                                            VALUES (@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime)";
+            connection.Execute(sql,new { model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime });
         }
 
         public void UpdateUnitPrice(Products model)

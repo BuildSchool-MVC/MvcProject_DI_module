@@ -16,7 +16,5 @@ namespace ModelsLibrary.Services
             var stock = productsRepository.CheckStock(model.ProductID);
             return stock;
         }
-
-
     }
 }

@@ -9,7 +9,7 @@ namespace UnitTest
     public class OrderDetailsRepositoryTest
     {
         [TestMethod]
-        public void TestGetAll()
+        public void GetAll()
         {
             var repository = new OrderDetailsRepository();
             var orderdetails = repository.GetAll();
@@ -20,7 +20,7 @@ namespace UnitTest
         public void FindById()
         {
             var repository = new OrderDetailsRepository();
-            var orderdetails = repository.FindById("1");
+            var orderdetails = repository.FindById(1);
             Assert.IsTrue(orderdetails != null);
         }
     }
