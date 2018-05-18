@@ -52,28 +52,9 @@ namespace ModelsLibrary.Services
             return repository.GetbyProductName(Name);
         }
 
-        public bool AddProducttoShoppingcar(ShoppingcartDetails model)//model.Quantity=網頁加入的商品數量
+        public bool CheckStock(int productid, int carquantity)
         {
-            var shoppingcar = new ShoppingcartDetailsRepository();
-            var stock=repository.CheckStock(model.ProductID);
-            if (stock)
-            {
-                var product=shoppingcar.FindById(model.CustomerID, model.ProductID);
-                if(product != null)
-                {
-                    shoppingcar.Create(model);
-                }
-                else
-                {
-                    shoppingcar.Update(model);
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return repository.CheckStock(productid, carquantity);
         }
-
     }
 }
