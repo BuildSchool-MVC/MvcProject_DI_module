@@ -1,4 +1,5 @@
 ﻿using Abstracts;
+using Dapper;
 using ModelsLibrary.DtO_Models;
 using System;
 using System.Collections.Generic;
@@ -14,114 +15,55 @@ namespace ModelsLibrary.Repositories
     {
         public void Create(OrderDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "INSERT INTO OrderDetails VALUES (@OrderID, @ProductID, @Quantity)";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", model.OrderID);
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@Quantity", model.Quantity);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
+            var sql = @"INSERT INTO OrderDetails (OrderID,ProductID,Quantity)
+                        VALUES (@OrderID, @ProductID, @Quantity)";
+            connection.Execute(sql,
+                new
+                {
+                    model.OrderID,
+                    model.ProductID,
+                    model.Quantity
+                });
         }
-       
+
         public void Update(OrderDetails model)
         {
-            SqlConnection connection = new SqlConnection(
+            var connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "UPDATE OrderDetails SET ProductID=@ProductID, Quantity=@Quantity where OrderID=@OrderID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", model.OrderID);
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@Quantity", model.Quantity);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            connection.Execute(sql,
+                new
+                {
+                    model.OrderID,
+                    model.ProductID,
+                    model.Quantity
+                });
         }
 
         public void Delete(OrderDetails model)
         {
-            SqlConnection connection = new SqlConnection(
+            var connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "DELETE FROM OrderDetails WHERE OrderID=@OrderID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", model.Quantity);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            connection.Execute(sql, new { model.OrderID });
         }
 
-        public IEnumerable<OrderDetails> FindById(string OrderId)
+        public OrderDetails FindById(int OrderId)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM [Order Details] WHERE OrderID=@OrderID";
+            var connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
+           
+            var sql = "SELECT * FROM[Order Details] WHERE OrderID = @OrderID";
+            var result = connection.QueryMultiple(sql, new { OrderId });
+            var orderdetails = result.Read<OrderDetails>().Single();
 
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", OrderId);
-
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var orderdetails = new List<OrderDetails>();
-
-            var properties = typeof(OrderDetails).GetProperties();
-            OrderDetails orderdetail = null;
-
-            while (reader.Read())
-            {
-                orderdetail = new OrderDetails();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((p) => p.Name == fieldName);
-
-                    if (property == null) continue;
-
-                    if (!reader.IsDBNull(i)) property.SetValue(orderdetail, reader.GetValue(i));
-                }
-                orderdetails.Add(orderdetail);
-            }
-            reader.Close();
             return orderdetails;
         }
 
         public IEnumerable<OrderDetails> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM [Order Details]";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var orderdetails = new List<OrderDetails>();
-
-            while (reader.Read())
-            {
-                var orderdetail = new OrderDetails();
-                orderdetail.OrderID = (int)reader.GetValue(reader.GetOrdinal("OrderID"));
-                orderdetail.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
-                orderdetail.Quantity = (int)reader.GetValue(reader.GetOrdinal("Quantity"));
-
-                orderdetails.Add(orderdetail);
-            }
-
-            reader.Close();
-
-            return orderdetails;
+            var connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
+            return connection.Query<OrderDetails>("SELECT * FROM [Order Details]");
 
         }
     }
