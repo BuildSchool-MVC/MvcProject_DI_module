@@ -49,13 +49,8 @@ namespace ModelsLibrary.Services
             var model = Category_repository.GetByName(name);
       
             var result = new List<Products>();
-            foreach(var item in list)
-            {
-                if(item.CategoryID == model.CategoryID)
-                {
-                    result.Add(item);
-                }
-            }
+
+            result = list.Where((x) => x.CategoryID == model.CategoryID).ToList();
 
             return result;
         }

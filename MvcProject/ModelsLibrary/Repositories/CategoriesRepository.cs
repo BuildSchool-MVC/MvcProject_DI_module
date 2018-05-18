@@ -20,15 +20,6 @@ namespace ModelsLibrary.Repositories
             var sql = "INSERT INTO Categories VALUES (@Cid, @Cname)";
 
             connection.Execute(sql, new { Cid = model.CategoryID, Cname = model.CategoryName });
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-
-            //command.Parameters.AddWithValue("@Cid", model.CategoryID);
-            //command.Parameters.AddWithValue("@Cname", model.CategoryName);
-
-            //connection.Open();
-            //command.ExecuteNonQuery();
-            //connection.Close();
         }
 
         public void Delete(Categories model)
@@ -38,32 +29,15 @@ namespace ModelsLibrary.Repositories
             var sql = "DELETE FROM Categories WHERE CategoryID = @Cid";
 
             connection.Execute(sql, new { Cid = model.CategoryID });
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-
-            //command.Parameters.AddWithValue("@Cid", model.CategoryID);
-
-            //connection.Open();
-            //command.ExecuteNonQuery();
-            //connection.Close();
         }
 
-        public void UpdateCategoryName(Categories model, string cname)
+        public void UpdateCategoryName(int cid, string cname)
         {
             SqlConnection connection = new SqlConnection(
               "data source=.; database=BuildSchool_new; integrated security=true");
-            var sql = "UPDATE Categories SET CategoryName = @inputCName WHERE CategoryName = @SearchCName";
+            var sql = "UPDATE Categories SET CategoryName = @inputCName WHERE CategoryID = @SearchCid";
 
-            connection.Execute(sql, new { SearchCName = model.CategoryName, inputCName = cname });
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-
-            //command.Parameters.AddWithValue("@SearchCName", model_1.CategoryName);
-            //command.Parameters.AddWithValue("@inputCName", model_2.CategoryName);
-
-            //connection.Open();
-            //command.ExecuteNonQuery();
-            //connection.Close();
+            connection.Execute(sql, new { SearchCid = cid, inputCName = cname });
         }
 
         public Categories GetByID(int Cid)
