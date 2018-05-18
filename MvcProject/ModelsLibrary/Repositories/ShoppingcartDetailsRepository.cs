@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Abstracts;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace ModelsLibrary.Repositories
 {
@@ -20,9 +21,9 @@ namespace ModelsLibrary.Repositories
             var sql = "INSERT INTO [Shoppingcart Details] VALUES (@CustomerID, @ProductID, @Quantity)";
 
             connection.Execute(sql, new
-            {   CustomerID = model.CustomerID,
-                ProductID = model.ProductID,
-                Quantity = model.Quantity
+            {   model.CustomerID,
+                model.ProductID,
+                model.Quantity
             });
         }
 
@@ -35,8 +36,8 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new
             {
                 amount = model.Quantity,
-                CustomerID = model.CustomerID,
-                ProductID = model.ProductID
+                model.CustomerID,
+                model.ProductID
             });
         }
 
@@ -48,7 +49,7 @@ namespace ModelsLibrary.Repositories
 
             connection.Execute(sql, new
             {
-                CustomerID = model.CustomerID
+                model.CustomerID
             });
         }
 
@@ -60,8 +61,8 @@ namespace ModelsLibrary.Repositories
 
             connection.Execute(sql, new
             {
-                CustomerID = model.CustomerID,
-                ProductID = model.ProductID
+                model.CustomerID,
+                model.ProductID
             });
         }
 
@@ -73,11 +74,11 @@ namespace ModelsLibrary.Repositories
 
             var list = connection.Query<ShoppingcartDetails>(sql, new
             {
-                CustomerID = CustomerID,
-                ProductID = ProductID
+                CustomerID,
+                ProductID
             }).ToList();
 
-            return list.First();
+            return list.Single();
         }
 
         public IEnumerable<ShoppingcartDetails> GetAll()
@@ -89,15 +90,28 @@ namespace ModelsLibrary.Repositories
             return connection.Query<ShoppingcartDetails>(sql);
         }
 
+        public IEnumerable<ShoppingcartDetails> FindByCustomer(int CustomerID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=BuildSchool; integrated security=true");
+            var sql = "SELECT * FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID";
+
+            var list = connection.Query<ShoppingcartDetails>(sql, new{CustomerID}).ToList();
+
+            return list;
+        }
+
         public decimal GetProductTotal(int Cid)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT SUM(p.UnitPrice * sp.Quantity) FROM[Shoppingcart Details] sp INNER JOIN Products p ON p.ProductID = sp.ProductID GROUP BY sp.CustomerID HAVING sp.CustomerID = @id";
+            var sql = "SELECT SUM(p.UnitPrice * sp.Quantity) AS Total FROM[Shoppingcart Details] sp INNER JOIN Products p ON p.ProductID = sp.ProductID GROUP BY sp.CustomerID HAVING sp.CustomerID = @id";
 
-            var list = connection.Query(sql, new { id = Cid }).ToList();
+            var list = connection.QueryFirst(sql, new { id = Cid });
 
-            return list.First();
+            var result = Convert.ToDecimal(list.Total);
+
+            return result;
         }
     }
 }

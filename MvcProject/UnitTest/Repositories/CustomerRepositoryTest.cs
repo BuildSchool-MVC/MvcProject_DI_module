@@ -39,8 +39,8 @@ namespace CustomerTest
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Create(customer);
-            //var list = Repository.FindByCustomerId(1);
-            Assert.IsTrue(customer.CustomerName=="Jay");
+            var list = Repository.FindByCustomerId(1);
+            Assert.IsTrue(list.CustomerName=="Jay");
         }
         [TestMethod]
         public void UpdateCustomer()
@@ -48,6 +48,7 @@ namespace CustomerTest
             
             Customer customer = new Customer()
             {
+                CustomerID=3,
                 Account= "JayJay",
                 CustomerName ="Lin",
                 Password = "123456",
