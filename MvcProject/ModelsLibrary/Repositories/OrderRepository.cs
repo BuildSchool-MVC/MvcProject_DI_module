@@ -47,7 +47,7 @@ namespace ModelsLibrary.Repositories
 
         }
 
-        public Order CheckStatus(string orderId) //查詢訂單狀態
+        public Order CheckStatus(int orderId) //查詢訂單狀態
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
             var sql = @"SELECT Status
@@ -60,7 +60,7 @@ namespace ModelsLibrary.Repositories
 
         }
 
-        public Order FindById(string orderId) //用id查詢
+        public Order FindById(int orderId) //用id查詢
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
             var sql = @"SELECT * FROM [Order] 
