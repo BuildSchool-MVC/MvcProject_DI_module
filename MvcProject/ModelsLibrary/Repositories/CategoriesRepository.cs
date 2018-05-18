@@ -31,7 +31,7 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new { Cid = model.CategoryID });
         }
 
-        public void UpdateCategoryName(int cid, string cname)
+        public void UpdateCategoryNameByID(int cid, string cname)
         {
             SqlConnection connection = new SqlConnection(
               "data source=.; database=BuildSchool_new; integrated security=true");

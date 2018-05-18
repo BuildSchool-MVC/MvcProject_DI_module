@@ -32,10 +32,10 @@ namespace ModelsLibrary.Services
             repository.Delete(model);
         }
 
-        public void UpdateCategoryName(int cid, string cname)
+        public void UpdateCategoryNameByID(int cid, string cname)
         {
             var repository = new CategoriesRepository();
-            repository.UpdateCategoryName(cid, cname);
+            repository.UpdateCategoryNameByID(cid, cname);
         }
 
         public Categories GetByID(int Cid)
