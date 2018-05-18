@@ -16,7 +16,7 @@ namespace ModelsLibrary.Repositories
         public void Create(OrderDetails model)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
-            var sql = @"INSERT INTO OrderDetails (OrderID,ProductID,Quantity)
+            var sql = @"INSERT INTO [Order Details] (OrderID,ProductID,Quantity)
                         VALUES (@OrderID, @ProductID, @Quantity)";
             connection.Execute(sql,
                 new
@@ -31,7 +31,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE OrderDetails SET ProductID=@ProductID, Quantity=@Quantity where OrderID=@OrderID";
+            var sql = "UPDATE [Order Details] SET ProductID=@ProductID, Quantity=@Quantity where OrderID=@OrderID";
             connection.Execute(sql,
                 new
                 {
@@ -45,7 +45,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "DELETE FROM OrderDetails WHERE OrderID=@OrderID";
+            var sql = "DELETE FROM [Order Details] WHERE OrderID=@OrderID";
             connection.Execute(sql, new { model.OrderID });
         }
 
@@ -53,7 +53,7 @@ namespace ModelsLibrary.Repositories
         {
             var connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
            
-            var sql = "SELECT * FROM[Order Details] WHERE OrderID = @OrderID";
+            var sql = "SELECT * FROM [Order Details] WHERE OrderID = @OrderID";
             var result = connection.QueryMultiple(sql, new { OrderId });
             var orderdetails = result.Read<OrderDetails>().Single();
 

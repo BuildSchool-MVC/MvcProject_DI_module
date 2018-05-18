@@ -92,18 +92,18 @@ namespace ModelsLibrary.Services
             var orderRepository = new OrderRepository();
             var orderDetailsRepository = new OrderDetailsRepository();
 
-            foreach(var item in shoppingcar)
+            foreach(var item in shoppingcar)//每一件是否都有庫存
             {
-                var stock = productsRepository.CheckStock(item.ProductID, item.Quantity);//每一件是否都有庫存
+                var stock = productsRepository.CheckStock(item.ProductID, item.Quantity);
                 if (!stock)
                 {
                     return $"{item.ProductID}";
                 }
             }
 
-            orderRepository.Create(order);
+            orderRepository.Create(order);//新增訂單
             var orderid=orderRepository.FindIDByCustomerID(order.CustomerID);
-            foreach(var item in shoppingcar)
+            foreach(var item in shoppingcar)//新增訂單明細
             {
                 var orderDetails = new OrderDetails()
                 {
@@ -113,6 +113,8 @@ namespace ModelsLibrary.Services
                 };
                 orderDetailsRepository.Create(orderDetails);
             }
+            //扣庫存
+            //刪購物車內容
             return "OrderSuccess";
         }
     }
