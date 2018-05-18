@@ -15,22 +15,25 @@ namespace ModelsLibrary.Repositories
         public void Create(Order model)  //新增訂單
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
-            var sql = @"INSERT INTO [Order] 
-                        VALUES (@OrderID , @OrderDay , @CustomerID , @Transport , @Payment , @Status , @StatusUpdateDay)";
+            var sql = @"INSERT INTO [Order](OrderDay,CustomerID,Transport,Payment,Status,StatusUpdateDay) 
+                        VALUES (GETDATE() , @CustomerID , @Transport , @Payment , @Status , GETDATE())";
             connection.Execute(sql, 
                 new {
-                    model.OrderID,
-                    model.OrderDay,
                     model.CustomerID,
                     model.Transport,
                     model.Payment,
                     model.Status,
-                    model.StatusUpdateDay
                 });
 
         }
 
-       
+        public void Delete(Order model)
+        {
+            SqlConnection connection = new SqlConnection(this._connectionString);
+            var sql = "DELETE FROM [Order] WHERE OrderID=@OrderID";
+            connection.Execute(sql, new { model.OrderID});
+
+        }
 
         public void UpdateStatus(Order model)  //修改訂單狀態
         {
@@ -59,20 +62,20 @@ namespace ModelsLibrary.Repositories
             return orders;
 
         }
-
+        
         public Order FindById(int orderId) //用id查詢
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
             var sql = @"SELECT * FROM [Order] 
                                     WHERE OrderID = @OrderID";
-            var result = connection.QueryMultiple(sql, new { orderId });
-            var orders = result.Read<Order>().Single();
-
-            return orders;
-
-            
+            var result = connection.Query<Order>(sql, new { orderId }).ToList();
+            if (result.Count() == 0)
+            {
+                return null;
+            }
+            return result.Single();         
         }
-
+        
         public IEnumerable<Order> GetAll()  //查詢所有資料
         {
             SqlConnection connection = new SqlConnection(this._connectionString);

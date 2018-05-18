@@ -15,7 +15,7 @@ namespace UnitTest.Repositories
         public void TestCheckStatus()
         {
             var repository = new OrderRepository();
-            var order = repository.CheckStatus("1");
+            var order = repository.CheckStatus(1);
             Assert.IsTrue(order != null);
         }
 
@@ -25,33 +25,41 @@ namespace UnitTest.Repositories
         {
             Order model = new Order()
             {
-                OrderID = 3,
-                OrderDay = new DateTime(2018, 11, 07),
-                CustomerID = 2,
+                CustomerID = 3,
                 Transport = "宅配",
                 Payment = "信用卡",
-                Status = "處理中",
-                StatusUpdateDay = DateTime.Now
+                Status = "已完成",
             };
             OrderRepository orders = new OrderRepository();
             orders.Create(model);
-            var list = orders.FindById(model.OrderID.ToString());
-            Assert.IsTrue(list != null);
+            Assert.IsTrue(model.CustomerID ==3);
         }
 
+        [TestMethod]
+        public void TestDelete()
+        {
+            Order model = new Order()
+            {
+                OrderID = 12
+            };
+            OrderRepository Repository = new OrderRepository();
+            Repository.Delete(model);
+            var list = Repository.FindById(12);
+            Assert.IsTrue(list == null);
+        }
 
         [TestMethod()]
         public void TestUpdateStatus()
         {
             Order model = new Order()
             {
-                OrderID = 1,
-                Status = "處理中",
+                OrderID = 2,
+                Status = "已完成",
                 StatusUpdateDay = DateTime.Now
             };
             OrderRepository orders = new OrderRepository();
             orders.UpdateStatus(model);
-            Assert.IsTrue(model.Status == "處理中");
+            Assert.IsTrue(model.Status == "已完成");
         }
 
 
@@ -67,7 +75,7 @@ namespace UnitTest.Repositories
         public void TestFindById()
         {
             var repository = new OrderRepository();
-            var order = repository.FindById("1");
+            var order = repository.FindById(1);
             Assert.IsTrue(order != null);
         }
 

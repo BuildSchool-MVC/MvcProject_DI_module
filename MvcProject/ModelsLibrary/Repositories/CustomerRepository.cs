@@ -11,11 +11,13 @@ using Abstracts;
 
 namespace ModelsLibrary.Repositories
 {
+
    public class CustomerRepository : IRepository<Customer>
     {
+        private string _connectionString = "data source =. ; database = BuildSchool ; integrated security=true";
         public void Create(Customer model)
         {
-            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
+            SqlConnection connection = new SqlConnection(this._connectionString);
             var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email) 
                             VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
              connection.Execute(sql, 

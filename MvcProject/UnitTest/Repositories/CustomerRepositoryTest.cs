@@ -29,18 +29,18 @@ namespace CustomerTest
         {
             Customer customer = new Customer()
             {
-                CustomerName = "Jay",
-                Birthday =new DateTime( 1999,12,12),
-                Account = "JayJay",
-                Password = "123",
-                Phone="0923456432",
+                CustomerName = "coco",
+                Birthday =new DateTime( 1991,05,12),
+                Account = "coco123",
+                Password = "123456788",
+                Phone="0923455899",
                 ShoppingCash = 0,
-                Email="qwe"
+                Email= "coco123@gmail.com"
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Create(customer);
             //var list = Repository.FindByCustomerId(1);
-            Assert.IsTrue(customer.CustomerName=="Jay");
+            Assert.IsTrue(customer.CustomerName== "coco");
         }
         [TestMethod]
         public void UpdateCustomer()
@@ -48,29 +48,29 @@ namespace CustomerTest
             
             Customer customer = new Customer()
             {
-                Account= "JayJay",
-                CustomerName ="Lin",
-                Password = "123456",
-                Phone = "0911111",
-                ShoppingCash = 1000,
-                Email="zxczxc"
+                Account= "May123",
+                CustomerName = "LinMay123",
+                Password = "123456887",
+                Phone = "0911111987",
+                ShoppingCash = 10,
+                Email="zxc987@gmail.com"
             };
             CustomerRepository Repository = new CustomerRepository();
-            var list = Repository.FindByCustomerId(3);
+            var list = Repository.FindByCustomerId(5);
             Repository.Update(customer);
             
-            Assert.IsTrue(list.Account== "JayJay");
+            Assert.IsTrue(list.Account== "May123");
         }
         [TestMethod]
         public void DeleteCustomer()
         {
             Customer customer = new Customer()
             {
-                CustomerID=2
+                CustomerID=5
             };
             CustomerRepository Repository = new CustomerRepository();
             Repository.Delete(customer);
-            var list = Repository.FindByCustomerId(2);
+            var list = Repository.FindByCustomerId(5);
             Assert.IsTrue(list == null);
         }
     }
