@@ -124,7 +124,7 @@ namespace ModelsLibrary.Repositories.Tests
         public void CheckStockTest()
         {
             ProductsRepository products = new ProductsRepository();
-            var list = products.CheckStock(2);
+            var list = products.CheckStock(2,2);
 
             Assert.IsTrue(list == true);
         }

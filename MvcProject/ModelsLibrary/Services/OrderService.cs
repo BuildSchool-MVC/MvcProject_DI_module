@@ -24,13 +24,13 @@ namespace ModelsLibrary.Services
             repository.UpdateStatus(model);
         }
 
-        public Order CheckStatus(string orderId)
+        public Order CheckStatus(int orderId)
         {
             var repository = new OrderRepository();
             return repository.CheckStatus(orderId);
         }
 
-        public Order FindById(string orderId)
+        public Order FindById(int orderId)
         {
             var repository = new OrderRepository();
             return repository.FindById(orderId);

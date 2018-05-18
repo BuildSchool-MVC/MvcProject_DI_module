@@ -72,13 +72,14 @@ namespace ModelsLibrary.Repositories
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "SELECT * FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
-            var list = connection.Query<ShoppingcartDetails>(sql, new
+            var result = connection.Query<ShoppingcartDetails>(sql, new { CustomerID, ProductID }).ToList();
+            
+            if(result.Count() == 0)
             {
-                CustomerID,
-                ProductID
-            }).ToList();
+                return null;
+            }
 
-            return list.Single();
+            return result.Single();
         }
 
         public IEnumerable<ShoppingcartDetails> GetAll()

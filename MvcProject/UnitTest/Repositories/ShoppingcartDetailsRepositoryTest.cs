@@ -75,8 +75,8 @@ namespace UnitTest.Repositories
         public void FindByIdTest()
         {
             ShoppingcartDetailsRepository repository = new ShoppingcartDetailsRepository();
-            var shoppingcar = repository.FindById(1,1);
-            Assert.IsTrue(shoppingcar.Quantity > 0);
+            var shoppingcar = repository.FindById(1,3);
+            Assert.IsTrue(shoppingcar == null);
         }
 
         [TestMethod]

@@ -15,22 +15,20 @@ namespace ModelsLibrary.Repositories
         public void Create(Order model)  //新增訂單
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
-            var sql = @"INSERT INTO [Order] 
-                        VALUES (@OrderID , @OrderDay , @CustomerID , @Transport , @Payment , @Status , @StatusUpdateDay)";
-            connection.Execute(sql, 
-                new {
-                    model.OrderID,
-                    model.OrderDay,
+            var sql = @"INSERT INTO [Order](OrderDay,CustomerID,Transport,Payment,Status,StatusUpdateDay) 
+                        VALUES (GETDATE() , @CustomerID , @Transport , @Payment , @Status , GETDATE())";
+            connection.Execute(sql,
+                new
+                {
                     model.CustomerID,
                     model.Transport,
                     model.Payment,
                     model.Status,
-                    model.StatusUpdateDay
                 });
 
         }
 
-       
+
 
         public void UpdateStatus(Order model)  //修改訂單狀態
         {
@@ -69,8 +67,18 @@ namespace ModelsLibrary.Repositories
             var orders = result.Read<Order>().Single();
 
             return orders;
+        }
 
-            
+        public int FindIDByCustomerID(int customerID) //用id查詢
+        {
+            SqlConnection connection = new SqlConnection(this._connectionString);
+            var sql = @"SELECT TOP 1 * FROM [Order] 
+                        WHERE CustomerID = @CustomerID
+                        ORDER BY OrderDay DESC";
+            var result = connection.QueryMultiple(sql, new { customerID });
+            var orders = result.Read<Order>().Single();
+
+            return orders.OrderID;
         }
 
         public IEnumerable<Order> GetAll()  //查詢所有資料

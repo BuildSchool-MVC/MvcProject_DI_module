@@ -80,7 +80,7 @@ namespace ModelsLibrary.Repositories
             return products;
         }
 
-        public bool CheckStock(int productid)
+        public bool CheckStock(int productid,int carquantity)
         {
             SqlConnection connection = new SqlConnection(
                  "data source=.; database=BuildSchool; integrated security=true");
@@ -88,7 +88,7 @@ namespace ModelsLibrary.Repositories
             var result = connection.QueryMultiple(sql, new { productid });
             var products = result.Read<Products>().Single();
 
-            if (products.UnitsInStock == 0)
+            if (products.UnitsInStock-carquantity < 0)
             {
                 return false;
             }
