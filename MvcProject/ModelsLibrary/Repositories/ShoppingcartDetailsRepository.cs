@@ -8,7 +8,6 @@ using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Abstracts;
 using Dapper;
-using Newtonsoft.Json;
 
 namespace ModelsLibrary.Repositories
 {
