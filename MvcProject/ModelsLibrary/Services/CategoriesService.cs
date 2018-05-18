@@ -1,5 +1,7 @@
-﻿using ModelsLibrary.DtO_Models;
+﻿using Abstracts;
+using ModelsLibrary.DtO_Models;
 using ModelsLibrary.Repositories;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,14 @@ namespace ModelsLibrary.Services
 {
     public class CategoriesService
     {
+        private Container container = new Container();
+        
+        public void Init()
+        {
+            container.Register<IRepository<Categories>, CategoriesRepository>();
+            container.Register<IRepository<Products>, ProductsRepository>();
+        }
+
         public void Create(Categories model)
         {
             var repository = new CategoriesRepository();
@@ -22,10 +32,10 @@ namespace ModelsLibrary.Services
             repository.Delete(model);
         }
 
-        public void UpdateCategoryName(Categories model, string cname)
+        public void UpdateCategoryName(int cid, string cname)
         {
             var repository = new CategoriesRepository();
-            repository.UpdateCategoryName(model, cname);
+            repository.UpdateCategoryName(cid, cname);
         }
 
         public Categories GetByID(int Cid)
