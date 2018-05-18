@@ -75,7 +75,19 @@ namespace ModelsLibrary.Repositories
             }
             return result.Single();         
         }
-        
+
+        public int FindIDByCustomerID(int customerID) //用id查詢
+        {
+            SqlConnection connection = new SqlConnection(this._connectionString);
+            var sql = @"SELECT TOP 1 * FROM [Order] 
+                        WHERE CustomerID = @CustomerID
+                        ORDER BY OrderDay DESC";
+            var result = connection.QueryMultiple(sql, new { customerID });
+            var orders = result.Read<Order>().Single();
+
+            return orders.OrderID;
+        }
+
         public IEnumerable<Order> GetAll()  //查詢所有資料
         {
             SqlConnection connection = new SqlConnection(this._connectionString);
