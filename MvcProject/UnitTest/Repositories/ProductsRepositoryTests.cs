@@ -24,7 +24,7 @@ namespace ModelsLibrary.Repositories.Tests
         public void GetColorTest()
         {
             ProductsRepository repository = new ProductsRepository();
-            var list = repository.GetColor("yellow");
+            var list = repository.GetbyColor("yellow");
             Assert.IsTrue(list.Count() == 1 );
         }
 
@@ -32,7 +32,7 @@ namespace ModelsLibrary.Repositories.Tests
         public void FindByIDTest()
         {
             ProductsRepository products = new ProductsRepository();
-            var list = products.FindByID("2");
+            var list = products.FindByID(2);
 
             Assert.IsTrue(list != null);
         }
@@ -41,7 +41,7 @@ namespace ModelsLibrary.Repositories.Tests
         public void FindByID2Test()
         {
             ProductsRepository products = new ProductsRepository();
-            var list = products.FindByID("3");
+            var list = products.FindByID(3);
 
             Assert.IsTrue(list.CategoryID == 3);
         }
@@ -62,7 +62,7 @@ namespace ModelsLibrary.Repositories.Tests
             };
             ProductsRepository products = new ProductsRepository();
             products.Create(model);
-            var list = products.FindByID(model.ProductID.ToString());
+            var list = products.FindByID(model.ProductID);
 
             Assert.IsTrue(list != null);
         }
@@ -77,7 +77,7 @@ namespace ModelsLibrary.Repositories.Tests
             };
             ProductsRepository products = new ProductsRepository();
             products.UpdateUnitPrice(model);
-            var list = products.FindByID("4");
+            var list = products.FindByID(4);
 
             Assert.IsTrue(list.UnitPrice==220);
         }
@@ -91,7 +91,7 @@ namespace ModelsLibrary.Repositories.Tests
             };
             ProductsRepository products = new ProductsRepository();
             products.UpdateStock(model,-5);
-            var list = products.FindByID("4");
+            var list = products.FindByID(4);
 
             Assert.IsTrue(list.UnitsInStock==45);
         }
@@ -106,18 +106,27 @@ namespace ModelsLibrary.Repositories.Tests
             };
             ProductsRepository products = new ProductsRepository();
             products.UpdateDowntime(model);
-            var list = products.FindByID("4");
+            var list = products.FindByID(4);
 
             Assert.IsTrue(list.Downtime == model.Downtime);
         }
 
         [TestMethod()]
-        public void GetProductName()
+        public void GetProductNameTest()
         {
             ProductsRepository products = new ProductsRepository();
-            var list=products.GetProductName("高");
+            var list=products.GetbyProductName("高");
 
             Assert.IsTrue(list.Count()==5);
+        }
+
+        [TestMethod()]
+        public void CheckStockTest()
+        {
+            ProductsRepository products = new ProductsRepository();
+            var list = products.CheckStock(2);
+
+            Assert.IsTrue(list == true);
         }
 
         //[TestMethod()]

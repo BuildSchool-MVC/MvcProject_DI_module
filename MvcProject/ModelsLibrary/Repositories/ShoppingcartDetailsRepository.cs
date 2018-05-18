@@ -16,7 +16,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "INSERT INTO ShoppingcartDetails VALUES (@CustomerID, @ProductID, @Quantity)";
+            var sql = "INSERT INTO [Shoppingcart Details] VALUES (@CustomerID, @ProductID, @Quantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -33,7 +33,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE ShoppingcartDetails SET CustomerID=@CustomerID, ProductID=@ProductID, Quantity=@Quantity";
+            var sql = "UPDATE [Shoppingcart Details] SET Quantity=Quantity+@Quantity where CustomerID=@CustomerID AND ProductID=@ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -50,7 +50,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "DELETE FROM ShoppingcartDetails WHERE CustomerID = @CustomerID";
+            var sql = "DELETE FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -65,7 +65,7 @@ namespace ModelsLibrary.Repositories
         {//可找Quantity
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM ShoppingcartDetails WHERE CustomerID = @CustomerID && ProductID = @ProductID";
+            var sql = "SELECT * FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -103,7 +103,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "SELECT * FROM ShoppingcartDetails";
+            var sql = "SELECT * FROM [Shoppingcart Details]";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();

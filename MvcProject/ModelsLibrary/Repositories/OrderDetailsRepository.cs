@@ -33,7 +33,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE OrderDetails SET OrderID=@OrderID, ProductID=@ProductID, Quantity=@Quantity";
+            var sql = "UPDATE OrderDetails SET ProductID=@ProductID, Quantity=@Quantity where OrderID=@OrderID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -50,11 +50,11 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "DELETE FROM OrderDetails WHERE Quantity = @Quantity";
+            var sql = "DELETE FROM OrderDetails WHERE OrderID=@OrderID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@Quantity", model.Quantity);
+            command.Parameters.AddWithValue("@OrderID", model.Quantity);
 
             connection.Open();
             command.ExecuteNonQuery();

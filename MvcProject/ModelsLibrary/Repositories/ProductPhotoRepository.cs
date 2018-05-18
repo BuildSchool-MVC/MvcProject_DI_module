@@ -12,7 +12,7 @@ namespace ModelsLibrary.Repositories
 {
     public class ProductPhotoRepository : IRepository<ProductPhoto>
     {
-        public void Create(ProductPhoto model)
+        public void Create(ProductPhoto model)//ID改自動產生
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
@@ -33,7 +33,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "UPDATE ProductPhoto SET PhotoID=@PhotoID, ProductID=@ProductID, PhotoPath=@PhotoPath";
+            var sql = "UPDATE ProductPhoto SET PhotoPath=@PhotoPath WHERE PhotoID=@PhotoID AND ProductID=@ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -50,11 +50,11 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
-            var sql = "DELETE FROM ProductPhoto WHERE ProductID = @ProductID";
+            var sql = "DELETE FROM ProductPhoto WHERE PhotoID=@PhotoID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
+            command.Parameters.AddWithValue("@PhotoID", model.PhotoID);
 
             connection.Open();
             command.ExecuteNonQuery();

@@ -16,8 +16,9 @@ namespace ModelsLibrary.Repositories
         public void Create(Customer model)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
-            var sql = "INSERT INTO Customer VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
-            var result = connection.Execute(sql, 
+            var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email) 
+                            VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
+             connection.Execute(sql, 
                 new {
                         model.CustomerName,
                         model.Birthday,
@@ -32,9 +33,10 @@ namespace ModelsLibrary.Repositories
         public void Update(Customer model)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
-            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone WHERE Account=@Account";
-            var result = connection.Execute(sql,
+            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone WHERE CustomerID=@CustomerID";
+            connection.Execute(sql,
                 new {
+                        model.CustomerID,
                         model.Account,
                         model.CustomerName,    
                         model.Password,
@@ -46,15 +48,15 @@ namespace ModelsLibrary.Repositories
         public void Delete(Customer model)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
-            var sql = "DELETE FROM Customer WHERE Account=@Account";
-            var result = connection.Execute(sql,new {model.Account});
+            var sql = "DELETE FROM Customer WHERE CustomerID=@CustomerID";
+            connection.Execute(sql,new {model.CustomerID});
 
         }
-        public Customer FindByCustomerAccount(string Account)
+        public Customer FindByCustomerId(int customerId)
         {
             var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
-            var sql = "SELECT * FROM Customer WHERE Account=@Account";
-            var result = connection.QueryFirstOrDefault<Customer>(sql,new { Account });
+            var sql = "SELECT * FROM Customer WHERE customerId=@customerId";
+            var result = connection.QueryFirstOrDefault<Customer>(sql,new { customerId });
             return result;
 
         }

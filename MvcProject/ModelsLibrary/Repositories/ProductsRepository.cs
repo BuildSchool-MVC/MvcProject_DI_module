@@ -46,7 +46,7 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new { model.ProductID, model.Downtime });
         }
 
-        public Products FindByID(string productid)
+        public Products FindByID(int productid)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
@@ -62,7 +62,7 @@ namespace ModelsLibrary.Repositories
             return connection.Query<Products>("SELECT * FROM Products");
         }
 
-        public IEnumerable<Products> GetColor(string Color)
+        public IEnumerable<Products> GetbyColor(string Color)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
             var sql = "SELECT * FROM Products WHERE Color=@Color";
@@ -71,13 +71,29 @@ namespace ModelsLibrary.Repositories
             return products;
         }
 
-        public IEnumerable<Products> GetProductName(string Name)
+        public IEnumerable<Products> GetbyProductName(string Name)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
             var sql = "SELECT * FROM Products WHERE ProductName LIKE '%'+ @Name +'%'";
             var result = connection.QueryMultiple(sql, new { Name });
             var products = result.Read<Products>().ToList();
             return products;
+        }
+
+        public bool CheckStock(int productid)
+        {
+            SqlConnection connection = new SqlConnection(
+                 "data source=.; database=BuildSchool; integrated security=true");
+            var sql = "SELECT * FROM Products WHERE ProductID = @ProductID";
+            var result = connection.QueryMultiple(sql, new { productid });
+            var products = result.Read<Products>().Single();
+
+            if (products.UnitsInStock == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
