@@ -114,7 +114,38 @@ namespace ModelsLibrary.Services
                 orderDetailsRepository.Create(orderDetails);
             }
             //扣庫存
+            foreach(var item in shoppingcar)
+            {
+                var product = new Products()
+                {
+                    ProductID = item.ProductID
+                };
+                productsRepository.UpdateStockPminus(product, item.Quantity);
+            }
             //刪購物車內容
+            //先判斷購物車商品數量與訂單商品數量
+            var shoppingcartDetails=shoppingcarRepository.FindByCustomer(order.CustomerID);
+            foreach(var item in shoppingcar)
+            {
+                foreach(var bag in shoppingcartDetails)
+                {
+                    var shoppingcart = new ShoppingcartDetails()
+                    {
+                        ProductID = item.ProductID, CustomerID = item.CustomerID, Quantity = item.Quantity
+                    };
+
+                    if(bag.ProductID==item.ProductID && bag.Quantity == item.Quantity)
+                    {
+                        shoppingcarRepository.DeleteOneForUser(shoppingcart);
+                        break;
+                    }
+                    else
+                    {
+                        shoppingcarRepository.Updateminus(shoppingcart);
+                        break;
+                    }
+                }
+            }
             return "OrderSuccess";
         }
     }

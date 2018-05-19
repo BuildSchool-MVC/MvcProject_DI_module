@@ -34,8 +34,8 @@ namespace UnitTest.Repositories
         public void ConfirmOrdersTest()
         {
             List<ShoppingcartDetails> shoppingcar = new List<ShoppingcartDetails>();
-            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 2, ProductID = 1, Quantity = 3 });
-            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 2, ProductID = 3, Quantity = 2 });
+            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 1, Quantity = 3 });
+            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 3, Quantity = 2 });
             Order order = new Order
             {
                 CustomerID = 3,

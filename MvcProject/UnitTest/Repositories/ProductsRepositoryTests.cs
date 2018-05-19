@@ -82,17 +82,31 @@ namespace ModelsLibrary.Repositories.Tests
         }
 
         [TestMethod()]
-        public void UpdateStockTest()
+        public void UpdateStockPplusTest()
         {
             Products model = new Products()
             {
                 ProductID = 4
             };
             ProductsRepository products = new ProductsRepository();
-            products.UpdateStock(model,20);
+            products.UpdateStockPplus(model,20);
             var list = products.FindByID(4);
 
             Assert.IsTrue(list.UnitsInStock==45);
+        }
+
+        [TestMethod()]
+        public void UpdateStockPminusTest()
+        {
+            Products model = new Products()
+            {
+                ProductID = 4
+            };
+            ProductsRepository products = new ProductsRepository();
+            products.UpdateStockPminus(model, 20);
+            var list = products.FindByID(4);
+
+            Assert.IsTrue(list.UnitsInStock == 25);
         }
 
         [TestMethod()]

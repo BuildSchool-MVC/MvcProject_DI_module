@@ -40,6 +40,20 @@ namespace ModelsLibrary.Repositories
             });
         }
 
+        public void Updateminus(ShoppingcartDetails model)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=BuildSchool; integrated security=true");
+            var sql = "UPDATE [Shoppingcart Details] SET Quantity = Quantity-@amount where CustomerID = @CustomerID AND ProductID = @ProductID";
+
+            connection.Execute(sql, new
+            {
+                amount = model.Quantity,
+                model.CustomerID,
+                model.ProductID
+            });
+        }
+
         public void DeleteAllForUser(ShoppingcartDetails model)
         {
             SqlConnection connection = new SqlConnection(

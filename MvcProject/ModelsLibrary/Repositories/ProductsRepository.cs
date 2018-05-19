@@ -30,12 +30,20 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new { model.ProductID,  model.UnitPrice });
         }
 
-        public void UpdateStock(Products model,int input)
+        public void UpdateStockPplus(Products model,int input)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=BuildSchool; integrated security=true");
             var sql = "UPDATE Products SET UnitsInStock=UnitsInStock+@input WHERE ProductID=@ProductID";
             connection.Execute(sql, new { model.ProductID,input });
+        }
+
+        public void UpdateStockPminus(Products model, int input)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=BuildSchool; integrated security=true");
+            var sql = "UPDATE Products SET UnitsInStock=UnitsInStock-@input WHERE ProductID=@ProductID";
+            connection.Execute(sql, new { model.ProductID, input });
         }
 
         public void UpdateDowntime(Products model)

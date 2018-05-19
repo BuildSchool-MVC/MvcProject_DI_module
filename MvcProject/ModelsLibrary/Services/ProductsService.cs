@@ -22,9 +22,14 @@ namespace ModelsLibrary.Services
             repository.UpdateUnitPrice(model);
         }
 
-        public void UpdateStock(Products model,int input)
+        public void UpdateStockPplus(Products model,int input)
         {
-            repository.UpdateStock(model,input);
+            repository.UpdateStockPplus(model,input);
+        }
+
+        public void UpdateStockPminus(Products model, int input)
+        {
+            repository.UpdateStockPminus(model, input);
         }
 
         public void UpdateDowntime(Products model)

@@ -43,6 +43,21 @@ namespace UnitTest.Repositories
             Assert.IsTrue(shoppingcar.Count() > 0);
         }
 
+        [TestMethod()]
+        public void UpdateminusTest()
+        {
+            ShoppingcartDetailsRepository repository = new ShoppingcartDetailsRepository();
+            ShoppingcartDetails model = new ShoppingcartDetails
+            {
+                CustomerID = 1,
+                ProductID = 1,
+                Quantity = 1
+            };
+            repository.Updateminus(model);
+            var shoppingcar = repository.GetAll();
+            Assert.IsTrue(shoppingcar.Count() > 0);
+        }
+
 
         [TestMethod()]
         public void DeleteAllForUserTest()
