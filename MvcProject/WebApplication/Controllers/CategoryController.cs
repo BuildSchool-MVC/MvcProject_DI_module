@@ -7,17 +7,23 @@ using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
+    [RoutePrefix("Category")]
     public class CategoryController : Controller
     {
         // GET: Category
         [Route("Clothes")]
-        public ActionResult Index()
+        public ActionResult Clothes()
+        {
+            return View();
+        }
+
+        public ActionResult Partial_Clothes()
         {
             var service = new CategoriesService();
             var query = service.ClassifyByCategoryName("上衣");
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
-            return View();
+            return PartialView();
         }
     }
 }
