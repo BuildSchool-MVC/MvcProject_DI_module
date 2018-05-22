@@ -2,6 +2,7 @@
 using ModelsLibrary.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace ModelsLibrary.Services
         {
             var shoppingcarRepository = new ShoppingcartDetailsRepository();
             var productsRepository = new ProductsRepository();
-            var stock = productsRepository.CheckStock(model.ProductID,model.Quantity);
+            var stock = productsRepository.CheckStock(model.ProductID, model.Quantity);
             if (stock)
             {
                 var product = shoppingcarRepository.FindById(model.CustomerID, model.ProductID);
@@ -82,70 +83,87 @@ namespace ModelsLibrary.Services
                 return false;
             }
 
-            
-        }      
 
-        public string ConfirmOrders(List<ShoppingcartDetails> shoppingcar,Order order)//新增訂單
+        }
+
+        public string ConfirmOrders(List<ShoppingcartDetails> shoppingcar, Order order)//新增訂單
         {
             var shoppingcarRepository = new ShoppingcartDetailsRepository();
             var productsRepository = new ProductsRepository();
             var orderRepository = new OrderRepository();
             var orderDetailsRepository = new OrderDetailsRepository();
 
-            foreach(var item in shoppingcar)//每一件是否都有庫存
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=BuildSchool; integrated security=true");
+            connection.Open();
+            var transactition = connection.BeginTransaction();
+            try
             {
-                var stock = productsRepository.CheckStock(item.ProductID, item.Quantity);
-                if (!stock)
+                foreach (var item in shoppingcar)//每一件是否都有庫存
                 {
-                    return $"{item.ProductID}";
-                }
-            }
-
-            orderRepository.Create(order);//新增訂單
-            var orderid=orderRepository.FindIDByCustomerID(order.CustomerID);
-            foreach(var item in shoppingcar)//新增訂單明細
-            {
-                var orderDetails = new OrderDetails()
-                {
-                    OrderID = orderid,
-                    ProductID = item.ProductID,
-                    Quantity = item.Quantity
-                };
-                orderDetailsRepository.Create(orderDetails);
-            }
-            //扣庫存
-            foreach(var item in shoppingcar)
-            {
-                var product = new Products()
-                {
-                    ProductID = item.ProductID
-                };
-                productsRepository.UpdateStockPminus(product, item.Quantity);
-            }
-            //刪購物車內容
-            //先判斷購物車商品數量與訂單商品數量
-            var shoppingcartDetails=shoppingcarRepository.FindByCustomer(order.CustomerID);
-            foreach(var item in shoppingcar)
-            {
-                foreach(var bag in shoppingcartDetails)
-                {
-                    var shoppingcart = new ShoppingcartDetails()
+                    var stock = productsRepository.CheckStock(item.ProductID, item.Quantity);
+                    if (!stock)
                     {
-                        ProductID = item.ProductID, CustomerID = item.CustomerID, Quantity = item.Quantity
+                        return $"{item.ProductID}";
+                    }
+                }
+
+                orderRepository.Create(order);//新增訂單
+                var orderid = orderRepository.FindIDByCustomerID(order.CustomerID);
+                foreach (var item in shoppingcar)//新增訂單明細
+                {
+                    var orderDetails = new OrderDetails()
+                    {
+                        OrderID = orderid,
+                        ProductID = item.ProductID,
+                        Quantity = item.Quantity
                     };
+                    orderDetailsRepository.Create(orderDetails);
+                }
+                //扣庫存
+                foreach (var item in shoppingcar)
+                {
+                    var product = new Products()
+                    {
+                        ProductID = item.ProductID
+                    };
+                    productsRepository.UpdateStockPminus(product, item.Quantity);
+                }
+                //刪購物車內容
+                //先判斷購物車商品數量與訂單商品數量
+                var shoppingcartDetails = shoppingcarRepository.FindByCustomer(order.CustomerID);
+                foreach (var item in shoppingcar)
+                {
+                    foreach (var bag in shoppingcartDetails)
+                    {
+                        var shoppingcart = new ShoppingcartDetails()
+                        {
+                            ProductID = item.ProductID,
+                            CustomerID = item.CustomerID,
+                            Quantity = item.Quantity
+                        };
 
-                    if(bag.ProductID==item.ProductID && bag.Quantity == item.Quantity)
-                    {
-                        shoppingcarRepository.DeleteOneForUser(shoppingcart);
-                        break;
-                    }
-                    else
-                    {
-                        shoppingcarRepository.Updateminus(shoppingcart);
-                        break;
+                        if (bag.ProductID == item.ProductID && bag.Quantity == item.Quantity)
+                        {
+                            shoppingcarRepository.DeleteOneForUser(shoppingcart);
+                            break;
+                        }
+                        else
+                        {
+                            shoppingcarRepository.Updateminus(shoppingcart);
+                            break;
+                        }
                     }
                 }
+                transactition.Commit();
             }
+            catch(SqlException e)
+            {
+                transactition.Rollback();
+                return "Error!";
+            }
+            connection.Close();
+
             return "OrderSuccess";
         }
     }
