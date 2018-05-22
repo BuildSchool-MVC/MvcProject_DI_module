@@ -1,0 +1,245 @@
+﻿@charset "utf-8";
+/* ------------------------------
+   Browser Reset
+------------------------------ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+html {
+	-webkit-text-size-adjust: none;
+}
+
+img {
+	vertical-align: bottom;
+}
+
+a {
+	-webkit-tap-highlight-color: transparent;
+}
+
+strong {
+	font-weight: bold;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	font-weight: normal;
+	text-align: left;
+	vertical-align: top;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+
+blockquote, q {
+	quotes: "" "";
+}
+
+a:focus {
+/*\*/
+	overflow: hidden;
+/**/
+}
+
+option {
+	padding-right: 10px;
+}
+
+/* HTML5 ELEMENTS
+------------------------------ */
+header,article,aside,section,footer,
+nav,menu,details,hgroup,summary {
+	display: block;
+}
+
+/* ------------------------------
+   COMMON ELEMENTS
+------------------------------ 
+body {
+	font-size: 14px;
+	line-height: 1.6em;
+	font-family: "游ゴシック",YuGothic,"メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "ＭＳ Ｐゴシック", "MS P Gothic", Verdana, Arial, Helvetica, sans-serif;
+	color: #000;
+	text-align: center;
+	background: #fff;
+}
+
+#wrapper {
+	text-align: center;
+}*/
+
+/* ------------------------------
+   baseHeader
+------------------------------ */
+.baseHeader {
+	text-align: center;
+	background: #000;
+}
+
+.baseHeader div {
+	margin: 0 auto;
+	width: 800px;
+	text-align: left;
+	position: relative;
+}
+
+.baseHeader div h1 {
+	height: 100px;
+	font-size: 1.2em;
+	line-height: 100px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.baseHeader div a {
+	padding: 0 20px;
+	top: 35px;
+	right: 0;
+	height: 30px;
+	color: #fff;
+	font-size: 0.8em;
+	line-height: 30px;
+	text-align: center;
+	display: block;
+	border: #fff 1px solid;
+	position: absolute;
+	box-sizing: border-box;
+}
+
+.baseHeader div a:link,.baseHeader div a:visited,.baseHeader div a:active {
+	text-decoration: none;
+	color: #fff;
+}
+
+.baseHeader div a:hover {
+	color: #000;
+	background: #fff;
+	text-decoration: none;
+}
+
+/* ------------------------------
+   baseFooter
+------------------------------ */
+.baseFooter {
+	padding: 15px 0;
+	text-align: center;
+	border-top: #bbb 1px solid;
+}
+
+.baseFooter small {
+	color: #999;
+	font-size: 0.6em;
+}
+
+/* ------------------------------
+   CLEARFIX ELEMENTS
+------------------------------ */
+.cfx:before,
+.cfx:after {
+	content: " ";
+	display: table;
+}
+.cfx:after {clear: both;}
+.cfx {*zoom: 1;}
+
+
+.product {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.product img {
+	width: 180px;
+	height: 180px;
+	transform: scale(1);
+	transition: all 1s ease 0s;
+}
+
+.product a:hover img {
+	transform: scale(1.4);
+	transition: all 1s ease 0s;
+}
+
+.product p {
+	bottom: 0;
+}
+
+div.step-container {
+	display: flex;
+	overflow: hidden;
+	align-items: center;
+}
+
+div.step-container div.step,
+div.step-container div.step2 {
+	background-color: #69C795;
+	position: relative;
+	display: inline-block;
+	flex-basis: 300px;
+	height: 50px;
+}
+
+div.step-container div.step:after,
+div.step-container div.step2:after {
+	content: '';
+	position: absolute;
+	right: -10px;
+	background: #69C795;
+	width: 50px;
+	height: 50px;
+	transform: rotate(-45deg);
+	z-index: 1;
+	box-shadow: 3px 3px 0px 0px white;
+}
+
+div.step-container div.step2 {
+	background-color: #ccc;
+}
+
+div.step-container div.step2:after {
+	background: #ccc;
+}
+
+div.step-container div.step1:before {
+	content: '';
+	position: absolute;
+	left: -20px;
+	background: white;
+	width: 50px;
+	height: 50px;
+	transform: rotate(-45deg);
+	z-index: 1;
+	box-shadow: 3px 3px 0px 0px white;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
