@@ -32,6 +32,11 @@ namespace ModelsLibrary.Services
             repository.UpdateStockPminus(model, input);
         }
 
+        public void UpdateProductDetails(Products model, string ProductDetails)
+        {
+            repository.UpdateProductDetails(model, ProductDetails);
+        }
+
         public void UpdateDowntime(Products model)
         {
             repository.UpdateDowntime(model);
@@ -55,6 +60,11 @@ namespace ModelsLibrary.Services
         public IEnumerable<Products> GetProductName(string Name)
         {
             return repository.GetbyProductName(Name);
+        }
+
+        public IEnumerable<Products> GetSizebyProductNamebyColor(string name, string color)
+        {
+            return repository.GetSizebyProductNamebyColor(name,color);
         }
 
         public bool CheckStock(int productid, int carquantity)

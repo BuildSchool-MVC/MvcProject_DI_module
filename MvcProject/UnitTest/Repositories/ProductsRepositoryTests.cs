@@ -56,8 +56,9 @@ namespace ModelsLibrary.Repositories.Tests
                 UnitsInStock = 50,
                 CategoryID = 3,
                 Size = "S",
-                Color="Red",
-                Uptime = new DateTime(2018, 05, 10)
+                Color = "Red",
+                Uptime = new DateTime(2018, 05, 10),
+                ProductDetails = "左右兩側附口袋"
             };
             ProductsRepository products = new ProductsRepository();
             products.Create(model);
@@ -125,12 +126,35 @@ namespace ModelsLibrary.Repositories.Tests
         }
 
         [TestMethod()]
+        public void UpdateProductDetailsTest()
+        {
+            Products model = new Products()
+            {
+                ProductID = 4
+            };
+            ProductsRepository products = new ProductsRepository();
+            products.UpdateProductDetails(model,"洗滌不退色");
+            var list = products.FindByID(4);
+
+            Assert.IsTrue(list.Downtime == model.Downtime);
+        }
+
+        [TestMethod()]
         public void GetProductNameTest()
         {
             ProductsRepository products = new ProductsRepository();
             var list=products.GetbyProductName("高");
 
             Assert.IsTrue(list.Count()>0);
+        }
+
+        [TestMethod()]
+        public void GetSizebyProductNamebyColorTest()
+        {
+            ProductsRepository products = new ProductsRepository();
+            var list = products.GetSizebyProductNamebyColor("紅色高跟鞋", "紅");
+
+            Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
@@ -142,18 +166,18 @@ namespace ModelsLibrary.Repositories.Tests
             Assert.IsTrue(list == true);
         }
 
-        //[TestMethod()]
-        //public void DeleteTest()
-        //{
-        //    Products model = new Products()
-        //    {
-        //        ProductID = 3
-        //    };
-        //    ProductsRepository products = new ProductsRepository();
-        //    products.Delete(model);
-        //    var list = products.FindByID("3");
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            Products model = new Products()
+            {
+                ProductID = 3
+            };
+            ProductsRepository products = new ProductsRepository();
+            products.Delete(model);
+            var list = products.FindByID(3);
 
-        //    Assert.IsTrue(list == null);
-        //}
+            Assert.IsTrue(list == null);
+        }
     }
 }

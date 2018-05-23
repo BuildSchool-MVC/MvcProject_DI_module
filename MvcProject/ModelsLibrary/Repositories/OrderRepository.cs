@@ -16,14 +16,15 @@ namespace ModelsLibrary.Repositories
         public void Create(Order model)  //新增訂單
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = @"INSERT INTO [Order](OrderDay,CustomerID,Transport,Payment,Status,StatusUpdateDay) 
-                        VALUES (GETDATE() , @CustomerID , @Transport , @Payment , @Status , GETDATE())";
+            var sql = @"INSERT INTO [Order](OrderDay,CustomerID,Transport,Payment,Status,StatusUpdateDay,Address) 
+                        VALUES (GETDATE() , @CustomerID , @Transport , @Payment , @Status , GETDATE(),@Address)";
             connection.Execute(sql, 
                 new {
                     model.CustomerID,
                     model.Transport,
                     model.Payment,
                     model.Status,
+                    model.Address
                 });
 
         }

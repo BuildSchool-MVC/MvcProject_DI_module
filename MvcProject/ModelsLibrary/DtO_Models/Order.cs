@@ -16,6 +16,6 @@ namespace ModelsLibrary.DtO_Models
         public string Payment { get; set; }
         public string Status { get; set; }
         public DateTime StatusUpdateDay { get; set; }
-
+        public string Address { get; set; }
     }
 }

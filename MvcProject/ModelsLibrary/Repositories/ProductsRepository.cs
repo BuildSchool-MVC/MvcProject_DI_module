@@ -21,9 +21,16 @@ namespace ModelsLibrary.Repositories
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = @"INSERT INTO Products (ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime)
-                                            VALUES (@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime)";
-            connection.Execute(sql,new { model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime });
+            var sql = @"INSERT INTO Products (ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime,ProductDetails)
+                                            VALUES (@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime,@ProductDetails)";
+            connection.Execute(sql,new { model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime ,model.ProductDetails});
+        }
+
+        public void Delete(Products model)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"DELETE FROM Products WHERE ProductID=@ProductID";
+            connection.Execute(sql, new { model.ProductID });
         }
 
         public void UpdateUnitPrice(Products model)
@@ -45,6 +52,13 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Products SET UnitsInStock=UnitsInStock-@input WHERE ProductID=@ProductID";
             connection.Execute(sql, new { model.ProductID, input });
+        }
+
+        public void UpdateProductDetails(Products model, string ProductDetails)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "UPDATE Products SET ProductDetails=@ProductDetails WHERE ProductID=@ProductID";
+            connection.Execute(sql, new { model.ProductID, ProductDetails });
         }
 
         public void UpdateDowntime(Products model)
