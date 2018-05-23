@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MvcProject"
+    "\\MvcProject",
+    "\\MvcProject\\UnitTest",
+    "\\MvcProject\\WebApplication",
+    "\\MvcProject\\WebApplication\\Controllers"
   ],
-  "SelectedNode": "\\MvcProject\\MvcProject.sln",
+  "SelectedNode": "\\MvcProject\\WebApplication\\Controllers\\ProductController.cs",
   "PreviewInSolutionExplorer": false
 }

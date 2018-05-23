@@ -62,7 +62,7 @@ namespace UnitTest.Repositories
         public void FindByIdTest()
         {
             ProductPhotoRepository repository = new ProductPhotoRepository();
-            var photos=repository.FindById(1);
+            var photos=repository.FindById(2);
             Assert.IsTrue(photos.Count() > 0);
         }
 
