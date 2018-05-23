@@ -15,33 +15,10 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
-
-    <style>
-        .product {
-            display: block;
-            margin: 0 auto;
-            width: 230px;
-            height: 200px;
-            overflow: hidden;
-        }
-
-            .product img {
-                width: 180px;
-                height: 180px;
-                transform: scale(1);
-                transition: all 1s ease 0s;
-            }
-
-            .product a:hover img {
-                transform: scale(1.4);
-                transition: all 1s ease 0s;
-            }
-
-            .product p {
-                bottom: 0;
-            }
-    </style>
-
+    <link rel="stylesheet" href="~/Content/common.css">
+    <link rel="stylesheet" href="~/Content/style1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/script1.js"></script>
 </head>
 <body style="font-family:微軟正黑體;width:99%">
     <nav class="navbar fixed-top navbar-light bg-light">
@@ -96,10 +73,34 @@
         </nav>
     </nav>
     @RenderBody()
-    <footer style="text-align:center;">
-        <div class="row" style="height: 100px;">
+    <br /><br /><br /><br /><br />
+    <footer class="baseFooter" style="height: 200px;background-color: #eeeeeeda;">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="footer__contact">
+                    <div class="footer__contact__title"><h5>Service</h5></div>
+                    <div class="footer__contact__content">客服信箱 service@blingShop.com</div>
+                    <div class="footer__contact__content">客服電話 03-123456</div>
+                    <div class="footer__contact__content">週一至週五 9:00-12:00 13:00-18:00</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="footer__newsletter">
+                    <label class="footer__newsletter__title">Newsletter 訂閱電子報</label>
+                    <input class="footer__newsletter__txt" type="text" placeholder="E-MAIL" id="newsletter" name="newsletter">
+                    <button type="button" class="btn btn-secondary">Enter</button>
+                    <div class="footer__newsletter__desc">Enter E-mail to subscribe to our newsletter</div>
+                </div>
+                <a href="#">
+                    <div style="font-size:3em; color:rgb(24, 23, 23)">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-line"></i>
+                    </div>
+                </a>
+            </div>
         </div>
-        <p>©2018 BING SHOP. All rights reserved.</p>
+        <p style="text-align:center">©2018 2018 BingTeam. All rights reserved.</p>
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

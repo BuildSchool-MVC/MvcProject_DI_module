@@ -34,8 +34,8 @@ namespace UnitTest.Repositories
         public void ConfirmOrdersTest()
         {
             List<ShoppingcartDetails> shoppingcar = new List<ShoppingcartDetails>();
-            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 1, Quantity = 3 });
-            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 3, Quantity = 2 });
+            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 2, Quantity = 1 });
+            shoppingcar.Add(new ShoppingcartDetails() { CustomerID = 3, ProductID = 4, Quantity = 1 });
             Order order = new Order
             {
                 CustomerID = 3,
@@ -45,7 +45,7 @@ namespace UnitTest.Repositories
             };
             var result=service.ConfirmOrders(shoppingcar, order);
 
-            Assert.IsTrue(result == "OrderSuccess");
+            Assert.IsTrue(result == "Error!");
         }
     }
 }
