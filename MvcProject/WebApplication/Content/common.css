@@ -191,55 +191,208 @@ body {
 	bottom: 0;
 }
 
-div.step-container {
-	display: flex;
-	overflow: hidden;
-	align-items: center;
-}
-
-div.step-container div.step,
-div.step-container div.step2 {
-	background-color: #69C795;
-	position: relative;
-	display: inline-block;
-	flex-basis: 300px;
-	height: 50px;
-}
-
-div.step-container div.step:after,
-div.step-container div.step2:after {
-	content: '';
-	position: absolute;
-	right: -10px;
-	background: #69C795;
-	width: 50px;
-	height: 50px;
-	transform: rotate(-45deg);
-	z-index: 1;
-	box-shadow: 3px 3px 0px 0px white;
-}
-
-div.step-container div.step2 {
-	background-color: #ccc;
-}
-
-div.step-container div.step2:after {
-	background: #ccc;
-}
-
-div.step-container div.step1:before {
-	content: '';
-	position: absolute;
-	left: -20px;
-	background: white;
-	width: 50px;
-	height: 50px;
-	transform: rotate(-45deg);
-	z-index: 1;
-	box-shadow: 3px 3px 0px 0px white;
-}
-
 td {
-	text-align: center;
-	vertical-align: middle;
+    text-align: center;
+    vertical-align: middle;
 }
+
+div.step-container {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+}
+
+    div.step-container div.step1:before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        background: white;
+        width: 50px;
+        height: 50px;
+        transform: rotate(-45deg);
+        z-index: 1;
+        box-shadow: 3px 3px 0px 0px white;
+    }
+
+    div.step-container div.step2 {
+        background-color: #ccc;
+    }
+
+        div.step-container div.step2:after {
+            background: #ccc;
+        }
+
+    div.step-container div.step1,
+    div.step-container div.step2 {
+        background-color: #69C795;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step1:after,
+        div.step-container div.step2:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #69C795;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step2,
+    div.step-container div.step3 {
+        background-color: #ccc;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step2:after,
+        div.step-container div.step3:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #ccc;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step4,
+    div.step-container div.step5 {
+        background-color: #ccc;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step4:after,
+        div.step-container div.step5:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #ccc;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step5,
+    div.step-container div.step6 {
+        background-color: #ccc;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step5:after,
+        div.step-container div.step6:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #ccc;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step5 {
+        background-color: #69C795;
+    }
+
+        div.step-container div.step5:after {
+            background: #69C795;
+        }
+
+    div.step-container div.step4:before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        background: white;
+        width: 50px;
+        height: 50px;
+        transform: rotate(-45deg);
+        z-index: 1;
+        box-shadow: 3px 3px 0px 0px white;
+    }
+
+    div.step-container div.step7,
+    div.step-container div.step8 {
+        background-color: #ccc;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step7:after,
+        div.step-container div.step8:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #ccc;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step8,
+    div.step-container div.step9 {
+        background-color: #69C795;
+        position: relative;
+        display: inline-block;
+        flex-basis: 300px;
+        height: 50px;
+    }
+
+        div.step-container div.step8:after,
+        div.step-container div.step9:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            background: #69C795;
+            width: 50px;
+            height: 50px;
+            transform: rotate(-45deg);
+            z-index: 1;
+            box-shadow: 3px 3px 0px 0px white;
+        }
+
+    div.step-container div.step8 {
+        background-color: #ccc;
+    }
+
+        div.step-container div.step8:after {
+            background: #ccc;
+        }
+
+    div.step-container div.step7:before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        background: white;
+        width: 50px;
+        height: 50px;
+        transform: rotate(-45deg);
+        z-index: 1;
+        box-shadow: 3px 3px 0px 0px white;
+    }
+
+
+
