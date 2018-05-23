@@ -24,8 +24,8 @@ namespace ModelsLibrary.Repositories.Tests
         public void GetColorTest()
         {
             ProductsRepository repository = new ProductsRepository();
-            var list = repository.GetbyColor("yellow");
-            Assert.IsTrue(list.Count() == 1 );
+            var list = repository.GetbyColor("Red");
+            Assert.IsTrue(list.Count()>1 );
         }
 
         [TestMethod()]
