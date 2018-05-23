@@ -7,6 +7,7 @@
     int count = Convert.ToInt32(ViewData["count"]);
     int k = 0;
     var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Products>;
+    var photo_list = ViewData["photo_list"] as List<ModelsLibrary.DtO_Models.ProductPhoto>;
 }
 <div class="container-fluid">
     <br /><br /><br /><br /><br />
@@ -41,7 +42,7 @@
                         <div class="col-2">
                             <div class="product">
                                 <a href="/Product/@list[k].ProductID">
-                                    <img src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1129/5aeaca6d2751015253366855aeaca6d275b6.jpg" />
+                                    <img src=@photo_list[k].PhotoPath />
                                 </a>
                             </div>
                             <span>

@@ -1,4 +1,5 @@
-﻿using ModelsLibrary.Services;
+﻿using ModelsLibrary.DtO_Models;
+using ModelsLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,16 @@ namespace WebApplication.Controllers
         public ActionResult Clothes()
         {
             var service = new CategoriesService();
+            var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("上衣");
+
+            var photo_list = new List<ProductPhoto>();
+            foreach(var item in query)
+            {
+                photo_list.Add(photoService.FindById(item.ProductID).First());
+            }
+
+            ViewData.Add("photo_list", photo_list);
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
             return View();
