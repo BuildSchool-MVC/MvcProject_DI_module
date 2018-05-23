@@ -14,36 +14,29 @@ namespace ModelsLibrary.Repositories
 {
     public class CategoriesRepository : IRepository<Categories>
     {
-        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+        private static string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+        SqlConnection connection = new SqlConnection(sqlstr);
 
         public void Create(Categories model)
         {
-            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "INSERT INTO Categories VALUES (@Cid, @Cname)";
-
             connection.Execute(sql, new { Cid = model.CategoryID, Cname = model.CategoryName });
         }
 
         public void Delete(Categories model)
         {
-            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM Categories WHERE CategoryID = @Cid";
-
             connection.Execute(sql, new { Cid = model.CategoryID });
         }
 
         public void UpdateCategoryNameByID(int cid, string cname)
         {
-            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Categories SET CategoryName = @inputCName WHERE CategoryID = @SearchCid";
-
             connection.Execute(sql, new { SearchCid = cid, inputCName = cname });
         }
 
         public Categories GetByID(int Cid)
         {
-            SqlConnection connection = new SqlConnection(sqlstr);
-
             var list = connection.Query<Categories>("SELECT * FROM Categories WHERE CategoryID = @id"
                 , new { id = Cid });
 
@@ -58,8 +51,6 @@ namespace ModelsLibrary.Repositories
 
         public Categories GetByName(string CName)
         {
-            SqlConnection connection = new SqlConnection(sqlstr);
-
             var list = connection.Query<Categories>("SELECT * FROM Categories WHERE CategoryName = @name"
                 , new { name = CName });
 
@@ -74,7 +65,6 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<Categories> GetAll()
         {
-            var connection = new SqlConnection(sqlstr);
             return connection.Query<Categories>("SELECT * FROM Categories");
         }
     }
