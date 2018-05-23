@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.Services
 {
-    
-
     public class ShoppingcartDetailsService
     {
         private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
