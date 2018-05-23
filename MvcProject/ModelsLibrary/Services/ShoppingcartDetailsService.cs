@@ -2,6 +2,7 @@
 using ModelsLibrary.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.Services
 {
+    
+
     public class ShoppingcartDetailsService
     {
+        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+
         public void Create(ShoppingcartDetails model)
         {
             var shoppingcarRepository = new ShoppingcartDetailsRepository();
@@ -93,8 +98,8 @@ namespace ModelsLibrary.Services
             var orderRepository = new OrderRepository();
             var orderDetailsRepository = new OrderDetailsRepository();
 
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+
+            SqlConnection connection = new SqlConnection(sqlstr);
             connection.Open();
             var transactition = connection.BeginTransaction();
             try

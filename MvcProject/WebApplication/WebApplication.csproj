@@ -157,9 +157,9 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,11 +211,11 @@
     <Content Include="Views\SignUp\Login.cshtml" />
     <Content Include="Views\Shared\Main.cshtml" />
     <Content Include="Views\Category\Clothes.cshtml" />
-    <Content Include="Views\Category\Partial_Clothes.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\Partial_Product.cshtml" />
-    <Content Include="Views\Member\SearchMember.cshtml" />
-    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\detail.cshtml" />
+    <Content Include="Views\ShoppingCart\payment.cshtml" />
+    <Content Include="Views\ShoppingCart\order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
