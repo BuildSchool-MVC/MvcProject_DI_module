@@ -1,8 +1,64 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Clothes";
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
-@{ Html.RenderAction("Partial_Clothes"); }
+@{
+    int count = Convert.ToInt32(ViewData["count"]);
+    int k = 0;
+    var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Products>;
+}
+<div class="container-fluid">
+    <br /><br /><br /><br /><br />
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-10">
+            <form class="form-inline offset-6">
+                <div class="dropdown mr-3">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        商品排序
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">上架時間:由新到舊</a>
+                        <a class="dropdown-item" href="#">上架時間:由舊到新</a>
+                        <a class="dropdown-item" href="#">價格:由高至低</a>
+                        <a class="dropdown-item" href="#">價格:由低至高</a>
+                    </div>
+                </div>
+                <input class="form-control mr-sm-4 mr-3" type="search" placeholder="Search" aria-label="Search">
+                <a href="#">
+                    <i class="fas fa-search fa-2x" style="color: black;"></i>
+                </a>
+            </form>
+            <br />
+            @while (true)
+            {
+                <div class="row">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <div class="col-2">
+                            <div class="product">
+                                <a href="/Product/@list[k].ProductID">
+                                    <img src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1129/5aeaca6d2751015253366855aeaca6d275b6.jpg" />
+                                </a>
+                            </div>
+                            <span>
+                                <small>@list[k].ProductName</small>
+                            </span>
+                            <p>
+                                <b>NT$@list[k].UnitPrice</b>
+                            </p>
+                        </div>
+                        k = k + 1;
+                        count = count - 1;
+                        if (count == 0) { break; }
+                    }
+                </div>
+                if (count == 0) { break; }
+            }
+        </div>
+    </div>
+</div>
 

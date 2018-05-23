@@ -14,16 +14,11 @@ namespace WebApplication.Controllers
         [Route("Clothes")]
         public ActionResult Clothes()
         {
-            return View();
-        }
-
-        public ActionResult Partial_Clothes()
-        {
             var service = new CategoriesService();
             var query = service.ClassifyByCategoryName("上衣");
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
-            return PartialView();
+            return View();
         }
     }
 }

@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a href="index.html">
+        <img src="https://github.com/BuildSchool-MVC/Bing-Shop/blob/master/Image/Logo.png?raw=true" style="position: absolute;top:2%;left:0 ;">
+    </a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="right: 15%;">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/t-shirt-filled.png" style="width: 20px;"> CLOTHING
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/trousers-filled.png" style="width: 20px;"> PANTS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/windows/50/333333/necklace.png" style="width: 20px;"> ACCESSORIES
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/women-shoe-side-view-filled.png " style="width: 18px;"> SHOES
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/material/50/333333/shopping-bag.png" style="width: 18px;"> BAGS
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button type="button" class="btn btn-light">
+                <a href="login.html" style="color:black;">
+                    <i class="fas fa-user fa-2x "></i>
+                </a>
+            </button>
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                <i class="fas fa-cart-plus fa-2x "></i>
+                <span class="badge badge-light">0</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </div>
+        </div>
+    </nav>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="step-container" style="margin-top: 25px; margin-left: 300px;">
+    <div class="step2" style="text-align:center;">
+        <span style="font-size:30px;">購物車明細</span>
+    </div>
+    <div class="step step1" style="text-align:center;">
+        <span style="font-size:30px;">付款與運送方式</span>
+    </div>
+    <div class="step step2" style="text-align:center;">
+        <span style="font-size:30px;">訂單成立</span>
+    </div>
+</div>
+<br>
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h5>訂單建立後商品明細、金額皆無法更改並無合併訂單處理，請您再三確認後再完成結帳</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-5">
+        <h5>運送方式</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-1">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                            </div>
+                            <div class="col-3">
+                                7-11 取貨付款
+                            </div>
+                            <div class="col-7">
+                            </div>
+                            <div class="col-1">
+                                $ 60
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-1">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                            </div>
+                            <div class="col-3">
+                                全家、OK、萊爾富 取貨付款
+                            </div>
+                            <div class="col-7">
+                            </div>
+                            <div class="col-1">
+                                $ 60
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>總金額NT$3640+運費NT$60=應付金額NT$3700</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5>訂購資料</h5>
+            <hr>
+            <div class="form-group row">
+                <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+                <div class="col-sm-10">
+                    <input type="Name" class="form-control" id="inputPassword" placeholder="Name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group row">
+                <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
+                <div class="col-sm-10">
+                    <input type="Phone" class="form-control" id="inputPhone" placeholder="Phone">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group row">
+                <label for="inputPhone" class="col-sm-2 col-form-label">取貨門市</label>
+                <button type="button" class="btn btn-light">選擇門市</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5>發票資訊</h5>
+            <hr>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="">電子發票
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="">電子發票/手機載具
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="">捐贈發票
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="">統編(公司戶)發票
+            </label>
+            <br />
+            <span>依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。</span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="form-group row">
+                <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
+                <div class="col-sm-4">
+                    <input type="Phone" class="form-control" id="inputPhone" placeholder="ADDRESS">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button type="button" class="btn btn-dark">返回購物車</button>
+        </div>
+        <div class="col-10">
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-dark">下一步</button>
+        </div>
+    </div>
+</div>
+
