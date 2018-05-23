@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "detail";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a href="index.html">
+        <img src="https://github.com/BuildSchool-MVC/Bing-Shop/blob/master/Image/Logo.png?raw=true" style="position: absolute;top:2%;left:0 ;">
+    </a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="right: 15%;">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/t-shirt-filled.png" style="width: 20px;"> CLOTHING
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/trousers-filled.png" style="width: 20px;"> PANTS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/windows/50/333333/necklace.png" style="width: 20px;"> ACCESSORIES
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/ios/50/333333/women-shoe-side-view-filled.png " style="width: 18px;"> SHOES
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="https://png.icons8.com/material/50/333333/shopping-bag.png" style="width: 18px;"> BAGS
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button type="button" class="btn btn-light">
+                <a href="login.html" style="color:black;">
+                    <i class="fas fa-user fa-2x "></i>
+                </a>
+            </button>
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                <i class="fas fa-cart-plus fa-2x "></i>
+                <span class="badge badge-light">2</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">LOGO BASIC TEE-BLACK</a>
+                <a class="dropdown-item" href="#">LOGO BASIC TEE-PEACH</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#">3件 NT$3840</a>
+                <a class="dropdown-item" href="CheckShoppingcar.html">結帳</a>
+            </div>
+        </div>
+    </nav>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="step-container" style="margin-top: 25px; margin-left: 300px;">
+    <div class="step step1" style="text-align:center;">
+        <span style="font-size:30px;">購物車明細</span>
+    </div>
+    <div class="step2" style="text-align:center;">
+        <span style="font-size:30px;">付款與運送方式</span>
+    </div>
+    <div class="step2" style="text-align:center;">
+        <span style="font-size:30px;">訂單成立</span>
+    </div>
+</div>
+<br>
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h5>訂單建立後商品明細、金額皆無法更改並無合併訂單處理，請您再三確認後再完成結帳</h5>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-5">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td class="clTdPhoto"></td>
+                    <td class="clTag syHide HighFont"></td>
+                    <td class="clTdMerNo text-center">商品編號</td>
+                    <td class="clTdMerName">商品名稱</td>
+                    <td class="clTdColor text-center">規格</td>
+                    <td class="clTdNum text-center">數量</td>
+                    <td class="clTdPrice text-center">單價 </td>
+                    <td class="clTdSub text-center">小計</td>
+                    <td class="clTdDelete text-center">刪除</td>
+                </tr>
+                <tr>
+                    <td class="clPhoto">
+                        <a href="itemDetail.aspx?mNo1=77088">
+                            <img src="http://www.wendhouse.com/SHTICK/Shang_Pin/180423/77088/77088_1_300.jpg" height="150px">
+                        </a>
+                    </td>
+                    <td class="clTag syHide HighFont"></td>
+                    <td class="clTdMerNo text-center">77088</td>
+                    <td class="clTdMerName">寬鬆顯瘦無袖純色A字背心裙</td>
+                    <td class="text-center clTdColor">米色</td>
+                    <td class="text-center clTdSize">F</td>
+                    <td class="cltdNum">
+                        <select id="cmbNum1" name="cmbNum1" class="cmbNum">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td class="coNum coPrice">$ 298</td>
+                    <td class="clTdDelete text-center">
+                        <a href="#">
+                            <i class="far fa-trash-alt" style="color: black;"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="clPhoto">
+                        <a href="itemDetail.aspx?mNo1=77088">
+                            <img src="https://www.costco.com.tw/medias/sys_master/products/h33/hf0/8831850053662.jpg" height="150px">
+                        </a>
+                    </td>
+                    <td class="clTag syHide HighFont"></td>
+                    <td class="clTdMerNo text-center">11088</td>
+                    <td class="clTdMerName">休閒短褲</td>
+                    <td class="text-center clTdColor">藍色</td>
+                    <td class="text-center clTdSize">M</td>
+                    <td class="cltdNum">
+                        <select id="cmbNum1" name="cmbNum1" class="cmbNum">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td class="coNum coPrice">$ 299</td>
+                    <td class="clTdDelete text-center">
+                        <a href="#">
+                            <i class="far fa-trash-alt" style="color: black;"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="/shoppingcart/payment" type="button" class="btn btn-dark" id="nextpay">下一步</a>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
