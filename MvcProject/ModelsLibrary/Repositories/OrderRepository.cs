@@ -2,6 +2,7 @@
 using Dapper;
 using ModelsLibrary.DtO_Models;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace ModelsLibrary.Repositories
 {
     public class OrderRepository : IRepository<Order>
     {
-        private string _connectionString = "data source =. ; database = BuildSchool ; integrated security=true";
+        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
 
         public void Create(Order model)  //新增訂單
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"INSERT INTO [Order](OrderDay,CustomerID,Transport,Payment,Status,StatusUpdateDay) 
                         VALUES (GETDATE() , @CustomerID , @Transport , @Payment , @Status , GETDATE())";
             connection.Execute(sql, 
@@ -29,7 +30,7 @@ namespace ModelsLibrary.Repositories
 
         public void Delete(Order model)
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM [Order] WHERE OrderID=@OrderID";
             connection.Execute(sql, new { model.OrderID});
 
@@ -37,7 +38,7 @@ namespace ModelsLibrary.Repositories
 
         public void UpdateStatus(Order model)  //修改訂單狀態
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"UPDATE [Order] 
                         SET Status = @Status , StatusUpdateDay = GETDATE()
                         WHERE OrderID = @OrderID";
@@ -52,7 +53,7 @@ namespace ModelsLibrary.Repositories
 
         public Order CheckStatus(int orderId) //查詢訂單狀態
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"SELECT Status
                         FROM [Order]
                         WHERE OrderID = @OrderID";
@@ -65,7 +66,7 @@ namespace ModelsLibrary.Repositories
         
         public Order FindById(int orderId) //用id查詢
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"SELECT * FROM [Order] 
                                     WHERE OrderID = @OrderID";
             var result = connection.Query<Order>(sql, new { orderId }).ToList();
@@ -78,7 +79,7 @@ namespace ModelsLibrary.Repositories
 
         public int FindIDByCustomerID(int customerID) //用id查詢
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"SELECT TOP 1 * FROM [Order] 
                         WHERE CustomerID = @CustomerID
                         ORDER BY OrderDay DESC";
@@ -90,7 +91,7 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<Order> GetAll()  //查詢所有資料
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             return connection.Query<Order>("SELECT * FROM [Order]");
 
         }

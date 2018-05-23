@@ -8,16 +8,18 @@ using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Dapper;
 using Abstracts;
+using System.Configuration;
 
 namespace ModelsLibrary.Repositories
 {
 
    public class CustomerRepository : IRepository<Customer>
     {
-        private string _connectionString = "data source =. ; database = BuildSchool ; integrated security=true";
+        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+
         public void Create(Customer model)
         {
-            SqlConnection connection = new SqlConnection(this._connectionString);
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email) 
                             VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
              connection.Execute(sql, 
@@ -34,7 +36,7 @@ namespace ModelsLibrary.Repositories
 
         public void Update(Customer model)
         {
-            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone WHERE CustomerID=@CustomerID";
             connection.Execute(sql,
                 new {
@@ -49,14 +51,14 @@ namespace ModelsLibrary.Repositories
         }
         public void Delete(Customer model)
         {
-            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM Customer WHERE CustomerID=@CustomerID";
             connection.Execute(sql,new {model.CustomerID});
 
         }
         public Customer FindByCustomerId(int customerId)
         {
-            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM Customer WHERE customerId=@customerId";
             var result = connection.QueryFirstOrDefault<Customer>(sql,new { customerId });
             return result;
@@ -65,7 +67,7 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<Customer> GetAll()
         {
-            var connection = new SqlConnection("data source=.;database=BuildSchool;integrated security=true");            
+            SqlConnection connection = new SqlConnection(sqlstr);   
             return connection.Query<Customer>("SELECT * FROM Customer");
 
         }

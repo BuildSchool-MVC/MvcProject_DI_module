@@ -8,15 +8,18 @@ using System.Data.SqlClient;
 using ModelsLibrary.DtO_Models;
 using Abstracts;
 using Dapper;
+using System.Configuration;
 
 namespace ModelsLibrary.Repositories
 {
     public class ShoppingcartDetailsRepository : IRepository<ShoppingcartDetails>
     {
+
+        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+
         public void Create(ShoppingcartDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "INSERT INTO [Shoppingcart Details] VALUES (@CustomerID, @ProductID, @Quantity)";
 
             connection.Execute(sql, new
@@ -28,8 +31,7 @@ namespace ModelsLibrary.Repositories
 
         public void Update(ShoppingcartDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE [Shoppingcart Details] SET Quantity = Quantity+@amount where CustomerID = @CustomerID AND ProductID = @ProductID";
 
             connection.Execute(sql, new
@@ -42,8 +44,7 @@ namespace ModelsLibrary.Repositories
 
         public void Updateminus(ShoppingcartDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE [Shoppingcart Details] SET Quantity = Quantity-@amount where CustomerID = @CustomerID AND ProductID = @ProductID";
 
             connection.Execute(sql, new
@@ -56,8 +57,7 @@ namespace ModelsLibrary.Repositories
 
         public void DeleteAllForUser(ShoppingcartDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID";
 
             connection.Execute(sql, new
@@ -68,8 +68,7 @@ namespace ModelsLibrary.Repositories
 
         public void DeleteOneForUser(ShoppingcartDetails model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
             connection.Execute(sql, new
@@ -81,8 +80,7 @@ namespace ModelsLibrary.Repositories
 
         public ShoppingcartDetails FindById(int CustomerID, int ProductID)
         {//可找Quantity
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID AND ProductID = @ProductID";
 
             var result = connection.Query<ShoppingcartDetails>(sql, new { CustomerID, ProductID }).ToList();
@@ -97,8 +95,7 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<ShoppingcartDetails> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM [Shoppingcart Details]";
 
             return connection.Query<ShoppingcartDetails>(sql);
@@ -106,8 +103,7 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<ShoppingcartDetails> FindByCustomer(int CustomerID)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID";
 
             var list = connection.Query<ShoppingcartDetails>(sql, new{CustomerID}).ToList();
@@ -117,8 +113,7 @@ namespace ModelsLibrary.Repositories
 
         public decimal GetProductTotal(int Cid)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT SUM(p.UnitPrice * sp.Quantity) AS Total FROM[Shoppingcart Details] sp INNER JOIN Products p ON p.ProductID = sp.ProductID GROUP BY sp.CustomerID HAVING sp.CustomerID = @id";
 
             var list = connection.QueryFirst(sql, new { id = Cid });
