@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace WebApplication.Controllers
 {
     [RoutePrefix("Log")]
-    public class SignUpController : Controller
+    public class LogController : Controller
     {
         // GET: SignUp
         [Route("Signup")]
