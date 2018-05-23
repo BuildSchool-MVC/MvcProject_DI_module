@@ -42,10 +42,11 @@ namespace UnitTest.Repositories
                 Transport = "宅配",
                 Payment = "信用卡",
                 Status = "處理中",
+                Address="香山街23號"
             };
             var result=service.ConfirmOrders(shoppingcar, order);
 
-            Assert.IsTrue(result == "Error!");
+            Assert.IsTrue(result == "OrderSuccess");
         }
     }
 }
