@@ -8,15 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Abstracts;
+using System.Configuration;
 
 namespace ModelsLibrary.Repositories
 {
     public class CategoriesRepository : IRepository<Categories>
     {
+        private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+
         public void Create(Categories model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "INSERT INTO Categories VALUES (@Cid, @Cname)";
 
             connection.Execute(sql, new { Cid = model.CategoryID, Cname = model.CategoryName });
@@ -24,8 +26,7 @@ namespace ModelsLibrary.Repositories
 
         public void Delete(Categories model)
         {
-            SqlConnection connection = new SqlConnection(
-               "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM Categories WHERE CategoryID = @Cid";
 
             connection.Execute(sql, new { Cid = model.CategoryID });
@@ -33,8 +34,7 @@ namespace ModelsLibrary.Repositories
 
         public void UpdateCategoryNameByID(int cid, string cname)
         {
-            SqlConnection connection = new SqlConnection(
-              "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Categories SET CategoryName = @inputCName WHERE CategoryID = @SearchCid";
 
             connection.Execute(sql, new { SearchCid = cid, inputCName = cname });
@@ -42,8 +42,7 @@ namespace ModelsLibrary.Repositories
 
         public Categories GetByID(int Cid)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
 
             var list = connection.Query<Categories>("SELECT * FROM Categories WHERE CategoryID = @id"
                 , new { id = Cid });
@@ -59,8 +58,7 @@ namespace ModelsLibrary.Repositories
 
         public Categories GetByName(string CName)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=BuildSchool; integrated security=true");
+            SqlConnection connection = new SqlConnection(sqlstr);
 
             var list = connection.Query<Categories>("SELECT * FROM Categories WHERE CategoryName = @name"
                 , new { name = CName });
@@ -76,7 +74,7 @@ namespace ModelsLibrary.Repositories
 
         public IEnumerable<Categories> GetAll()
         {
-            var connection = new SqlConnection("data source=.; database=BuildSchool; integrated security=true");
+            var connection = new SqlConnection(sqlstr);
             return connection.Query<Categories>("SELECT * FROM Categories");
         }
     }
