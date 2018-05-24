@@ -179,5 +179,16 @@ namespace ModelsLibrary.Repositories.Tests
 
             Assert.IsTrue(list == null);
         }
+        [TestMethod()]
+        public void FindByName()
+        {
+            Products model = new Products()
+            {
+                ProductName="紅色高跟鞋"
+            };
+            ProductsRepository products = new ProductsRepository();
+            var list= products.FindByName("紅色高跟鞋");
+            Assert.IsTrue(list .Count()>0);
+        }
     }
 }

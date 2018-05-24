@@ -75,7 +75,7 @@ namespace WebApplication.Controllers
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("鞋子");
-
+           
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
             {

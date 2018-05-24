@@ -77,6 +77,13 @@ namespace ModelsLibrary.Repositories
             return products;            
         }
 
+        public IEnumerable<Products> FindByName(string ProductName)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            return connection.Query<Products>
+                ("SELECT * FROM Products WHERE ProductName = @ProductName",new { ProductName });       
+        }
+
         public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(sqlstr);

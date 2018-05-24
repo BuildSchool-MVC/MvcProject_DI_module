@@ -54,15 +54,23 @@ namespace ModelsLibrary.Services
         {
             var Product_repository = new ProductsRepository();
             var list = Product_repository.GetAll().ToList();
-
+            
             var Category_repository = new CategoriesRepository();
             var model = Category_repository.GetByName(name);
       
             var result = new List<Products>();
+            var real_result = new List<Products>();
 
             result = list.Where((x) => x.CategoryID == model.CategoryID).ToList();
 
-            return result;
+            foreach (var items in result)
+            {
+                if(real_result.Any((x) => x.ProductName == items.ProductName) == false)
+                {
+                    real_result.Add(items);
+                }
+            }
+            return real_result;
         }
     }
 }

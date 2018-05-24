@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -12,20 +13,12 @@ namespace WebApplication.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        [Route("{id}")]
-        public ActionResult Product(int id)
+        [Route("{ProductName}")]
+        public ActionResult Product(ProductList ProductList)
         {
             ProductsService service = new ProductsService();
-            var product = service.FindByID(id);
-            ViewData.Add("id", id);
-            ViewData.Add("product", product);
-
-            var photo_service = new ProductPhotoService();
-            var photo_list = photo_service.FindById(id).ToList();
-
-            ViewData.Add("photo_list", photo_list);
-
-            return View();
+            var product = service.FindByName(ProductList.ProductName);
+            return View(product);
         }
 
         public ActionResult Partial_Product(int id)

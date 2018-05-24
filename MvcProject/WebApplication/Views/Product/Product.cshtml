@@ -1,12 +1,8 @@
-﻿
+﻿@model ModelsLibrary.ViewModels.ProductList
 @{
-    ViewBag.Title = "Product";
     Layout = "~/Views/Shared/Main.cshtml";
-    int id = Convert.ToInt32(ViewData["id"]);
-    var product = ViewData["product"] as ModelsLibrary.DtO_Models.Products;
-    var photo_list = ViewData["photo_list"] as List<ModelsLibrary.DtO_Models.ProductPhoto>;
-}
 
+}
 <br />
 <br />
 <br />
@@ -15,28 +11,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-2">
-            @foreach (var item in photo_list)
+            @foreach (var item in Model.PhotoPath)
             {
                 <div class="row">
                     <div class="col">
-                        <img class="btnFollow" style="max-width: 100%;" src=@item.PhotoPath />
+                        <img class="btnFollow" style="max-width: 100%;" src=@item />
                     </div>
                 </div>
             }
         </div>
         <div class="col-4">
-            <img id="chgicon" class="btnFollow" style="max-width: 100%;" src=@photo_list.First().PhotoPath />
+            <img id="chgicon" class="btnFollow" style="max-width: 100%;" src=@Model.PhotoPath[0] />
         </div>
         <div class="col-4">
-            <h3>@product.ProductName</h3>
+            <h3>@Model.ProductName </h3>
             <br />
             <h3>
-                <b>NT$@product.UnitPrice</b>
+                <b>NT$@Model.UnitPrice </b>
             </h3>
             <br />
-            @*<p class="lead">
-                    以黑色、白色、藍色、水洗紅、蜜桃色五款顏色帶出夏日的繽紛感， 20支的針織棉布在扭力、縮率及色牢度都有卓越的呈現，
-                </p>*@
+            <p class="lead">
+                @Model.ProductDetails
+            </p>
             <br />
             <br />
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -46,9 +42,22 @@
                         尺寸
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#" id="size">S</a>
-                        <a class="dropdown-item" href="#" id="size">M</a>
-                        <a class="dropdown-item" href="#" id="size">L</a>
+                        @foreach (var item in @Model.Size)
+            {
+                <a class="dropdown-item" href="#" id="size">@item</a>
+}
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop3" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        顏色
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                        @foreach (var item in @Model.Color)
+            {
+                <a class="dropdown-item" href="#" id="color">@item</a>
+}
                     </div>
                 </div>
                 <div class="btn-group" role="group">
@@ -73,20 +82,24 @@
     </div>
 </div>
 <br /><br /><br />
-            <script type="text/javascript">
-        $(document).ready(function () {
-            $(".btnFollow").click(function () {
-                $("#chgicon").attr("src", $(this).attr("src"));
-            });
-
-            $(".dropdown-menu #size").click(function () {
-                $("#btnGroupDrop1").text($(this).text());
-            });
-
-            $(".dropdown-menu #num").click(function () {
-                $("#btnGroupDrop2").text($(this).text());
-            });
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".btnFollow").click(function () {
+            $("#chgicon").attr("src", $(this).attr("src"));
         });
-            </script>
+
+        $(".dropdown-menu #size").click(function () {
+            $("#btnGroupDrop1").text($(this).text());
+        });
+
+        $(".dropdown-menu #num").click(function () {
+            $("#btnGroupDrop2").text($(this).text());
+        });
+
+        $(".dropdown-menu #color").click(function () {
+            $("#btnGroupDrop3").text($(this).text());
+        });
+
+    });
+</script>
 
