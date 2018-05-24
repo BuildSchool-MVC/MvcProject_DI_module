@@ -9,7 +9,7 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
     [RoutePrefix("Log")]
-    public class LogController : Controller
+    public class LoginController : Controller
     {
         // GET: SignUp
         [Route("Signup")]
