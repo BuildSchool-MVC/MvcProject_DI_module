@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Bags";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
@@ -37,12 +37,13 @@
             <br />
             @while (true)
             {
+                if (count == 0) { break; }
                 <div class="row">
                     @for (int i = 0; i < 5; i++)
                     {
                         <div class="col-2">
                             <div class="product">
-                                <a href="/Product/@list[k].ProductName">
+                                <a href="/Product/@list[k].ProductID">
                                     <img src=@photo_list[k].PhotoPath />
                                 </a>
                             </div>
@@ -63,5 +64,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#Search").click(function () {
+        this.attr('href', "/Category/" + $("#SearchStr").val());
+    });
+</script>
+
 
 

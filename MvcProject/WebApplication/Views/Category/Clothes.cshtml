@@ -15,9 +15,9 @@
         <div class="col-2">
         </div>
         <div class="col-10">
-            <form class="form-inline offset-6">
+            <form action="/Category/Search" class="form-inline offset-6">
                 <div class="dropdown mr-3">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="btn btghn-lit dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         商品排序
                     </button>
@@ -28,10 +28,10 @@
                         <a class="dropdown-item" href="#">價格:由低至高</a>
                     </div>
                 </div>
-                <input class="form-control mr-sm-4 mr-3" type="search" placeholder="Search" aria-label="Search">
-                <a href="#">
-                    <i class="fas fa-search fa-2x" style="color: black;"></i>
-                </a>
+                    <input name="SearchStr" class="form-control mr-sm-4 mr-3" type="text" placeholder="Search" aria-label="Search">
+                    <button type="submit" id="Search">
+                        <i class="fas fa-search fa-2x" style="color: black;"></i>
+                    </button>
             </form>
             <br />
             @while (true)
@@ -57,8 +57,8 @@
                         if (count == 0) { break; }
                     }
                 </div>
-                if (count == 0) { break; }
-            }
+                    if (count == 0) { break; }
+                }
         </div>
     </div>
 </div>
