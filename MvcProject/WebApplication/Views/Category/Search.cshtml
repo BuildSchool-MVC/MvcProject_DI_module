@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Clothes";
+﻿
+@{
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
@@ -28,14 +29,15 @@
                         <a class="dropdown-item" href="#">價格:由低至高</a>
                     </div>
                 </div>
-                    <input name="SearchStr" class="form-control mr-sm-4 mr-3" type="text" placeholder="Search" aria-label="Search">
-                    <button type="submit" id="Search">
-                        <i class="fas fa-search fa-2x" style="color: black;"></i>
-                    </button>
+                <input name="SearchStr" class="form-control mr-sm-4 mr-3" type="text" placeholder="Search" aria-label="Search">
+                <button type="submit" id="Search">
+                    <i class="fas fa-search fa-2x" style="color: black;"></i>
+                </button>
             </form>
             <br />
             @while (true)
             {
+                if (count == 0) { break; }
                 <div class="row">
                     @for (int i = 0; i < 5; i++)
                     {
@@ -57,9 +59,17 @@
                         if (count == 0) { break; }
                     }
                 </div>
-                    if (count == 0) { break; }
-                }
+                if (count == 0) { break; }
+            }
         </div>
     </div>
 </div>
+
+<script>
+    $("#Search").click(function () {
+        this.attr('href', "/Category/" + $("#SearchStr").val());
+    });
+</script>
+
+
 
