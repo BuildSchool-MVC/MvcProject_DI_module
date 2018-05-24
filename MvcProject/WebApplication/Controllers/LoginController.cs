@@ -24,12 +24,12 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        [Route("Login")]
-        [HttpPost]
-        public ActionResult Login(loginModel model)
-        {
-            var service = new CustomerService();
-            return View();
-        }
+        //[Route("Login")]
+        //[HttpPost]
+        //public ActionResult Login(loginModel model)
+        //{
+        //    var service = new CustomerService();
+        //    return View();
+        //}
     }
 }
