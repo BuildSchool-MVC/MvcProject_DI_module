@@ -56,7 +56,7 @@ namespace ModelsLibrary.Services
             ProductList productList = new ProductList()
             {
                 ProductName = items[0].ProductName,
-                UnitPrice = items[0].UnitPrice,
+                UnitPrice = decimal.Round(items[0].UnitPrice),
                 ProductDetails = items[0].ProductDetails,
                 Size = items.Select(x => x.Size).Distinct().ToList(),
                 Color = items.Select(x => x.Color).Distinct().ToList(),
@@ -67,7 +67,10 @@ namespace ModelsLibrary.Services
             {
                 foreach (var photo in productPhotoRepository.FindById(item.ProductID))
                 {
-                    productList.PhotoPath.Add(photo.PhotoPath);
+                    if (productList.PhotoPath.Any((x) => x == photo.PhotoPath) == false)
+                    {
+                        productList.PhotoPath.Add(photo.PhotoPath);
+                    }
                 }
             }
             return productList;

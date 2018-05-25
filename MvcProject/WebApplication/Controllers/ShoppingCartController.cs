@@ -44,8 +44,10 @@ namespace WebApplication.Controllers
                 model.ProductID = item.ProductID;
                 model.ProductName = product_service.FindByID(item.ProductID).ProductName;
                 model.Color = product_service.FindByID(item.ProductID).Color;
+                model.Size = product_service.FindByID(item.ProductID).Size;
                 model.Amount = item.Quantity;
                 model.UnitPrice = product_service.FindByID(item.ProductID).UnitPrice;
+                model.Total = product_service.FindByID(item.ProductID).UnitPrice * item.Quantity;
 
                 result.Add(model);
             }
