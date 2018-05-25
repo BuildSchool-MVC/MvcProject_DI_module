@@ -20,13 +20,5 @@ namespace WebApplication.Controllers
             var product = service.FindByName(ProductList.ProductName);
             return View(product);
         }
-
-        public ActionResult Partial_Product(int id)
-        {
-            ProductsService service = new ProductsService();
-            var result = service.FindByID(id);
-            //ViewData.Add("x",re)
-            return PartialView(result);
-        }
     }
 }

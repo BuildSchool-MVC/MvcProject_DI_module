@@ -53,7 +53,7 @@ namespace ModelsLibrary.Services
         public IEnumerable<Products> ClassifyByCategoryName(string name)
         {
             var Product_repository = new ProductsRepository();
-            var list = Product_repository.GetAll().ToList();
+            var list = Product_repository.GetAll();
             
             var Category_repository = new CategoriesRepository();
             var model = Category_repository.GetByName(name);

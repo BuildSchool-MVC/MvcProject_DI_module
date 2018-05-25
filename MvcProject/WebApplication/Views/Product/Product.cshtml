@@ -35,45 +35,34 @@
             </p>
             <br />
             <br />
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        尺寸
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <div class="row">
+                <div class="col-4">
+                    <h5>尺寸</h5>
+                    <select style="height: 30px;">
                         @foreach (var item in @Model.Size)
-            {
-                <a class="dropdown-item" href="#" id="size">@item</a>
-}
-                    </div>
+                        {
+                            <option value="@item" id="size">@item</option>
+                        }
+                    </select>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop3" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        顏色
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                <div class="col-4">
+                    <h5>顏色</h5>
+                    <select style="height: 30px;">
                         @foreach (var item in @Model.Color)
-            {
-                <a class="dropdown-item" href="#" id="color">@item</a>
-}
-                    </div>
+                        {
+                             <option value="@item" id="size">@item</option>
+                        }
+                    </select>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop2" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        數量
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                        <a class="dropdown-item" href="#" id="num">1</a>
-                        <a class="dropdown-item" href="#" id="num">2</a>
-                        <a class="dropdown-item" href="#" id="num">3</a>
-                        <a class="dropdown-item" href="#" id="num">4</a>
-                        <a class="dropdown-item" href="#" id="num">5</a>
-                    </div>
+                <div class="col-4">
+                    <h5>數量</h5>
+                    <input id="minus" type="button" class="minus" value="-" style="height: 30px;">
+                    <input id="theInput" class="input-text qty text" value="1" step="1" style="width: 50px;">
+                    <input id="plus" type="button" class="plus" value="+" style="height: 30px;">
                 </div>
-                <button type="button" class="btn btn-light">ADD TO CART</button>
+            </div>
+            <div class="row mt-4">
+                <button type="button" class="btn btn-dark" style="width: 500px;">加入購物車</button>
             </div>
         </div>
         <div class="col-1">
@@ -88,18 +77,17 @@
             $("#chgicon").attr("src", $(this).attr("src"));
         });
 
-        $(".dropdown-menu #size").click(function () {
-            $("#btnGroupDrop1").text($(this).text());
-        });
+        var input = document.getElementById('theInput');
+        document.getElementById('plus').onclick = function () {
+            input.value = parseInt(input.value, 10) + 1
+        }
+        document.getElementById('minus').onclick = function () {
+            if (input.value > 1)
+                input.value = parseInt(input.value, 10) - 1
+            else
+                input.value = 1
 
-        $(".dropdown-menu #num").click(function () {
-            $("#btnGroupDrop2").text($(this).text());
-        });
-
-        $(".dropdown-menu #color").click(function () {
-            $("#btnGroupDrop3").text($(this).text());
-        });
-
+        }
     });
 </script>
 

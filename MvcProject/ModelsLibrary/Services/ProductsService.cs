@@ -51,14 +51,17 @@ namespace ModelsLibrary.Services
         }
         public ProductList FindByName(string ProductName)
         {
-            ProductList productList = new ProductList();
             ProductPhotoRepository productPhotoRepository = new ProductPhotoRepository();
             var items = repository.FindByName(ProductName).ToList();
-            productList.ProductName = items[0].ProductName;
-            productList.UnitPrice = items[0].UnitPrice;
-            productList.ProductDetails = items[0].ProductDetails;
-            productList.Size = items.Select(x => x.Size).Distinct().ToList();
-            productList.Color = items.Select(x => x.Color).Distinct().ToList();
+            ProductList productList = new ProductList()
+            {
+                ProductName = items[0].ProductName,
+                UnitPrice = items[0].UnitPrice,
+                ProductDetails = items[0].ProductDetails,
+                Size = items.Select(x => x.Size).Distinct().ToList(),
+                Color = items.Select(x => x.Color).Distinct().ToList(),
+
+            };
             productList.PhotoPath = new List<string>();
             foreach (var item in items)
             {
