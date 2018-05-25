@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "detail";
     Layout = "~/Views/Shared/Main.cshtml";
+    var list = ViewData["list"] as List<WebApplication.Models.ShppingCartModel>;
 }
 <br>
 <br>
@@ -42,9 +43,39 @@
                     <td class="clTdSub text-center">小計</td>
                     <td class="clTdDelete text-center">刪除</td>
                 </tr>
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td class="clPhoto">
+                            <a href="#">
+                                <img src=@item.Image height="150px">
+                            </a>
+                        </td>
+                        <td class="clTag syHide HighFont"></td>
+                        <td class="clTdMerNo text-center">@item.ProductID</td>
+                        <td class="clTdMerName">@item.ProductName</td>
+                        <td class="text-center clTdColor">@item.Color</td>
+                        <td class="text-center clTdSize">@item.Size</td>
+                        <td class="cltdNum">
+                            <select id="cmbNum1" name="cmbNum1" class="cmbNum">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </td>
+                        <td class="coNum coPrice">NT$@{}</td>
+                        <td class="clTdDelete text-center">
+                            <a href="#">
+                                <i class="far fa-trash-alt" style="color: black;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
                 <tr>
                     <td class="clPhoto">
-                        <a href="itemDetail.aspx?mNo1=77088">
+                        <a href="#">
                             <img src="http://www.wendhouse.com/SHTICK/Shang_Pin/180423/77088/77088_1_300.jpg" height="150px">
                         </a>
                     </td>
