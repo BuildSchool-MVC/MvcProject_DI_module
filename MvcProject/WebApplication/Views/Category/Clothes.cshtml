@@ -49,7 +49,7 @@
                                 <small>@list[k].ProductName</small>
                             </span>
                             <p>
-                                <b>NT$@list[k].UnitPrice</b>
+                                <b>NT$@Decimal.Round(list[k].UnitPrice)</b>
                             </p>
                         </div>
                         k = k + 1;
