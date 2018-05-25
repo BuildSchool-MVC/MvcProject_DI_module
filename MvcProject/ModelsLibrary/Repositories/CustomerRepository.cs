@@ -21,36 +21,59 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email,Salt) 
-                            VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email,@Salt)";
-             connection.Execute(sql, 
-                new {
-                        model.CustomerName,
-                        model.Birthday,
-                        model.Password,
-                        model.ShoppingCash,
-                        model.Account,
-                        model.Phone,
-                        model.Email,
-                        model.Salt
-                });
+                            VALUES(@CustomerName,@Birthday,@Password,0,@Account,@Phone,@Email,@Salt)";
+            connection.Execute(sql,
+               new
+               {
+                   model.CustomerName,
+                   model.Birthday,
+                   model.Password,
+                   model.Account,
+                   model.Phone,
+                   model.Email,
+                   model.Salt
+               });
         }
 
         public void Update(Customer model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone,Salt=@Salt WHERE CustomerID=@CustomerID";
+            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Email=@Email,Phone=@Phone WHERE CustomerID=@CustomerID";
             connection.Execute(sql,
-                new {
-                        model.CustomerID,
-                        model.Account,
-                        model.CustomerName,    
-                        model.Password,
-                        model.ShoppingCash,
-                        model.Email,
-                        model.Phone,
-                        model.Salt
-                    });
+                new
+                {
+                    model.CustomerID,
+                    model.CustomerName,
+                    model.Email,
+                    model.Phone
+                });
         }
+
+        public void UpdatePassword(Customer model)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "UPDATE Customer SET Password=@Password,Salt=@Salt WHERE CustomerID=@CustomerID";
+            connection.Execute(sql,
+                new
+                {
+                    model.CustomerID,
+                    model.Password,
+                    model.Salt
+                });
+        }
+
+        public void UpdateShoppingCash(Customer model)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "UPDATE Customer SET ShoppingCash=ShoppingCash+@ShoppingCash WHERE CustomerID=@CustomerID";
+            connection.Execute(sql,
+                new
+                {
+                    model.CustomerID,
+                    model.ShoppingCash
+                });
+        }
+
         public void Delete(Customer model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
@@ -58,6 +81,7 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql,new {model.CustomerID});
 
         }
+
         public Customer FindByCustomerId(int customerId)
         {
             SqlConnection connection = new SqlConnection(sqlstr);

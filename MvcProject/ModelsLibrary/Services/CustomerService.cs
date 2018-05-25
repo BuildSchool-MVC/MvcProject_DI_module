@@ -13,6 +13,11 @@ namespace ModelsLibrary.Services
         public void Create(Customer model)
         {
             var repository = new CustomerRepository();
+            var passworddata = new PasswordSaltService();
+
+            var hashpassword = passworddata.PasswordsSalt(model.Password);
+            model.Password = hashpassword.Password;
+            model.Salt = hashpassword.Salt;
             repository.Create(model);
         }
 
@@ -20,6 +25,23 @@ namespace ModelsLibrary.Services
         {
             var repository = new CustomerRepository();
             repository.Update(model);
+        }
+
+        public void UpdatePassword(Customer model)
+        {
+            var repository = new CustomerRepository();
+            var passworddata = new PasswordSaltService();
+
+            var hashpassword = passworddata.PasswordsSalt(model.Password);
+            model.Password = hashpassword.Password;
+            model.Salt = hashpassword.Salt;
+            repository.UpdatePassword(model);
+        }
+
+        public void UpdateShoppingCash(Customer model)
+        {
+            var repository = new CustomerRepository();
+            repository.UpdateShoppingCash(model);
         }
 
         public void Delete(Customer model)
