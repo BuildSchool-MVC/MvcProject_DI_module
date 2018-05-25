@@ -219,8 +219,8 @@
     <Content Include="Views\Category\Accessories.cshtml" />
     <Content Include="Views\Category\Shoes.cshtml" />
     <Content Include="Views\Category\Bags.cshtml" />
-    <Content Include="Views\Log\Login.cshtml" />
-    <Content Include="Views\Log\Signup.cshtml" />
+    <Content Include="Views\Login\Signup.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
