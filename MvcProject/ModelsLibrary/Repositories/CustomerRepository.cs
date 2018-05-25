@@ -62,7 +62,14 @@ namespace ModelsLibrary.Repositories
             var sql = "SELECT * FROM Customer WHERE customerId=@customerId";
             var result = connection.QueryFirstOrDefault<Customer>(sql,new { customerId });
             return result;
+        }
 
+        public Customer FindByCustomerAccount(string customerAccount)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "SELECT * FROM Customer WHERE Account=@customerAccount";
+            var result = connection.QueryFirstOrDefault<Customer>(sql, new { customerAccount });
+            return result;
         }
 
         public IEnumerable<Customer> GetAll()

@@ -38,5 +38,11 @@ namespace ModelsLibrary.Services
             var repository = new CustomerRepository();
             return repository.FindByCustomerId(customerID);
         }
+
+        public Customer FindByCustomerAccount(string Account)
+        {
+            var repository = new CustomerRepository();
+            return repository.FindByCustomerAccount(Account);
+        }
     }
 }
