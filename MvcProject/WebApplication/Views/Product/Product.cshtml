@@ -35,35 +35,40 @@
             </p>
             <br />
             <br />
+            @using (Html.BeginForm())
+            {
             <div class="row">
                 <div class="col-4">
                     <h5>尺寸</h5>
-                    <select style="height: 30px;">
+                    <select style="height: 30px;" name="size">
                         @foreach (var item in @Model.Size)
-                        {
-                            <option value="@item" id="size">@item</option>
-                        }
+                {
+                    <option value="@item" id="size">@item</option>
+                }
                     </select>
                 </div>
                 <div class="col-4">
                     <h5>顏色</h5>
-                    <select style="height: 30px;">
+                    <select style="height: 30px;" name="color">
                         @foreach (var item in @Model.Color)
-                        {
-                             <option value="@item" id="size">@item</option>
-                        }
+                {
+                    <option value="@item" id="size">@item</option>
+                }
                     </select>
                 </div>
                 <div class="col-4">
                     <h5>數量</h5>
                     <input id="minus" type="button" class="minus" value="-" style="height: 30px;">
-                    <input id="theInput" class="input-text qty text" value="1" step="1" style="width: 50px;">
+                    <input id="theInput" class="input-text qty text" value="1" step="1" style="width: 50px;" name="num">
                     <input id="plus" type="button" class="plus" value="+" style="height: 30px;">
                 </div>
             </div>
             <div class="row mt-4">
-                <button type="button" class="btn btn-dark" style="width: 500px;">加入購物車</button>
+                <button type="submit" class="btn btn-dark" style="width: 500px;">加入購物車</button>
             </div>
+          }
+
+
         </div>
         <div class="col-1">
 

@@ -1,5 +1,6 @@
 ﻿using ModelsLibrary.DtO_Models;
 using ModelsLibrary.Services;
+using ModelsLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,25 +117,23 @@ namespace WebApplication.Controllers
             var list = service.GetAll().ToList();
 
             var query = new List<Products>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
-                if(item.ProductName.Contains(str))
+                if (item.ProductName.Contains(str) && query.Any((x) => x.ProductName == item.ProductName) == false)
                 {
                     query.Add(item);
                 }
             }
-
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
             {
                 photo_list.Add(photoService.FindById(item.ProductID).First());
             }
-
             ViewData.Add("photo_list", photo_list);
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
 
-            return View();
+            return View(query);
         }
     }
 }
