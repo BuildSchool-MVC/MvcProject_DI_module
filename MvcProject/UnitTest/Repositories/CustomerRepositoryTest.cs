@@ -73,6 +73,14 @@ namespace CustomerTest
             var list = Repository.FindByCustomerId(5);
             Assert.IsTrue(list == null);
         }
+
+        [TestMethod]
+        public void GetAccount()
+        {
+            var Repository = new CustomerRepository();
+            var account = Repository.GetAccount("2036");
+            Assert.IsNull(account);
+        }
     }
     
 }

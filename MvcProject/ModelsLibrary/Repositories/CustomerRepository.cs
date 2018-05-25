@@ -20,8 +20,8 @@ namespace ModelsLibrary.Repositories
         public void Create(Customer model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email) 
-                            VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email)";
+            var sql = @"INSERT INTO Customer(CustomerName,Birthday,Password,ShoppingCash,Account,Phone,Email,Salt) 
+                            VALUES(@CustomerName,@Birthday,@Password,@ShoppingCash,@Account,@Phone,@Email,@Salt)";
              connection.Execute(sql, 
                 new {
                         model.CustomerName,
@@ -30,14 +30,15 @@ namespace ModelsLibrary.Repositories
                         model.ShoppingCash,
                         model.Account,
                         model.Phone,
-                        model.Email
-                    });
+                        model.Email,
+                        model.Salt
+                });
         }
 
         public void Update(Customer model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone WHERE CustomerID=@CustomerID";
+            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Password=@Password,ShoppingCash=@ShoppingCash,Email=@Email,Phone=@Phone,Salt=@Salt WHERE CustomerID=@CustomerID";
             connection.Execute(sql,
                 new {
                         model.CustomerID,
@@ -46,7 +47,8 @@ namespace ModelsLibrary.Repositories
                         model.Password,
                         model.ShoppingCash,
                         model.Email,
-                        model.Phone
+                        model.Phone,
+                        model.Salt
                     });
         }
         public void Delete(Customer model)
@@ -77,6 +79,14 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(sqlstr);   
             return connection.Query<Customer>("SELECT * FROM Customer");
 
+        }
+
+        public Customer GetAccount(string Account)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "SELECT Account FROM Customer WHERE Account=@Account";
+            var result = connection.QueryFirstOrDefault<Customer>(sql, new { Account });
+            return result;
         }
 
     }

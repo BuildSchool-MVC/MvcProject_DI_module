@@ -1,4 +1,6 @@
-﻿using ModelsLibrary.Services;
+﻿using ModelsLibrary.DtO_Models;
+using ModelsLibrary.Repositories;
+using ModelsLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,48 @@ namespace WebApplication.Controllers
         public ActionResult Signup()
         {
             return View();
+        }
+
+        [Route("Signup")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Signup(SignupModel model)
+        {
+            var Service = new CustomerService();
+            var Repository = new CustomerRepository();
+            try
+            {
+                if (model.Password != model.Password2)
+                {
+                    ViewBag.Msg = "密碼與確認密碼不符";
+                    return View();
+                }
+                if (Service.GetAccount(model.Account) != null)
+                {
+                    ViewBag.Msg = "帳號名稱以存在";
+                    return View();
+                }
+
+
+                var model2 = new Customer()
+                {
+                    CustomerName = model.Name,
+                    Birthday = model.Birthday,
+                    Password = model.Password,
+                    ShoppingCash = 0,
+                    Account = model.Account,
+                    Phone = model.Phone,
+                    Email = model.Email,
+                    Salt = "測試"
+                };
+                Repository.Create(model2);
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Msg = "不可為空白";
+                return View();
+            }
         }
 
         [Route("Login")]
@@ -87,5 +131,7 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Login", "Login");
         }
+
+
     }
 }

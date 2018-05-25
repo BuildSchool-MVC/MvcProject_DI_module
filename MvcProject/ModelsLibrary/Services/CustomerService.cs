@@ -44,5 +44,11 @@ namespace ModelsLibrary.Services
             var repository = new CustomerRepository();
             return repository.FindByCustomerAccount(Account);
         }
+
+        public Customer GetAccount(string Account)
+        {
+            var repository = new CustomerRepository();
+            return repository.GetAccount(Account);
+        }
     }
 }
