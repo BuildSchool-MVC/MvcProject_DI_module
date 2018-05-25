@@ -57,7 +57,7 @@
                         <td class="text-center clTdColor">@item.Color</td>
                         <td class="text-center clTdSize">@item.Size</td>
                         <td class="cltdNum">
-                            <select id="cmbNum1" name="cmbNum1" class="cmbNum">
+                            <select id="cmbNum1" name="cmbNum1" class="cmbNum" value=@item.Amount>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -65,7 +65,7 @@
                                 <option value="5">5</option>
                             </select>
                         </td>
-                        <td class="coNum coPrice">NT$@{}</td>
+                        <td class="coNum coPrice">NT$@item.Total</td>
                         <td class="clTdDelete text-center">
                             <a href="#">
                                 <i class="far fa-trash-alt" style="color: black;"></i>
@@ -73,70 +73,6 @@
                         </td>
                     </tr>
                 }
-                <tr>
-                    <td class="clPhoto">
-                        <a href="#">
-                            <img src="http://www.wendhouse.com/SHTICK/Shang_Pin/180423/77088/77088_1_300.jpg" height="150px">
-                        </a>
-                    </td>
-                    <td class="clTag syHide HighFont"></td>
-                    <td class="clTdMerNo text-center">77088</td>
-                    <td class="clTdMerName">寬鬆顯瘦無袖純色A字背心裙</td>
-                    <td class="text-center clTdColor">米色</td>
-                    <td class="text-center clTdSize">F</td>
-                    <td class="cltdNum">
-                        <select id="cmbNum1" name="cmbNum1" class="cmbNum">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </td>
-                    <td class="coNum coPrice">$ 298</td>
-                    <td class="clTdDelete text-center">
-                        <a href="#">
-                            <i class="far fa-trash-alt" style="color: black;"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="clPhoto">
-                        <a href="itemDetail.aspx?mNo1=77088">
-                            <img src="https://www.costco.com.tw/medias/sys_master/products/h33/hf0/8831850053662.jpg" height="150px">
-                        </a>
-                    </td>
-                    <td class="clTag syHide HighFont"></td>
-                    <td class="clTdMerNo text-center">11088</td>
-                    <td class="clTdMerName">休閒短褲</td>
-                    <td class="text-center clTdColor">藍色</td>
-                    <td class="text-center clTdSize">M</td>
-                    <td class="cltdNum">
-                        <select id="cmbNum1" name="cmbNum1" class="cmbNum">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </td>
-                    <td class="coNum coPrice">$ 299</td>
-                    <td class="clTdDelete text-center">
-                        <a href="#">
-                            <i class="far fa-trash-alt" style="color: black;"></i>
-                        </a>
-                    </td>
-                </tr>
                 <tr>
                     <td></td>
                     <td></td>
