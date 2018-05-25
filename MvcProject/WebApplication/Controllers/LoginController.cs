@@ -47,11 +47,9 @@ namespace WebApplication.Controllers
                     CustomerName = model.Name,
                     Birthday = model.Birthday,
                     Password = model.Password,
-                    ShoppingCash = 0,
                     Account = model.Account,
                     Phone = model.Phone,
                     Email = model.Email,
-                    Salt = "測試"
                 };
                 Repository.Create(model2);
                 return View();

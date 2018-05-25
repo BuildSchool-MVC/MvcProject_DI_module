@@ -85,6 +85,10 @@
       <Project>{0fe13598-fb39-4a52-af85-dadae7cac3eb}</Project>
       <Name>Abstracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Implementation\Implementation.csproj">
+      <Project>{19EB29E4-F760-4DA6-91AC-BA031AA5D78D}</Project>
+      <Name>Implementation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
