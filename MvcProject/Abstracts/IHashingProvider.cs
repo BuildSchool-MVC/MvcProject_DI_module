@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abstracts
+namespace PasswordVaildationTools.Abstracts
 {
-    public interface IRepository<T> where T:class
+    public interface IHashingProvider
     {
-        void Create(T model);
-        IEnumerable<T> GetAll();
+        byte[] ComputeHash(byte[] data);
     }
 }

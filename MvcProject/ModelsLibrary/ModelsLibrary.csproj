@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -69,6 +69,8 @@
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\OrderDetailsService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PasswordSaltService.cs" />
+    <Compile Include="Services\PasswordValidationService.cs" />
     <Compile Include="Services\ProductPhotoService.cs" />
     <Compile Include="Services\ProductsService.cs" />
     <Compile Include="Services\ShoppingcartDetailsService.cs" />
@@ -82,6 +84,10 @@
     <ProjectReference Include="..\Abstracts\Abstracts.csproj">
       <Project>{0fe13598-fb39-4a52-af85-dadae7cac3eb}</Project>
       <Name>Abstracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Implementation\Implementation.csproj">
+      <Project>{19EB29E4-F760-4DA6-91AC-BA031AA5D78D}</Project>
+      <Name>Implementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
