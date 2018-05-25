@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddCart.cs" />
     <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\ProductList.cs" />
     <Compile Include="Models\ShppingCartModel.cs" />
@@ -223,6 +224,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Signup.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Category\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

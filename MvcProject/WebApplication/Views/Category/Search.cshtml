@@ -43,7 +43,7 @@
                     {
                         <div class="col-2">
                             <div class="product">
-                                <a href="/Product/@list[k].ProductID">
+                                <a href="/Product/@list[k].ProductName">
                                     <img src=@photo_list[k].PhotoPath />
                                 </a>
                             </div>
@@ -51,7 +51,7 @@
                                 <small>@list[k].ProductName</small>
                             </span>
                             <p>
-                                <b>NT$@list[k].UnitPrice</b>
+                                <b>NT$@Decimal.Round(list[k].UnitPrice)</b>
                             </p>
                         </div>
                         k = k + 1;

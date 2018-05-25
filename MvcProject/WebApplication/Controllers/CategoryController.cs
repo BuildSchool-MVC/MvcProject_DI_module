@@ -133,7 +133,7 @@ namespace WebApplication.Controllers
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
 
-            return View(query);
+            return View();
         }
     }
 }
