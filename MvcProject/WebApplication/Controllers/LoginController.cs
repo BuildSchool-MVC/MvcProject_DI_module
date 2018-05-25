@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
                     Phone = model.Phone,
                     Email = model.Email,
                 };
-                Repository.Create(model2);
+                Service.Create(model2);
                 return View();
             }
             catch (Exception e)
