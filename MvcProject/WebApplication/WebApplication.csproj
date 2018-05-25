@@ -211,7 +211,6 @@
     <Content Include="Views\Shared\Main.cshtml" />
     <Content Include="Views\Category\Clothes.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
-    <Content Include="Views\Product\Partial_Product.cshtml" />
     <Content Include="Views\ShoppingCart\detail.cshtml" />
     <Content Include="Views\ShoppingCart\payment.cshtml" />
     <Content Include="Views\ShoppingCart\order.cshtml" />
