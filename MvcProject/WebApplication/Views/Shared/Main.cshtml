@@ -63,9 +63,7 @@
                     <i class="fas fa-user fa-2x"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/Log/Login">會員中心</a>
-                    <a class="dropdown-item" href="">修改會員資料</a>
-                    <a class="dropdown-item" href=@Url.Action("Logout","Login")>登出</a>
+                    @{ Html.RenderAction("ListMenu","CustomerList");}
                 </div>
             </div>
             <div class="dropdown">

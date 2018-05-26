@@ -1,5 +1,4 @@
-﻿using ModelsLibrary.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +7,10 @@ using System.Web.Security;
 
 namespace WebApplication.Controllers
 {
-    public class MainController : Controller
+    public class CustomerListController : Controller
     {
-        // GET: Main
-        public ActionResult Main_Layout()
+        // GET: CustomerList
+        public ActionResult ListMenu()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -24,7 +23,7 @@ namespace WebApplication.Controllers
                 ViewBag.Log = true;
             }
 
-            return View();
+            return PartialView();
         }
     }
 }
