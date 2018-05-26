@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Client
@@ -24,17 +25,23 @@ namespace Client
             _saltStrategy = saltStrategy;
         }
 
-        public bool VaildatePassword(byte[] pwd,byte[] pwdCheck,byte[] salt)
+        public bool Validate(string password)
+        {
+            return _passwordRule.Validate(password);
+        }
+
+        public bool VaildatePassword(string pwd, byte[] pwdCheck, byte[] salt)
         {
             var formattedPwdCheck =_saltStrategy.Format(pwdCheck, salt);
             var hashedPwd = _hashingProvider.ComputeHash(formattedPwdCheck);
+            var userPwdData= Encoding.UTF8.GetString(hashedPwd);
 
-            if (pwd.Length != hashedPwd.Length)
+            if (pwd.Length != userPwdData.Length)
                 return false;
 
             for(var i = 0; i < pwd.Length; i++)
             {
-                if (pwd[i] != hashedPwd[i])
+                if (pwd[i] != userPwdData[i])
                     return false;
             }
 

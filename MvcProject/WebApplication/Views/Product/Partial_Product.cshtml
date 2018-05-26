@@ -1,0 +1,78 @@
+﻿@model ModelsLibrary.DtO_Models.Products
+@{
+
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <div class="row">
+                <div class="col">
+                    <img class="btnFollow" style="max-width: 100%;" src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1128/5aeaca0f190d015253365915aeaca0f1918a.jpg" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img class="btnFollow" style="max-width: 100%;" src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1125/5aeac81715cfa15253360875aeac81715da2.jpg" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img class="btnFollow" style="max-width: 100%;" src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1127/5aeac988dd6b615253364565aeac988dd75b.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <img id="chgicon" class="btnFollow" style="max-width: 100%;" src="http://res.cloudinary.com/phantacico-com/image/upload/c_fill,h_600,w_960/v1/e-p/p/p-1127/5aeac988dd6b615253364565aeac988dd75b.jpg" />
+        </div>
+        <div class="col-4">
+            <h3>@Model.ProductName</h3>
+            <br />
+            <h3>
+                <b>NT$@Model.UnitPrice</b>
+            </h3>
+            <br />
+            @*<p class="lead">
+                以黑色、白色、藍色、水洗紅、蜜桃色五款顏色帶出夏日的繽紛感， 20支的針織棉布在扭力、縮率及色牢度都有卓越的呈現，
+            </p>*@
+            <br />
+            <br />
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        尺寸
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#" id="size">S</a>
+                        <a class="dropdown-item" href="#" id="size">M</a>
+                        <a class="dropdown-item" href="#" id="size">L</a>
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop2" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        數量
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                        <a class="dropdown-item" href="#" id="num">1</a>
+                        <a class="dropdown-item" href="#" id="num">2</a>
+                        <a class="dropdown-item" href="#" id="num">3</a>
+                        <a class="dropdown-item" href="#" id="num">4</a>
+                        <a class="dropdown-item" href="#" id="num">5</a>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-light">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>
+<br /><br /><br />

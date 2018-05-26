@@ -28,8 +28,14 @@ namespace WebApplication.Controllers
         {
             var Service = new CustomerService();
             var Repository = new CustomerRepository();
+            var passwordSaltService = new PasswordSaltService();
             try
             {
+                if (!passwordSaltService.Validate(model.Password))
+                {
+                    ViewBag.Msg = "密碼不符合規範";
+                    return View();
+                }
                 if (model.Password != model.Password2)
                 {
                     ViewBag.Msg = "密碼與確認密碼不符";
@@ -66,7 +72,7 @@ namespace WebApplication.Controllers
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            if(cookie == null)
+            if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
                 return View();
@@ -74,7 +80,7 @@ namespace WebApplication.Controllers
 
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
-            if(ticket.UserData == "abcdefg")
+            if (ticket.UserData == "abcdefg")
             {
                 ViewBag.IsAuthenticated = true;
                 ViewBag.User = ticket.Name;
@@ -92,16 +98,15 @@ namespace WebApplication.Controllers
         public ActionResult Login(loginModel model)
         {
             var service = new CustomerService();
-
+            var passwordSaltService = new PasswordSaltService();
             var customer_list = service.GetAll().ToList();
 
-            if(customer_list.Any((x) => x.Account == model.User) == false)
+            if (customer_list.Any((x) => x.Account == model.User) == false)
             {
                 return RedirectToAction("Login");
-            }
+            };
 
-            if(model.User == customer_list.Find((x) => x.Account == model.User).Account &&
-               model.Password == customer_list.Find((x) => x.Account == model.User).Password)
+            if (passwordSaltService.PasswordsCheck(service.FindByCustomerAccount(model.User), model.Password))
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.User, DateTime.Now, DateTime.Now.AddMinutes(30), false, "abcdefg");
 
@@ -129,7 +134,5 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Login", "Login");
         }
-
-
     }
 }

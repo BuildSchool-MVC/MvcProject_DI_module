@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PasswordVaildationTools.Implementation.PasswordRules
@@ -34,7 +35,8 @@ namespace PasswordVaildationTools.Implementation.PasswordRules
 
         public bool Validate(string password)
         {
-            return password.Length >= LeastLength;
+            var regex = new Regex(@"((?=.*\d)(?=.*[a-z]).{8,})");
+            return regex.IsMatch(password);
         }
     }
 }

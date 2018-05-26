@@ -33,7 +33,7 @@ namespace UnitTest.Services
         [TestMethod]
         public void UpdatePasswordTest()
         {
-
+            
             Customer customer = new Customer()
             {
                 CustomerID = 1,
@@ -41,6 +41,15 @@ namespace UnitTest.Services
             };
             service.UpdatePassword(customer);
             Assert.IsTrue(customer.CustomerID == 1);
+        }
+
+        [TestMethod]
+        public void PasswordsCheckTest()
+        {
+            PasswordSaltService passwordSaltService = new PasswordSaltService();
+            var customer = service.FindByCustomerId(1);
+            var result=passwordSaltService.PasswordsCheck(customer, "0312958");
+            Assert.IsTrue(result==true);
         }
     }
 }

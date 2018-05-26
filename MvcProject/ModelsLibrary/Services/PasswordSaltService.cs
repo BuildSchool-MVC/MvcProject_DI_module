@@ -21,23 +21,51 @@ namespace ModelsLibrary.Services
             var container = new Container();
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
-            container.Register<IPasswordRule, HighComplexityPasswordRule>();
+            container.Register<IPasswordRule, LowComplexityPasswordRule>();
             container.Register<IPasswordValidationService, PasswordValidationService>();
 
             var service = container.GetInstance<IPasswordValidationService>();
 
-            var randomGenerator = new RNGCryptoServiceProvider();
-            var salt = new byte[16];
-            randomGenerator.GetBytes(salt);
+            var guid = (Guid.NewGuid()).ToString();
+            var salt= Encoding.UTF8.GetBytes(guid);
 
             byte[] storedPwdData = Encoding.UTF8.GetBytes(password);
             byte[] storedPwdHashed = service.HashPassword(storedPwdData, salt);
 
             var model = new Customer();
-            model.Password=Convert.ToBase64String(storedPwdHashed);
-            model.Salt=Convert.ToBase64String(salt);
+            model.Password= Encoding.UTF8.GetString(storedPwdHashed);
+            model.Salt= guid;
 
             return model;
+        }
+
+        public bool PasswordsCheck(Customer customer, string userInputPwd)
+        {
+            var container = new Container();
+            container.Register<IHashingProvider, SHA512HashingProvider>();
+            container.Register<ISaltStrategy, DefaultSaltStrategy>();
+            container.Register<IPasswordRule, LowComplexityPasswordRule>();
+            container.Register<IPasswordValidationService, PasswordValidationService>();
+
+            var service = container.GetInstance<IPasswordValidationService>();
+
+            byte[] salt= Encoding.UTF8.GetBytes(customer.Salt);
+            byte[] userPwdData = Encoding.UTF8.GetBytes(userInputPwd);
+           
+            return service.VaildatePassword(customer.Password, userPwdData, salt);
+        }
+
+        public bool Validate(string password)
+        {
+            var container = new Container();
+            container.Register<IHashingProvider, SHA512HashingProvider>();
+            container.Register<ISaltStrategy, DefaultSaltStrategy>();
+            container.Register<IPasswordRule, LowComplexityPasswordRule>();
+            container.Register<IPasswordValidationService, PasswordValidationService>();
+
+            var service = container.GetInstance<IPasswordValidationService>();
+
+            return service.Validate(password);
         }
     }
 }
