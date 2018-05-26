@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -63,58 +62,65 @@
                     <i class="fas fa-user fa-2x"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="Member.html">會員中心</a>
-                    <a class="dropdown-item" href="Update.html">修改會員資料</a>
-                    <a class="dropdown-item" href="#">登出</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                    <i class="fas fa-cart-plus fa-2x "></i>
-                    <span class="badge badge-light">0</span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/shoppingcart/detail">結帳</a>
-                </div>
-            </div>
-        </nav>
-    </nav>
-    @RenderBody()
-    <br /><br /><br /><br /><br />
-    <footer class="baseFooter" style="height: 200px;background-color: #eeeeeeda;">
-        <div class="row mt-3">
-            <div class="col">
-                <div class="footer__contact">
-                    <div class="footer__contact__title"><h5>Service</h5></div>
-                    <div class="footer__contact__content">客服信箱 service@blingShop.com</div>
-                    <div class="footer__contact__content">客服電話 03-123456</div>
-                    <div class="footer__contact__content">週一至週五 9:00-12:00 13:00-18:00</div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="footer__newsletter">
-                    <label class="footer__newsletter__title">Newsletter 訂閱電子報</label>
-                    <input class="footer__newsletter__txt" type="text" placeholder="E-MAIL" id="newsletter" name="newsletter">
-                    <button type="button" class="btn btn-secondary">Enter</button>
-                    <div class="footer__newsletter__desc">Enter E-mail to subscribe to our newsletter</div>
-                </div>
-                <a href="#">
-                    <div style="font-size:3em; color:rgb(24, 23, 23)">
-                        <i class="fab fa-facebook-square"></i>
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-line"></i>
+                    @if (ViewBag.Log == true)
+                    {
+                        <a class="dropdown-item" href="/Log/Login">登入</a>
+                    }
+                    else
+                    {
+                        <a class="dropdown-item" href="/Log/Login">會員中心</a>
+                        <a class="dropdown-item" href="">修改會員資料</a>
+                        <a class="dropdown-item" href=@Url.Action("Logout", "Login")>登出</a>
+                    }
                     </div>
-                </a>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <i class="fas fa-cart-plus fa-2x "></i>
+                        <span class="badge badge-light">0</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/shoppingcart/detail">結帳</a>
+                    </div>
+                </div>
+            </nav>
+        </nav>
+        @RenderBody()
+        <br /><br /><br /><br /><br />
+        <footer class="baseFooter" style="height: 200px;background-color: #eeeeeeda;">
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="footer__contact">
+                        <div class="footer__contact__title"><h5>Service</h5></div>
+                        <div class="footer__contact__content">客服信箱 service@blingShop.com</div>
+                        <div class="footer__contact__content">客服電話 03-123456</div>
+                        <div class="footer__contact__content">週一至週五 9:00-12:00 13:00-18:00</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="footer__newsletter">
+                        <label class="footer__newsletter__title">Newsletter 訂閱電子報</label>
+                        <input class="footer__newsletter__txt" type="text" placeholder="E-MAIL" id="newsletter" name="newsletter">
+                        <button type="button" class="btn btn-secondary">Enter</button>
+                        <div class="footer__newsletter__desc">Enter E-mail to subscribe to our newsletter</div>
+                    </div>
+                    <a href="#">
+                        <div style="font-size:3em; color:rgb(24, 23, 23)">
+                            <i class="fab fa-facebook-square"></i>
+                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-line"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <p style="text-align:center">©2018 2018 BingTeam. All rights reserved.</p>
-    </footer>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-</body>
+            <p style="text-align:center">©2018 2018 BingTeam. All rights reserved.</p>
+        </footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+    </body>
 </html>
