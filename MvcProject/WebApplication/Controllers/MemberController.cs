@@ -10,14 +10,14 @@ namespace WebApplication.Controllers
     public class MemberController : Controller
     {
         // GET: Member
-        public ActionResult Index()
+        public ActionResult SearchMember()
         {
             return View();
         }
 
-        public ActionResult SearchMember()
+        public ActionResult UpdateMember()
         {
-            return PartialView();
+            return View();
         }
     }
 }
