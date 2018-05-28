@@ -52,7 +52,7 @@
                             </a>
                         </td>
                         <td class="clTag syHide HighFont"></td>
-                        <td class="clTdMerNo text-center">@item.ProductID</td>
+                        <td name="ProductID" class="clTdMerNo text-center">@item.ProductID</td>
                         <td class="clTdMerName">@item.ProductName</td>
                         <td class="text-center clTdColor">@item.Color</td>
                         <td class="text-center clTdSize">@item.Size</td>
@@ -60,7 +60,7 @@
                             <select id="cmbNum1" name="cmbNum1" class="cmbNum">
                                 @for (var i = 1; i < 6; i++)
                                 {
-                                    if(i == item.Amount)
+                                    if (i == item.Amount)
                                     {
                                         <option selected value=@i>@i</option>
                                     }
@@ -73,7 +73,7 @@
                         </td>
                         <td class="coNum coPrice">NT$@item.Total</td>
                         <td class="clTdDelete text-center">
-                            <a href="#">
+                            <a href="@Url.Action("testdetail", "ShoppingCart", new { ProductID = item.ProductID })">
                                 <i class="far fa-trash-alt" style="color: black;"></i>
                             </a>
                         </td>
@@ -88,7 +88,10 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <a href="/shoppingcart/payment" type="button" class="btn btn-dark" id="nextpay">下一步</a>
+                        @if (list.Count != 0)
+                        {
+                            <a href="/shoppingcart/payment" type="button" class="btn btn-dark" id="nextpay">下一步</a>
+                        }
                     </td>
                     <td></td>
                 </tr>
