@@ -21,6 +21,7 @@ namespace WebApplication.Controllers
             var product = service.FindByName(ProductList.ProductName);
             return View(product);
         }
+
         [Route("{ProductName}")]
         [HttpPost]
         public ActionResult Index(ProductList ProductList)

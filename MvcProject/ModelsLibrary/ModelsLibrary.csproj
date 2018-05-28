@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerManager.cs" />
     <Compile Include="DtO_Models\Categories.cs" />
     <Compile Include="DtO_Models\Customer.cs" />
     <Compile Include="DtO_Models\Order.cs" />
