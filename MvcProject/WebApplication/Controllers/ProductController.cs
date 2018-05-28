@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using WebApplication.Controllers.Models;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -24,7 +23,7 @@ namespace WebApplication.Controllers
         }
         [Route("{ProductName}")]
         [HttpPost]
-        public ActionResult Index(AddCart AddCart)
+        public ActionResult Index(ProductList ProductList)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -33,10 +32,16 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            ViewBag.size = AddCart.size;
-            ViewBag.color = AddCart.color;
-            ViewBag.num = AddCart.num;
-            return View();
+            ProductsService productservice = new ProductsService();
+            CustomerService customerservice = new CustomerService();
+            ShoppingcartDetailsService ShoppingcartDetailsService = new ShoppingcartDetailsService();
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var user = customerservice.FindByCustomerAccount(ticket.Name);
+            var customerID = user.CustomerID;
+            var product = productservice.FindIdByName(ProductList.ProductName, ProductList.Size, ProductList.Color);
+            var amount = ProductList.Num;
+            ShoppingcartDetailsService.Create(new ShoppingcartDetails() { CustomerID = user.CustomerID, ProductID = product.ProductID, Quantity = amount });           
+            return RedirectToAction("Product");
         }
     }
 }
