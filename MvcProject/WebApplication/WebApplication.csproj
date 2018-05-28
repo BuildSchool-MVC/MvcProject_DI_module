@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -199,6 +200,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\script1.js" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Signup.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -221,11 +225,11 @@
     <Content Include="Views\Category\Accessories.cshtml" />
     <Content Include="Views\Category\Shoes.cshtml" />
     <Content Include="Views\Category\Bags.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\Signup.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Category\Search.cshtml" />
     <Content Include="Views\CustomerList\ListMenu.cshtml" />
+    <Content Include="Views\Member\SearchMember.cshtml" />
+    <Content Include="Views\Member\UpdateMember.cshtml" />
+    <Content Include="Views\CustomerList\CountCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
