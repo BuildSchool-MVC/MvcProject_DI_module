@@ -57,6 +57,13 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        public ActionResult testdetail(int ProductID)
+        {
+            var receiveID = ProductID;
+
+            return View();
+        }
+
         [Route("payment")]
         public ActionResult payment()
         {
