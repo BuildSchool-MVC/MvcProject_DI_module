@@ -11,6 +11,8 @@ namespace WebApplication.Controllers
     [RoutePrefix("Member")]
     public class MemberController : Controller
     {
+
+
         // GET: Member
         public ActionResult SearchMember()
         {
@@ -20,10 +22,11 @@ namespace WebApplication.Controllers
             
             var customer = service.FindByCustomerAccount(ticket.Name);
             ViewBag.User = customer.Account;
+            ViewBag.Name = customer.CustomerName;
             ViewBag.Email = customer.Email;
             ViewBag.Phone = customer.Phone;
             ViewBag.Cash = customer.ShoppingCash;
-
+            ViewBag.birthday = customer.Birthday.ToString("yyyy-MM-dd");
 
             return View();
             
@@ -31,6 +34,18 @@ namespace WebApplication.Controllers
 
         public ActionResult UpdateMember()
         {
+            var service = new CustomerService();
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer = service.FindByCustomerAccount(ticket.Name);
+            ViewBag.User = customer.Account;
+            ViewBag.Name = customer.CustomerName;
+            ViewBag.Email = customer.Email;
+            ViewBag.Phone = customer.Phone;
+            ViewBag.Cash = customer.ShoppingCash;
+            ViewBag.birthday = customer.Birthday.ToString("yyyy-MM-dd");
+
             return View();
         }
     }
