@@ -1,4 +1,5 @@
-﻿using ModelsLibrary.Services;
+﻿using ModelsLibrary.DtO_Models;
+using ModelsLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,11 +58,21 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public ActionResult testdetail(int ProductID)
+        public ActionResult DeleteOne_detail(int ProductID)
         {
             var receiveID = ProductID;
 
-            return View();
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+            var shopping_service = new ShoppingcartDetailsService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            shopping_service.DeleteOneForUser(new ShoppingcartDetails { CustomerID = user.CustomerID, ProductID = receiveID, Quantity = 0 });
+
+            return RedirectToAction("detail");
         }
 
         [Route("payment")]
