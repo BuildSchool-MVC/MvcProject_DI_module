@@ -229,6 +229,7 @@
     <Content Include="Views\CustomerList\ListMenu.cshtml" />
     <Content Include="Views\Member\SearchMember.cshtml" />
     <Content Include="Views\Member\UpdateMember.cshtml" />
+    <Content Include="Views\CustomerList\CountCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
