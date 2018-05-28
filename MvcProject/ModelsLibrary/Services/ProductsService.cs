@@ -100,5 +100,10 @@ namespace ModelsLibrary.Services
         {
             return repository.CheckStock(productid, carquantity);
         }
+
+        public Products FindIdByName(string ProductName, string Size, string Color)
+        {
+            return repository.FindIdByName(ProductName, Size, Color);
+        }
     }
 }
