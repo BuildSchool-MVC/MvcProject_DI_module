@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelsLibrary.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,31 @@ namespace WebApplication.Controllers
             else
             {
                 ViewBag.Log = true;
+            }
+
+            return PartialView();
+        }
+
+        public ActionResult CountCart()
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.Count = 0;
+            }
+            else
+            {
+                var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+                var customer_service = new CustomerService();
+                var shopping_service = new ShoppingcartDetailsService();
+
+                var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+                var count = shopping_service.FindByCustomer(user.CustomerID).Count();
+
+                ViewBag.Count = count;
             }
 
             return PartialView();
