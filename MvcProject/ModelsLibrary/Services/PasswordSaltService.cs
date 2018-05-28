@@ -16,15 +16,26 @@ namespace ModelsLibrary.Services
 {
     public class PasswordSaltService
     {
-        public Customer PasswordsSalt(string password)
+        public static IPasswordValidationService Simpleinject()
+        {
+            Container container = Inject();
+
+            return container.GetInstance<IPasswordValidationService>();
+        }
+
+        private static Container Inject()
         {
             var container = new Container();
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
             container.Register<IPasswordRule, LowComplexityPasswordRule>();
             container.Register<IPasswordValidationService, PasswordValidationService>();
+            return container;
+        }
 
-            var service = container.GetInstance<IPasswordValidationService>();
+        public Customer PasswordsSalt(string password)
+        {
+            var service = Simpleinject();
 
             var guid = (Guid.NewGuid()).ToString();
             var salt= Encoding.UTF8.GetBytes(guid);
@@ -41,13 +52,7 @@ namespace ModelsLibrary.Services
 
         public bool PasswordsCheck(Customer customer, string userInputPwd)
         {
-            var container = new Container();
-            container.Register<IHashingProvider, SHA512HashingProvider>();
-            container.Register<ISaltStrategy, DefaultSaltStrategy>();
-            container.Register<IPasswordRule, LowComplexityPasswordRule>();
-            container.Register<IPasswordValidationService, PasswordValidationService>();
-
-            var service = container.GetInstance<IPasswordValidationService>();
+            var service = Simpleinject();
 
             byte[] salt= Encoding.UTF8.GetBytes(customer.Salt);
             byte[] userPwdData = Encoding.UTF8.GetBytes(userInputPwd);
@@ -57,13 +62,7 @@ namespace ModelsLibrary.Services
 
         public bool Validate(string password)
         {
-            var container = new Container();
-            container.Register<IHashingProvider, SHA512HashingProvider>();
-            container.Register<ISaltStrategy, DefaultSaltStrategy>();
-            container.Register<IPasswordRule, LowComplexityPasswordRule>();
-            container.Register<IPasswordValidationService, PasswordValidationService>();
-
-            var service = container.GetInstance<IPasswordValidationService>();
+            var service = Simpleinject();
 
             return service.Validate(password);
         }
