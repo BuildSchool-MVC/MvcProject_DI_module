@@ -60,7 +60,6 @@ namespace ModelsLibrary.Services
                 ProductDetails = items[0].ProductDetails,
                 Size = items.Select(x => x.Size).Distinct().ToList(),
                 Color = items.Select(x => x.Color).Distinct().ToList(),
-
             };
             productList.PhotoPath = new List<string>();
             foreach (var item in items)
