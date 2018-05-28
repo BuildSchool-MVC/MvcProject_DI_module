@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using WebApplication.Controllers.Models;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -41,16 +40,7 @@ namespace WebApplication.Controllers
             var customerID = user.CustomerID;
             var product = productservice.FindIdByName(ProductList.ProductName, ProductList.Size, ProductList.Color);
             var amount = ProductList.Num;
-
-            ShoppingcartDetailsService.Create(new ShoppingcartDetails() { CustomerID = user.CustomerID, ProductID = product.ProductID, Quantity = amount });
-            //AddCart addcart = new AddCart()
-            //{
-            //    CustomerId = customerID,
-            //    ProdictId=product,
-
-            //};
-            //ShoppingcartDetailsService.Create()
-            
+            ShoppingcartDetailsService.Create(new ShoppingcartDetails() { CustomerID = user.CustomerID, ProductID = product.ProductID, Quantity = amount });           
             return RedirectToAction("Product");
         }
     }
