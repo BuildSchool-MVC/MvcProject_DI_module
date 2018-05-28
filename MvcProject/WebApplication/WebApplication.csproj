@@ -167,9 +167,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\loginModel.cs" />
+    <Compile Include="Models\UpdateMemberModel.cs" />
     <Compile Include="Models\ProductList.cs" />
     <Compile Include="Models\ShppingCartModel.cs" />
     <Compile Include="Models\SignupModel.cs" />
+    <Compile Include="Models\UpdatePasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +232,7 @@
     <Content Include="Views\Member\SearchMember.cshtml" />
     <Content Include="Views\Member\UpdateMember.cshtml" />
     <Content Include="Views\CustomerList\CountCart.cshtml" />
+    <Content Include="Views\Member\UpdatePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

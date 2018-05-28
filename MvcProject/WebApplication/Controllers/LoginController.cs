@@ -27,7 +27,6 @@ namespace WebApplication.Controllers
         public ActionResult Signup(SignupModel model)
         {
             var Service = new CustomerService();
-            var Repository = new CustomerRepository();
             var passwordSaltService = new PasswordSaltService();
             try
             {
