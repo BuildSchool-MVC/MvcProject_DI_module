@@ -190,5 +190,13 @@ namespace ModelsLibrary.Repositories.Tests
             var list= products.FindByName("紅色高跟鞋");
             Assert.IsTrue(list .Count()>0);
         }
+        [TestMethod()]
+        public void FindIdByName()
+        {
+            ProductsRepository products = new ProductsRepository();
+            var list = products.FindIdByName("紅色高跟鞋", "23", "紅");
+            Assert.IsTrue(list!=null);
+        }
+
     }
 }

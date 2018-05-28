@@ -14,6 +14,7 @@ namespace WebApplication.Models
         public string Size { get; set; }
         public string Color { get; set; }
         public string ProductDetails { get; set; }
+        public int Num { get; set; }
 
     }
 }
