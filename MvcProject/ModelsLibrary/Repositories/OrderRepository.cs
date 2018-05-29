@@ -90,11 +90,17 @@ namespace ModelsLibrary.Repositories
             return orders.OrderID;
         }
 
+        public IEnumerable<Order> FindCustomerOrderByCustomerID(int customerID) //同一個客戶的所有訂單
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"SELECT * FROM [Order] WHERE CustomerID = @CustomerID";
+            return connection.Query<Order>(sql, new { customerID });
+        }
+
         public IEnumerable<Order> GetAll()  //查詢所有資料
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             return connection.Query<Order>("SELECT * FROM [Order]");
-
         }
     }
 }

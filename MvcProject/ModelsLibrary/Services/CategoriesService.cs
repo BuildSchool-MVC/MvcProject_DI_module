@@ -12,14 +12,6 @@ namespace ModelsLibrary.Services
 {
     public class CategoriesService
     {
-        private Container container = new Container();
-        
-        public void Init()
-        {
-            container.Register<IRepository<Categories>, CategoriesRepository>();
-            container.Register<IRepository<Products>, ProductsRepository>();
-        }
-
         public void Create(Categories model)
         {
             var repository = new CategoriesRepository();
