@@ -1,68 +1,64 @@
-﻿
+﻿@model WebApplication.Models.UpdateMemberModel
 @{
     ViewBag.Title = "UpdateMember";
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="container">
-    <div class="row">
-        <div class="col-3">
-        </div>
-        <div class="col-7">
-            <h3>個人資料修改</h3>
-            <hr>
-            <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Name">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
-                </div>
-            </div>
-            <div style="text-align:center;">
-                <button type="submit" class="btn btn-dark" style="width: 200px">確定修改</button>
-            </div>
-        </div>
-    </div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
     <br />
-    <div class="row">
-        <div class="col-3">
-
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-dark btn-lg">個人資料修改</button>
+            <a href="/Member/UpdatePassword" class="btn btn-light btn-lg">密碼修改</a>
         </div>
-        <div class="col-7">
-            <h3>密碼修改</h3>
-            <hr>
-            <div class="form-group row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">填入新密碼</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputEmail" placeholder="Email">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <br />
+                <br>
+                <br>
+                <br>
+                <h3>個人資料修改</h3>
+                <hr>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">帳號</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">@ViewBag.User</label>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPhone" class="col-sm-2 col-form-label">新密碼確認</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPhone" placeholder="Phone">
+                <div class="form-group row">
+                    <label for="birthday" class="col-sm-2 col-form-label">生日</label>
+                    <label for="birthday" class="col-sm col-form-label">@ViewBag.birthday</label>
                 </div>
-            </div>
-            <div style="text-align:center;">
-                <button type="submit" class="btn btn-dark" style="width: 200px">變更密碼</button>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="CustomerName" class="form-control" id="CustomerName" placeholder="Name" value="@ViewBag.Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="Phone" class="form-control" id="Phone" placeholder="Phone" value="@ViewBag.Phone">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="Email" class="form-control" id="Email" placeholder="Email" value="@ViewBag.Email">
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <button type="submit" class="btn btn-dark" style="width: 100px">確定修改</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}

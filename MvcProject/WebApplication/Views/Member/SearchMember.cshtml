@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ModelsLibrary.DtO_Models.Order>
 @{
     ViewBag.Title = "SearchMember";
     Layout = "~/Views/Shared/Main.cshtml";
@@ -14,65 +14,70 @@
         <div class="col-2">
         </div>
         <div class="col-6">
-            <h6>會員中心 Hello! Coco</h6>
+            <h6>會員中心 Hello! @ViewBag.User</h6>
             <br />
             <div class="row">
                 <div class="col">
                     <h4>訂單查詢</h4>
                     <hr>
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">訂購日期</th>
-                                <th scope="col">訂購編號</th>
-                                <th scope="col">狀態</th>
-                                <th scope="col">應付金額</th>
-                                <th scope="col">取消訂單</th>
+                                <th scope="col" style="text-align:center">訂單編號</th>
+                                <th scope="col" style="text-align:center">訂購日期</th>
+                                <th scope="col" style="text-align:center">狀態</th>
+                                <th scope="col" style="text-align:center">付款方式</th>
+                                <th scope="col" style="text-align:center">寄送方式</th>
+                                <th scope="col" style="text-align:center">取消訂單</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">2018/05/18</th>
-                                <td>1234</td>
-                                <td>處理中</td>
-                                <td>NT$1280</td>
-                                <td>
-                                    <a href="#">退貨</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2018/01/15</th>
-                                <td>1235</td>
-                                <td>已完成取件</td>
-                                <td>NT$1280</td>
-                                <td>完成</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2018/03/30</th>
-                                <td>1236</td>
-                                <td>已完成取件</td>
-                                <td>NT$1280</td>
-                                <td>完成</td>
-                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td scope="row"><a href="#">@item.OrderID</a></td>
+                                    <td>@item.OrderDay.ToString("yyyy-MM-dd")</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.Payment</td>
+                                    <td>@item.Transport</td>
+                                    @if (item.Status == "已完成")
+                                    {
+                                        <td>完成</td>
+                                    }
+                                    else
+                                    {
+                                        <td><a href="#">退貨</a></td>
+                                    }
+                                </tr>
+                            }
                         </tbody>
                     </table>
+                    @if (Model.Count() == 0)
+                    {
+                    <div class="text-center">
+                        <span style="color:dimgray">目前沒有訂單歷史紀錄</span>
+                    </div>
+                    }
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <h4>個人資料</h4>
                     <hr>
-                    <label for="inputName" class="col-sm-2 col-form-label">會員姓名</label>
-                    <label for="inputName" class="col-sm-2 col-form-label">Coco</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">@ViewBag.Name</label>
+                    <br />
+                    <label for="birthday" class="col-sm-2 col-form-label">生日</label>
+                    <label for="birthday" class="col-sm-5 col-form-label">@ViewBag.birthday</label>
+                    <br />
+                    <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
+                    <label for="inputPhone" class="col-sm-2 col-form-label">@ViewBag.Phone</label>
                     <br />
                     <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Cocolin@gmail.com</label>
-                    <br />
-                    <label for="inputPhone" class="col-sm-2 col-form-label">手機號碼</label>
-                    <label for="inputPhone" class="col-sm-2 col-form-label">0987654321</label>
+                    <label for="inputEmail" class="col-sm-2 col-form-label">@ViewBag.Email</label>
                     <br />
                     <label for="inputPhone" class="col-sm-2 col-form-label">購物金</label>
-                    <label for="inputPhone" class="col-sm-2 col-form-label">NT$ 100</label>
+                    <label for="inputPhone" class="col-sm-2 col-form-label">NT$@Decimal.Round(ViewBag.Cash)</label>
                     <br />
                     <br />
                     <a class="btn btn-dark" style="width: 180px" href="/Member/UpdateMember">修改個人資料及密碼</a>

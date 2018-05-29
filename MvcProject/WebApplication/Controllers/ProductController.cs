@@ -21,6 +21,7 @@ namespace WebApplication.Controllers
             var product = service.FindByName(ProductList.ProductName);
             return View(product);
         }
+
         [Route("{ProductName}")]
         [HttpPost]
         public ActionResult Index(ProductList ProductList)
@@ -31,16 +32,30 @@ namespace WebApplication.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
             ProductsService productservice = new ProductsService();
             CustomerService customerservice = new CustomerService();
             ShoppingcartDetailsService ShoppingcartDetailsService = new ShoppingcartDetailsService();
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             var user = customerservice.FindByCustomerAccount(ticket.Name);
-            var customerID = user.CustomerID;
             var product = productservice.FindIdByName(ProductList.ProductName, ProductList.Size, ProductList.Color);
-            var amount = ProductList.Num;
-            ShoppingcartDetailsService.Create(new ShoppingcartDetails() { CustomerID = user.CustomerID, ProductID = product.ProductID, Quantity = amount });           
+            var stock = productservice.CheckStock(product.ProductID, ProductList.Num);
+
+            if (ShoppingcartDetailsService.FindByCustomer(user.CustomerID).Any((x) => x.ProductID == product.ProductID))
+            {
+                TempData.Add("HasItem",true);
+                return RedirectToAction("Product");
+            }
+
+
+            ShoppingcartDetailsService.Create(new ShoppingcartDetails()
+            {
+                CustomerID = user.CustomerID,
+                ProductID = product.ProductID,
+                Quantity = ProductList.Num
+            });
+
+            TempData.Add("HasItem", false);
+
             return RedirectToAction("Product");
         }
     }
