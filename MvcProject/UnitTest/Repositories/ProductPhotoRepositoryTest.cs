@@ -74,6 +74,14 @@ namespace UnitTest.Repositories
             Assert.IsTrue(photos.Count() > 0);
         }
 
+        [TestMethod()]
+        public void FindPicByIdTest()
+        {
+            ProductPhotoRepository repository = new ProductPhotoRepository();
+            var list = repository.FindPicById(27);
+
+            Assert.IsTrue(list =="Aaaaa");
+        }
 
     }
 }

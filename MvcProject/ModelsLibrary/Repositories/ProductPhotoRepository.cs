@@ -53,5 +53,15 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(sqlstr);
             return connection.Query<ProductPhoto>("SELECT * FROM [Product Photo]");
         }
+
+        public ProductPhoto FindPicById(int ProductID)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "SELECT * FROM [Product Photo] WHERE ProductID = @ProductID";
+            var result = connection.QueryMultiple(sql, new { ProductID });
+            var PhotoPath = result.Read<ProductPhoto>().Single();
+            return PhotoPath;
+
+        }
     }
 }

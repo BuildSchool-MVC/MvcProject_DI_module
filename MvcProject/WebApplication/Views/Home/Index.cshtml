@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
+@{ 
+    int Bestcount = Convert.ToInt32(ViewData["Bestcount"]);
+    var BestProductsPath = ViewData["BestProductsList2"] as List<string>;
+    var BestProductsName = ViewData["BestProductsName"] as List<ModelsLibrary.DtO_Models.Products>;
+    int Newcount = Convert.ToInt32(ViewData["Newcount"]);
+    var NewProductsPath = ViewData["NewProductsList2"] as List<string>;
+    var NewProductsName = ViewData["NewProductsName"] as List<ModelsLibrary.DtO_Models.Products>;
+}
 <div class="container-fluid">
     <div class="row mt-5">
     </div>
@@ -66,75 +74,21 @@
     <div id="wrapper">
         <div class="slidePanel">
             <ul>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
+                @for (int i = 0; i < Newcount; i++)
+                {
+                    <li>
+                        <a href="/Product/@NewProductsName[i].ProductName">
+                            <img src=@NewProductsPath[i] width="250" height="280" alt="">
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
         <!--/.slidePanel-->
     </div>
-    <!-- /#wrapper -->
-
 </div>
 
-<div class="row mt-5">
+<div class="row mt-2">
     <div class="col">
         <hr />
     </div>
@@ -151,153 +105,18 @@
         <div class="slidePanel2">
             <div class="slidePanel">
                 <ul>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                        </a>
-                    </li>
+                    @for (int i = 0; i < Bestcount; i++)
+                    {
+                <li>
+                    <a href="/Product/@BestProductsName[i].ProductName">
+                        <img src=@BestProductsPath[i] width="250" height="280" alt="">
+                    </a>
+                </li>
+                    }
                 </ul>
             </div>
-            <!--/.slidePanel-->
         </div>
     </div>
 </div>
-<!-- /#wrapper -->
 
-<div class="row mt-5">
-    <div class="col">
-        <hr />
-    </div>
-    <div class="col-2" align="center">
-        <h3>Sale</h3>
-    </div>
-    <div class="col">
-        <hr />
-    </div>
-</div>
-<div class="container">
-    <div id="wrapper">
-        <div class="slidePanel">
-            <ul>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="https://www.forever21.com/images/default_330/00257772-04.jpg" width="250" height="350" alt="">
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--/.slidePanel-->
-    </div>
-    <!-- /#wrapper -->
-</div>
 

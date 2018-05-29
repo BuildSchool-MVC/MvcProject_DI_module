@@ -49,6 +49,7 @@ namespace ModelsLibrary.Services
         {
             return repository.FindByID(productid);
         }
+
         public ProductList FindByName(string ProductName)
         {
             ProductPhotoRepository productPhotoRepository = new ProductPhotoRepository();
@@ -103,6 +104,16 @@ namespace ModelsLibrary.Services
         public Products FindIdByName(string ProductName, string Size, string Color)
         {
             return repository.FindIdByName(ProductName, Size, Color);
+        }
+
+        public IEnumerable<Products> GetBestProducts()
+        {
+            return repository.GetBestProducts();
+        }
+
+        public IEnumerable<Products> GetNewProducts()
+        {
+            return repository.GetNewProducts();
         }
     }
 }

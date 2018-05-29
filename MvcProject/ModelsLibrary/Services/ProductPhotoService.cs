@@ -36,5 +36,10 @@ namespace ModelsLibrary.Services
         {
             return repository.GetAll();
         }
+        
+        public ProductPhoto FindPicById(int ProductID)
+        {
+            return repository.FindPicById(ProductID);
+        }
     }
 }

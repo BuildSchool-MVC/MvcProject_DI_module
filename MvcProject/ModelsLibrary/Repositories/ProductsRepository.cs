@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace ModelsLibrary.Repositories
 {
-    public class ProductsRepository: IRepository<Products>
+    public class ProductsRepository : IRepository<Products>
     {
 
         private string sqlstr = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
@@ -23,7 +23,7 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"INSERT INTO Products (ProductName,CategoryID,UnitPrice,UnitsInStock,Size,Color,Uptime,ProductDetails)
                                             VALUES (@ProductName,@CategoryID,@UnitPrice,@UnitsInStock,@Size,@Color,@Uptime,@ProductDetails)";
-            connection.Execute(sql,new { model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime ,model.ProductDetails});
+            connection.Execute(sql, new { model.ProductName, model.CategoryID, model.UnitPrice, model.UnitsInStock, model.Size, model.Color, model.Uptime, model.ProductDetails });
         }
 
         public void Delete(Products model)
@@ -37,14 +37,14 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Products SET UnitPrice=@UnitPrice WHERE ProductID=@ProductID";
-            connection.Execute(sql, new { model.ProductID,  model.UnitPrice });
+            connection.Execute(sql, new { model.ProductID, model.UnitPrice });
         }
 
-        public void UpdateStockPplus(Products model,int input)
+        public void UpdateStockPplus(Products model, int input)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "UPDATE Products SET UnitsInStock=UnitsInStock+@input WHERE ProductID=@ProductID";
-            connection.Execute(sql, new { model.ProductID,input });
+            connection.Execute(sql, new { model.ProductID, input });
         }
 
         public void UpdateStockPminus(Products model, int input)
@@ -72,16 +72,16 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM Products WHERE ProductID = @ProductID";
-            var result=connection.QueryMultiple(sql, new { productid });
-            var products= result.Read<Products>().Single();
-            return products;            
+            var result = connection.QueryMultiple(sql, new { productid });
+            var products = result.Read<Products>().Single();
+            return products;
         }
 
         public IEnumerable<Products> FindByName(string ProductName)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             return connection.Query<Products>
-                ("SELECT * FROM Products WHERE ProductName = @ProductName",new { ProductName });       
+                ("SELECT * FROM Products WHERE ProductName = @ProductName", new { ProductName });
         }
 
         public IEnumerable<Products> GetAll()
@@ -94,7 +94,7 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM Products WHERE Color=@Color";
-            var result=connection.QueryMultiple(sql, new {Color});
+            var result = connection.QueryMultiple(sql, new { Color });
             var products = result.Read<Products>().ToList();
             return products;
         }
@@ -108,23 +108,23 @@ namespace ModelsLibrary.Repositories
             return products;
         }
 
-        public IEnumerable<Products> GetSizebyProductNamebyColor(string name,string color)
+        public IEnumerable<Products> GetSizebyProductNamebyColor(string name, string color)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT Size FROM Products WHERE ProductName=@Name AND Color=@Color";
-            var result = connection.QueryMultiple(sql, new { name,color });
+            var result = connection.QueryMultiple(sql, new { name, color });
             var products = result.Read<Products>().ToList();
             return products;
         }
 
-        public bool CheckStock(int productid,int carquantity)
+        public bool CheckStock(int productid, int carquantity)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM Products WHERE ProductID = @ProductID";
             var result = connection.QueryMultiple(sql, new { productid });
             var products = result.Read<Products>().Single();
 
-            if (products.UnitsInStock-carquantity < 0)
+            if (products.UnitsInStock - carquantity < 0)
             {
                 return false;
             }
@@ -136,9 +136,30 @@ namespace ModelsLibrary.Repositories
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "select ProductID from Products where ProductName = @ProductName and Size = @Size and Color = @Color";
-            var result= connection.QueryMultiple(sql, new { ProductName, Size, Color });
+            var result = connection.QueryMultiple(sql, new { ProductName, Size, Color });
             var products = result.Read<Products>().ToList().First();
             return products;
+        }
+
+        public IEnumerable<Products> GetBestProducts()
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            return connection.Query<Products>(@"select TOP 12
+                                                od.ProductID
+                                                from[Product Photo] ph
+                                                inner join[Order Details] od on od.ProductID = ph.ProductID
+                                                group by od.ProductID, ph.PhotoPath
+                                                order by SUM(Quantity) desc");
+
+        }
+
+        public IEnumerable<Products> GetNewProducts()
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            return connection.Query<Products>(@"select Top 12
+                                                ProductID
+                                                from Products
+                                                order by Uptime desc");
         }
     }
 }

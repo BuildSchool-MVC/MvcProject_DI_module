@@ -63,6 +63,12 @@ namespace WebApplication.Controllers
             var receiveID = ProductID;
 
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer_service = new CustomerService();
@@ -76,14 +82,34 @@ namespace WebApplication.Controllers
         }
 
         [Route("payment")]
-        public ActionResult payment()
+        public ActionResult payment(Order order)
         {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            order.CustomerID = user.CustomerID;
+            order.OrderDay = DateTime.Now;
+            order.StatusUpdateDay = DateTime.Now;
+            order.Status = "已下單";
+
+            ViewBag.Order = order;
+
             return View();
         }
 
         [Route("order")]
         // GET: ShoppingCart
-        public ActionResult order()
+        public ActionResult order(string Address)
         {
             return View();
         }
