@@ -27,15 +27,11 @@ namespace WebApplication.Controllers
             foreach (var item in BestProducts)
             {
                 BestProductsList.Add(servicePh.FindPicById(item.ProductID));
-                BestProductsName.Add(servicePro.FindByID(item.ProductID));
             }
             foreach(var item in NewProducts)
             {
                 NewProductsList.Add(servicePh.FindPicById(item.ProductID));
-                NewProductsName.Add(servicePro.FindByID(item.ProductID));
-
             }
-
 
             var NewProductsList2 = new List<string>();
             foreach (var item in NewProductsList)
@@ -43,11 +39,22 @@ namespace WebApplication.Controllers
                 if (NewProductsList2.Any((x) => x == item.PhotoPath) == false)
                 {
                     NewProductsList2.Add(item.PhotoPath);
+                    NewProductsName.Add(servicePro.FindByID(item.ProductID));
                 }
             }
 
-            ViewData.Add("BestProductsList", BestProductsList);
-            ViewData.Add("Bestcount", BestProductsList.Count());
+            var BestProductsList2 = new List<string>();
+            foreach (var item in BestProductsList)
+            {
+                if (BestProductsList2.Any((x) => x == item.PhotoPath) == false)
+                {
+                    BestProductsList2.Add(item.PhotoPath);
+                    BestProductsName.Add(servicePro.FindByID(item.ProductID));
+                }
+            }
+
+            ViewData.Add("BestProductsList2", BestProductsList2);
+            ViewData.Add("Bestcount", BestProductsList2.Count());
             ViewData.Add("BestProductsName", BestProductsName);
             ViewData.Add("NewProductsList2", NewProductsList2);
             ViewData.Add("Newcount", NewProductsList2.Count());

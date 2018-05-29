@@ -57,7 +57,7 @@ namespace ModelsLibrary.Repositories
         public ProductPhoto FindPicById(int ProductID)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "SELECT PhotoPath FROM [Product Photo] WHERE ProductID = @ProductID";
+            var sql = "SELECT * FROM [Product Photo] WHERE ProductID = @ProductID";
             var result = connection.QueryMultiple(sql, new { ProductID });
             var PhotoPath = result.Read<ProductPhoto>().Single();
             return PhotoPath;
