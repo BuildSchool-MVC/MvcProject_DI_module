@@ -90,7 +90,7 @@
                     <td>
                         @if (list.Count != 0)
                         {
-                            <a href="/shoppingcart/payment" type="button" class="btn btn-dark" id="nextpay">下一步</a>
+                            <a href=@Url.Action("payment","ShoppingCart",new ModelsLibrary.DtO_Models.Order()) type="button" class="btn btn-dark" id="nextpay">下一步</a>
                         }
                     </td>
                     <td></td>
