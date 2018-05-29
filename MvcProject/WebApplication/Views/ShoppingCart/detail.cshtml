@@ -71,7 +71,7 @@
                                 }
                             </select>
                         </td>
-                        <td class="coNum coPrice">NT$@item.Total</td>
+                        <td class="coNum coPrice">NT$@Decimal.Round(@item.Total)</td>
                         <td class="clTdDelete text-center">
                             <a href="@Url.Action("DeleteOne_detail", "ShoppingCart", new { ProductID = item.ProductID })">
                                 <i class="far fa-trash-alt" style="color: black;"></i>

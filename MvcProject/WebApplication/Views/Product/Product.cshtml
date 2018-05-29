@@ -2,6 +2,27 @@
 @{
     Layout = "~/Views/Shared/Main.cshtml";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@if ((bool?)TempData["HasItem"] != null)
+{
+    if ((bool)TempData["HasItem"] == true)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#myModalf").modal();
+            });
+        </script>
+    }
+    if ((bool)TempData["HasItem"] == false)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#myModals").modal();
+            });
+        </script>
+    }
+}
 <br />
 <br />
 <br />
@@ -36,38 +57,64 @@
             <br />
             @using (Html.BeginForm())
             {
-            <div class="row">
-                <div class="col-4">
-                    <h5>尺寸</h5>
-                    <select style="height: 30px;" name="size">
-                        @foreach (var item in @Model.Size)
-                {
-                    <option value="@item" id="size">@item</option>
-                }
-                    </select>
+                <div class="row">
+                    <div class="col-4">
+                        <h5>尺寸</h5>
+                        <select style="height: 30px;" name="size">
+                            @foreach (var item in @Model.Size)
+                            {
+                                <option value="@item" id="size">@item</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <h5>顏色</h5>
+                        <select style="height: 30px;" name="color">
+                            @foreach (var item in @Model.Color)
+                            {
+                                <option value="@item" id="size">@item</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <h5>數量</h5>
+                        <input id="minus" type="button" class="minus" value="-" style="height: 30px;">
+                        <input id="theInput" class="input-text qty text" value="1" min="1" max="10" style="width: 30px;" name="num" readonly="readonly">
+                        <input id="plus" type="button" class="plus" value="+" style="height: 30px;">
+                    </div>
                 </div>
-                <div class="col-4">
-                    <h5>顏色</h5>
-                    <select style="height: 30px;" name="color">
-                        @foreach (var item in @Model.Color)
-                {
-                    <option value="@item" id="size">@item</option>
-                }
-                    </select>
-                </div>
-                <div class="col-4">
-                    <h5>數量</h5>
-                    <input id="minus" type="button" class="minus" value="-" style="height: 30px;">
-                    <input id="theInput" class="input-text qty text" value="1"min="1" max="10" style="width: 50px;" name="num" readonly="readonly">
-                    <input id="plus" type="button" class="plus" value="+" style="height: 30px;">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <button type="submit" class="btn btn-dark" style="width: 500px;" id="addcar">加入購物車</button>
-            </div>
-          }
+                <div class="row mt-4">
+                    <button type="submit" class="btn btn-dark" style="width: 500px;">
+                        加入購物車
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModalf" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>購物車已有這件產品，無法重複加入至購物車。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="myModals" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>已將此產品加入購物車!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
+                </div>
+            }
         </div>
         <div class="col-1">
 
@@ -82,20 +129,18 @@
         });
 
         var input = document.getElementById('theInput');
-
         document.getElementById('plus').onclick = function () {
-            if (input.value<10)
+            if (input.value < 10)
                 input.value = parseInt(input.value, 10) + 1
             else
-                input.value=10
+                input.value = 10
         }
         document.getElementById('minus').onclick = function () {
-            if (input.value > 1 )
+            if (input.value > 1)
                 input.value = parseInt(input.value, 10) - 1
             else
                 input.value = 1
         }
-
 
     });
 </script>
