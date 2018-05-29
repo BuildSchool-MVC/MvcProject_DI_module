@@ -198,5 +198,13 @@ namespace ModelsLibrary.Repositories.Tests
             Assert.IsTrue(list!=null);
         }
 
+        [TestMethod]
+        public void GetBestProducts()
+        {
+            ProductsRepository repository = new ProductsRepository();
+            var list = repository.GetBestProducts();
+            Assert.IsTrue(list.Count()==3);
+        }
+
     }
 }
