@@ -6,7 +6,7 @@
 
 @{ 
     int Bestcount = Convert.ToInt32(ViewData["Bestcount"]);
-    var BestProductsPath = ViewData["BestProductsList"] as List<ModelsLibrary.DtO_Models.ProductPhoto>;
+    var BestProductsPath = ViewData["BestProductsList2"] as List<string>;
     var BestProductsName = ViewData["BestProductsName"] as List<ModelsLibrary.DtO_Models.Products>;
     int Newcount = Convert.ToInt32(ViewData["Newcount"]);
     var NewProductsPath = ViewData["NewProductsList2"] as List<string>;
@@ -78,7 +78,7 @@
                 {
                     <li>
                         <a href="/Product/@NewProductsName[i].ProductName">
-                            <img src=@NewProductsPath[i] width="250" height="350" alt="">
+                            <img src=@NewProductsPath[i] width="250" height="280" alt="">
                         </a>
                     </li>
                 }
@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<div class="row mt-5">
+<div class="row mt-2">
     <div class="col">
         <hr />
     </div>
@@ -109,7 +109,7 @@
                     {
                 <li>
                     <a href="/Product/@BestProductsName[i].ProductName">
-                        <img src=@BestProductsPath[i].PhotoPath width="250" height="350" alt="">
+                        <img src=@BestProductsPath[i] width="250" height="280" alt="">
                     </a>
                 </li>
                     }
