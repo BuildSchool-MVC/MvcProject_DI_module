@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ModelsLibrary.DtO_Models;
+using ModelsLibrary.Services;
 
 namespace WebApplication.Controllers
 {
@@ -31,6 +33,10 @@ namespace WebApplication.Controllers
         // GET: Admin
         public ActionResult customer()
         {
+            CustomerService CustomerService = new CustomerService();
+            var query = CustomerService.GetAll();
+            ViewData.Add("count", query.Count());
+            ViewData.Add("list", query);
             return View();
         }
         [Route("orders")]
