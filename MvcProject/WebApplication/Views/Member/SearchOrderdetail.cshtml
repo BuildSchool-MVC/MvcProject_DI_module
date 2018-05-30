@@ -1,0 +1,82 @@
+﻿@model ModelsLibrary.DtO_Models.Order
+@{
+    ViewBag.Title = "SearchOrderdetail";
+    Layout = "~/Views/Shared/Main.cshtml";
+    var list = ViewData["list"] as List<WebApplication.Models.SearchOrderdetailModel>;
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col">
+                    <h5><i class="fas fa-clipboard-list mb-3"></i>&ensp;訂單資料</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">訂單編號</th>
+                                <th class="text-center" scope="col">訂購日期</th>
+                                <th class="text-center" scope="col">付款方式</th>
+                                <th class="text-center" scope="col">寄送方式</th>
+                                <th class="text-center" scope="col" width="200px">地址</th>
+                                <th class="text-center" scope="col" width="100px">狀態</th>
+                                <th class="text-center" scope="col">最後更新日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">@Model.OrderID</td>
+                                <td>@Model.OrderDay.ToString("yyyy-MM-dd")</td>
+                                <td>@Model.Payment</td>
+                                <td>@Model.Transport</td>
+                                <td>@Model.Address</td>
+                                <td>@Model.Status</td>
+                                <td>@Model.StatusUpdateDay.ToString("yyyy-MM-dd")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5><i class="fas fa-clipboard-list mb-3"></i>&ensp;訂單明細</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">圖片</th>
+                                <th class="text-center" scope="col">商品編號</th>
+                                <th class="text-center" scope="col" style="width: 200px;">商品名稱</th>
+                                <th class="text-center" scope="col">顏色</th>
+                                <th class="text-center" scope="col">尺寸</th>
+                                <th class="text-center" scope="col">數量</th>
+                                <th class="text-center" scope="col">單價</th>
+                                <th class="text-center" scope="col">小記</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in list)
+                            {
+                            <tr>
+                                <td><img src="@item.Image" alt="" width="80px"></td>
+                                <td scope="row">@item.ProductID</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Color</td>
+                                <td>@item.Size</td>
+                                <td>@item.Amount</td>
+                                <td>NT$@Decimal.Round(item.UnitPrice)</td>
+                                <td>NT$@Decimal.Round(item.Total)</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <hr />
+                    <p class="text-right">總金額 NT$@Decimal.Round(list.Sum((x) => x.Total))</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

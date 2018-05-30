@@ -34,21 +34,29 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td scope="row"><a href="#">@item.OrderID</a></td>
-                                    <td>@item.OrderDay.ToString("yyyy-MM-dd")</td>
-                                    <td>@item.Status</td>
-                                    <td>@item.Payment</td>
-                                    <td>@item.Transport</td>
-                                    @if (item.Status == "已完成")
-                                    {
-                                        <td>完成</td>
-                                    }
-                                    else
-                                    {
-                                        <td><a href="#">退貨</a></td>
-                                    }
-                                </tr>
+                            <tr>
+                                <td scope="row"><a href="/Member/SearchMember/@item.OrderID">@item.OrderID</a></td>
+                                <td>@item.OrderDay.ToString("yyyy-MM-dd")</td>
+                                <td>@item.Status</td>
+                                <td>@item.Payment</td>
+                                <td>@item.Transport</td>
+                                @if (item.Status == "處理中")
+                                {
+                                    <td><a href="@Url.Action("Cancelorder", "Member", new { orderid = item.OrderID })">取消訂單</a></td>
+                                }
+                                else if (item.Status == "已出貨" || item.Status == "已到貨")
+                                {
+                                    <td><a href="@Url.Action("Cancelorder", "Member", new { orderid = item.OrderID })">申請退貨</a></td>
+                                }
+                                else if (item.Status == "申請取消" || item.Status == "申請退貨")
+                                {
+                                    <td>處理中</td>
+                                }
+                                else
+                                {
+                                    <td>完成</td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>

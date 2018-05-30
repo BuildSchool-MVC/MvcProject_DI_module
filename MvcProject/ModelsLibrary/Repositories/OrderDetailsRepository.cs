@@ -51,14 +51,13 @@ namespace ModelsLibrary.Repositories
             connection.Execute(sql, new { model.OrderID });
         }
 
-        public OrderDetails FindById(int OrderId)
+        public IEnumerable<OrderDetails> FindById(int OrderId)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "SELECT * FROM [Order Details] WHERE OrderID = @OrderID";
-            var result = connection.QueryMultiple(sql, new { OrderId });
-            var orderdetails = result.Read<OrderDetails>().Single();
+            var result = connection.Query<OrderDetails>(sql, new { OrderId });
 
-            return orderdetails;
+            return result;
         }
 
         public IEnumerable<OrderDetails> GetAll()
