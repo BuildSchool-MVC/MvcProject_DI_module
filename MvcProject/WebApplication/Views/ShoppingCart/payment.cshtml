@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "payment";
     Layout = "~/Views/Shared/Main.cshtml";
+    var Order = ViewBag.Order as ModelsLibrary.DtO_Models.Order;
+    TempData["RealOrder"] = Order;
 }
 <br>
 <br>
@@ -81,7 +83,7 @@
             <div class="form-group row">
                 <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
                 <div class="col-sm-10">
-                    <input type="Name" class="form-control" id="inputPassword" placeholder="Name">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Name">
                 </div>
             </div>
         </div>
@@ -91,7 +93,7 @@
             <div class="form-group row">
                 <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
                 <div class="col-sm-10">
-                    <input type="Phone" class="form-control" id="inputPhone" placeholder="Phone">
+                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
                 </div>
             </div>
         </div>
@@ -111,41 +113,43 @@
             <h5>發票資訊</h5>
             <hr>
             <label class="checkbox-inline">
-                <input type="radio"name="radio" value="">電子發票
+                <input type="radio" name="radio" value="">電子發票
             </label>
             <label class="checkbox-inline">
-                <input type="radio"name="radio" value="">電子發票/手機載具
+                <input type="radio" name="radio" value="">電子發票/手機載具
             </label>
             <label class="checkbox-inline">
-                <input type="radio"name="radio" value="">捐贈發票
+                <input type="radio" name="radio" value="">捐贈發票
             </label>
             <label class="checkbox-inline">
-                <input type="radio"name="radio" value="">統編(公司戶)發票
+                <input type="radio" name="radio" value="">統編(公司戶)發票
             </label>
             <br />
             <span>依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。</span>
         </div>
     </div>
     <br />
-    <div class="row">
-        <div class="col">
-            <div class="form-group row">
-                <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
-                <div class="col-sm-4">
-                    <input type="Phone" class="form-control" id="inputPhone" placeholder="ADDRESS">
+    @using (Html.BeginForm("order","ShoppingCart"))
+    {
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
+                    <div class="col-sm-4">
+                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="ADDRESS">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-1">
-            <button type="button" class="btn btn-dark">返回購物車</button>
+        <div class="row">
+            <div class="col-1">
+                <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
+            </div>
+            <div class="col-10">
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-dark">下一步</button>
+            </div>
         </div>
-        <div class="col-10">
-        </div>
-        <div class="col-1">
-            <a href="/shoppingcart/order" type="button" class="btn btn-dark">下一步</a>
-        </div>
-    </div>
+    }
 </div>
-
