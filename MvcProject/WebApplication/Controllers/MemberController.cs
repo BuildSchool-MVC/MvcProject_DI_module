@@ -39,8 +39,70 @@ namespace WebApplication.Controllers
             var orders=orderservice.FindCustomerOrderByCustomerID(customer.CustomerID);
 
             return View(orders);
-            
         }
+
+        [Route("SearchMember/{orderid}")]
+        public ActionResult SearchOrderdetail(int orderid)
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+            var product_service = new ProductsService();
+            var orderdetail_service = new OrderDetailsService();
+            var photo_service = new ProductPhotoService();
+            var order_service = new OrderService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            var items = orderdetail_service.FindById(orderid);
+
+            var result = new List<SearchOrderdetailModel>();
+
+            foreach (var item in items)
+            {
+                SearchOrderdetailModel model = new SearchOrderdetailModel();
+
+                model.Image = photo_service.FindById(item.ProductID).First().PhotoPath;
+                model.ProductID = item.ProductID;
+                model.ProductName = product_service.FindByID(item.ProductID).ProductName;
+                model.Color = product_service.FindByID(item.ProductID).Color;
+                model.Size = product_service.FindByID(item.ProductID).Size;
+                model.Amount = item.Quantity;
+                model.UnitPrice = product_service.FindByID(item.ProductID).UnitPrice;
+                model.Total = product_service.FindByID(item.ProductID).UnitPrice * item.Quantity;
+
+                result.Add(model);
+            }
+
+            ViewData.Add("list", result);
+            var orders = order_service.FindById(orderid);
+
+            return View(orders);
+        }
+
+        public ActionResult Cancelorder(int orderid)
+        {
+            var order_service = new OrderService();
+            var status=order_service.FindById(orderid).Status;
+            if (status == "處理中")
+            {
+                order_service.UpdateStatus(new Order { OrderID = orderid, Status = "申請取消" });
+            }
+            else
+            {
+                order_service.UpdateStatus(new Order { OrderID = orderid, Status = "申請退貨" });
+            }
+
+            return RedirectToAction("SearchMember");
+        }
+
 
         [Route("UpdateMember")]
         public ActionResult UpdateMember()
@@ -154,7 +216,7 @@ namespace WebApplication.Controllers
 
                 return RedirectToAction("SearchMember", "Member");
             }
-            catch (Exception e)
+            catch
             {
                 ViewBag.Msg = "不可為空白";
                 return View();

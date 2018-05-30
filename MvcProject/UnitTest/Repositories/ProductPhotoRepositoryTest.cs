@@ -80,7 +80,7 @@ namespace UnitTest.Repositories
             ProductPhotoRepository repository = new ProductPhotoRepository();
             var list = repository.FindPicById(27);
 
-            Assert.IsTrue(list =="Aaaaa");
+            Assert.IsTrue(list !=null);
         }
 
     }
