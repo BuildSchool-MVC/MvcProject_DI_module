@@ -81,8 +81,8 @@ namespace WebApplication.Controllers
             return RedirectToAction("detail");
         }
 
-        [Route("payment")]
-        public ActionResult payment(Order order)
+        [HttpPost]
+        public ActionResult GetProducts(string products)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -97,12 +97,26 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            order.CustomerID = user.CustomerID;
-            order.OrderDay = DateTime.Now;
-            order.StatusUpdateDay = DateTime.Now;
-            order.Status = "已下單";
+            TempData["test"] = products;
 
-            ViewBag.Order = order;
+            return RedirectToAction("payment");
+        }
+
+        [Route("payment")]
+        public ActionResult payment()
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
 
             return View();
         }
