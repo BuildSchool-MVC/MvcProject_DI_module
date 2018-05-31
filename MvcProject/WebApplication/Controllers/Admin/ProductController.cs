@@ -20,5 +20,12 @@ namespace WebApplication.Controllers.Admin
             ViewData.Add("list", query);
             return View();
         }
+
+        [Route("ProductAdd")]
+        public ActionResult AdminProductAdd()
+        {
+            
+            return View();
+        }
     }
 }
