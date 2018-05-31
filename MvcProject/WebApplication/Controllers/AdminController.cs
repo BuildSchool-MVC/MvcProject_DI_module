@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ModelsLibrary.DtO_Models;
-using ModelsLibrary.Services;
 
 namespace WebApplication.Controllers
 {
@@ -30,10 +29,10 @@ namespace WebApplication.Controllers
             }
             ViewBag.ProductNumber = Number;
             var GetAllOrder = serviceOd.GetAll();
-            decimal total = 0m;
+            decimal total = 0;
             foreach(var item in GetAllOrder)
             {
-                total += servicePro.FindByID(item.ProductID).UnitPrice * serviceOd.FindById(item.ProductID).Quantity;
+                total +=servicePro.FindByID(item.ProductID).UnitPrice*item.Quantity;
             }
             ViewBag.Total = Decimal.Round(total);
             return View();
@@ -79,9 +78,6 @@ namespace WebApplication.Controllers
         public ActionResult money()
         {
             return View();
-        }
-        
-
-
+        }       
     }
 }
