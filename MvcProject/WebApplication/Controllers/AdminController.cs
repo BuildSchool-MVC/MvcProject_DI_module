@@ -27,6 +27,10 @@ namespace WebApplication.Controllers
         [Route("commodity")]
         public ActionResult commodity()
         {
+            ProductsService ProductsService = new ProductsService();
+            var query = ProductsService.GetAll();
+            ViewData.Add("count", query.Count());
+            ViewData.Add("list", query);
             return View();
         }
 
@@ -43,6 +47,10 @@ namespace WebApplication.Controllers
         [Route("orders")]
         public ActionResult orders()
         {
+            OrderService OrderService = new OrderService();
+            var query = OrderService.GetAll();
+            ViewData.Add("count", query.Count());
+            ViewData.Add("list", query);
             return View();
         }
 
