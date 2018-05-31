@@ -82,7 +82,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetProducts(string products)
+        public ActionResult UpdateShoppingcart(int ProductID, int Quantity)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -94,16 +94,17 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer_service = new CustomerService();
+            var shopping_service = new ShoppingcartDetailsService();
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            TempData["test"] = products;
+            shopping_service.Update(new ShoppingcartDetails() { ProductID = ProductID, CustomerID = user.CustomerID, Quantity = Quantity });
 
-            return RedirectToAction("payment");
+            return RedirectToAction("detail");
         }
 
         [Route("payment")]
-        public ActionResult payment()
+        public ActionResult payment(string products)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -118,7 +119,7 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            return View();
+            return View("payment");
         }
 
         [Route("order")]
