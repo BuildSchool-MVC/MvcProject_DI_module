@@ -2,22 +2,13 @@
 @{
     ViewBag.Title = "commodity";
     Layout = "~/Views/Shared/AdminMain.cshtml";
+    var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Products>;
+    int count = Convert.ToInt32(ViewData["count"]);
+    int k = 0;
 }
 
 <div class="section__content section__content--p30">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-primary">新增產品</button>
-            </div>
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-success">修改產品內容</button>
-            </div>
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-danger">刪除產品</button>
-            </div>
-        </div>
-        <br>
         <div class="row">
             <div class="col-lg">
                 <h3>商品管理</h3>
@@ -35,9 +26,11 @@
                         </div>
                     </div>
                     <div class="table-data__tool-right">
-                        <button type="button" class="btn btn-secondary">
-                            <i class="fas fa-search"></i> 搜尋商品
-                        </button>
+                        <a href="Add product.html">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>&nbsp;新增產品
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -59,86 +52,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>高腰開岔長裙</td>
-                                <td class="text-center">2</td>
-                                <td>200.0000</td>
-                                <td class="text-center">49</td>
-                                <td class="text-center">S</td>
-                                <td class="text-center">紅</td>
-                                <td>有挺度的斜紋面料、隱形拉鍊、百搭傘擺裙</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">4</td>
-                                <td>格子襯衫</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">220.0000</td>
-                                <td class="text-center">44</td>
-                                <td class="text-center">F</td>
-                                <td class="text-center">藍</td>
-                                <td>左右兩側附口袋</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">5</td>
-                                <td>白襯衫</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">150.0000</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">XL</td>
-                                <td class="text-center">白</td>
-                                <td>穿著舒適</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">7</td>
-                                <td>紅色高跟鞋</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">200.0000</td>
-                                <td class="text-center">50</td>
-                                <td class="text-center">25.5</td>
-                                <td class="text-center">紅</td>
-                                <td>硫化橡膠鞋底，堅韌耐用 ‧ 踝側經典All Star徽章</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">12</td>
-                                <td>牛仔褲</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">500.0000</td>
-                                <td class="text-center">30</td>
-                                <td class="text-center">S</td>
-                                <td class="text-center">藍</td>
-                                <td>洗滌不退色</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">23</td>
-                                <td>韓版簡約金屬多層鏈條斜背小包</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">350.0000</td>
-                                <td class="text-center">100</td>
-                                <td class="text-center">F</td>
-                                <td class="text-center">棕</td>
-                                <td>質感金屬</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">27</td>
-                                <td>素T</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">250.0000</td>
-                                <td class="text-center">20</td>
-                                <td class="text-center">M</td>
-                                <td class="text-center">黑</td>
-                                <td>穿著舒適</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">35</td>
-                                <td>高腰開岔長裙</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">200.0000</td>
-                                <td class="text-center">50</td>
-                                <td class="text-center">M</td>
-                                <td class="text-center">紅</td>
-                                <td>有挺度的斜紋面料、隱形拉鍊、百搭傘擺裙</td>
-                            </tr>
+                            @while (true)
+    {
+                        <tr>
+                            <td class="text-center">@list[k].ProductID</td>
+                            <td>@list[k].ProductName</td>
+                            <td class="text-center">@list[k].CategoryID</td>
+                            <td>@decimal.Round(list[k].UnitPrice)</td>
+                            <td class="text-center">@list[k].UnitsInStock</td>
+                            <td class="text-center">@list[k].Size</td>
+                            <td class="text-center">@list[k].Color</td>
+                            <td>@list[k].ProductDetails</td>
+                        </tr>
+                                k = k + 1;
+                                count = count - 1;
+                                if (count == 0) { break; }
+                            }
                         </tbody>
                     </table>
                 </div>

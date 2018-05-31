@@ -32,11 +32,11 @@ namespace ModelsLibrary.Repositories
         public void Update(ShoppingcartDetails model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "UPDATE [Shoppingcart Details] SET Quantity = Quantity+@amount where CustomerID = @CustomerID AND ProductID = @ProductID";
+            var sql = "UPDATE [Shoppingcart Details] SET Quantity = @Quantity where CustomerID = @CustomerID AND ProductID = @ProductID";
 
             connection.Execute(sql, new
             {
-                amount = model.Quantity,
+                model.Quantity,
                 model.CustomerID,
                 model.ProductID
             });

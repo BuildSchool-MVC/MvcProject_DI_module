@@ -81,8 +81,30 @@ namespace WebApplication.Controllers
             return RedirectToAction("detail");
         }
 
+        [HttpPost]
+        public ActionResult UpdateShoppingcart(int ProductID, int Quantity)
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+            var shopping_service = new ShoppingcartDetailsService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            shopping_service.Update(new ShoppingcartDetails() { ProductID = ProductID, CustomerID = user.CustomerID, Quantity = Quantity });
+
+            return RedirectToAction("detail");
+        }
+
         [Route("payment")]
-        public ActionResult payment(Order order)
+        public ActionResult payment(string products)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -97,14 +119,7 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            order.CustomerID = user.CustomerID;
-            order.OrderDay = DateTime.Now;
-            order.StatusUpdateDay = DateTime.Now;
-            order.Status = "已下單";
-
-            ViewBag.Order = order;
-
-            return View();
+            return View("payment");
         }
 
         [Route("order")]

@@ -27,7 +27,7 @@ namespace ModelsLibrary.Services
             repository.Delete(model);
         }
 
-        public OrderDetails FindById(int OrderId)
+        public IEnumerable<OrderDetails> FindById(int OrderId)
         {
             return repository.FindById(OrderId);
         }

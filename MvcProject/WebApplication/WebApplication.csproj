@@ -169,6 +169,8 @@
     </Compile>
     <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\Orderinfo.cs" />
+    <Compile Include="Models\ProductDetail.cs" />
+    <Compile Include="Models\SearchOrderdetailModel.cs" />
     <Compile Include="Models\UpdateMemberModel.cs" />
     <Compile Include="Models\ProductList.cs" />
     <Compile Include="Models\ShppingCartModel.cs" />
@@ -354,6 +356,7 @@
     <Content Include="Views\Admin\customer.cshtml" />
     <Content Include="Views\Admin\orders.cshtml" />
     <Content Include="Views\Admin\money.cshtml" />
+    <Content Include="Views\Member\SearchOrderdetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -374,6 +377,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Abstracts\Abstracts.csproj">
+      <Project>{0FE13598-FB39-4A52-AF85-DADAE7CAC3EB}</Project>
+      <Name>Abstracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModelsLibrary\ModelsLibrary.csproj">
       <Project>{f19e93e7-e452-4e85-b3e3-acc9b276ccb9}</Project>
       <Name>ModelsLibrary</Name>

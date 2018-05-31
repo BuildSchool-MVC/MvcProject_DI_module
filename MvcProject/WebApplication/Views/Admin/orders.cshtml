@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "orders";
     Layout = "~/Views/Shared/AdminMain.cshtml";
+    var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Order>;
+    int count = Convert.ToInt32(ViewData["count"]);
+    int k = 0;
 }
 
 <div class="section__content section__content--p30">
@@ -27,11 +30,6 @@
                             <div class="dropDownSelect2"></div>
                         </div>
                     </div>
-                    <div class="table-data__tool-right">
-                        <button type="button" class="btn btn-secondary">
-                            <i class="fas fa-search"></i> 搜尋商品
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -52,118 +50,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>2018-11-07 00:00:00.000</td>
-                                <td class="text-center">8</td>
-                                <td class="text-center">宅配</td>
-                                <td class="text-center">信用卡</td>
-                                <td class="text-center">已完成</td>
-                                <td>2018-05-18 16:36:52.980</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>2018-11-07 00:00:00.000</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">7-11</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 00:19:46.000</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>2018-11-11 00:00:00.000</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">全家</td>
-                                <td class="text-center">貨到付款</td>
-                                <td class="text-center">處理中</td>
-                                <td>2018-05-14 19:13:45.683</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @while (true)
+    {
+                        <tr>
+                            <td class="text-center">@list[k].OrderID</td>
+                            <td>@string.Format("{0:yyyy/M/d}", list[k].OrderDay)</td>
+                            <td class="text-center">@list[k].CustomerID</td>
+                            <td class="text-center">@list[k].Transport</td>
+                            <td class="text-center">@list[k].Payment</td>
+                            <td class="text-center">@list[k].Status</td>
+                            <td>@string.Format("{0:yyyy/M/d}", list[k].StatusUpdateDay)</td>
+                            <td>
+                                <button type="button" class="btn btn-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                                k = k + 1;
+                                count = count - 1;
+                                if (count == 0) { break; }
+                            }
                         </tbody>
                     </table>
                 </div>

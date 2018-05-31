@@ -2,22 +2,13 @@
 @{
     ViewBag.Title = "customer";
     Layout = "~/Views/Shared/AdminMain.cshtml";
+    var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Customer>;
+    int count = Convert.ToInt32(ViewData["count"]);
+    int k = 0;
 }
 
 <div class="section__content section__content--p30">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-primary">新增客戶</button>
-            </div>
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-success">修改客戶資料</button>
-            </div>
-            <div class="col-lg" style="text-align:center;">
-                <button type="button" class="btn btn-danger">刪除客戶</button>
-            </div>
-        </div>
-        <br>
         <div class="row">
             <div class="col">
                 <h3 class="title-5 m-b-35">客戶管理</h3>
@@ -35,15 +26,17 @@
                         </div>
                     </div>
                     <div class="table-data__tool-right">
-                        <button type="button" class="btn btn-secondary">
-                            <i class="fas fa-search"></i> 搜尋商品
-                        </button>
+                        <a href="Add product.html">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>&nbsp;新增客戶
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg">
+            <div class="col">
                 <div class="table-responsive table--no-card m-b-30">
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
@@ -56,81 +49,25 @@
                                 <th class="text-center">Email</th>
                                 <th class="text-center">購物金</th>
                             </tr>
-                        </thead>
+                        </thead>       
                         <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bill</td>
-                                <td class="text-center">20368</td>
-                                <td class="text-center">2018-11-11 00:00:00.000</td>
-                                <td class="text-center">0123544</td>
-                                <td>4537886</td>
-                                <td class="text-center">0.0000</td>
-                            </tr>
+                            @while (true)
+                            {
+                        <tr>
+                            <td class="text-center">@list[k].CustomerID</td>
+                            <td class="text-center">@list[k].CustomerName</td>
+                            <td class="text-center">@list[k].Account</td>
+                            <td class="text-center">@string.Format("{0:yyyy/M/d}", list[k].Birthday) </td>
+                            <td class="text-center">@list[k].Phone</td>
+                            <td>@list[k].Email</td>
+                            <td class="text-center">@decimal.Round(list[k].ShoppingCash)</td>
+                        </tr>
+                                k = k + 1;
+                                count = count - 1;
+                                if (count == 0) { break; }
+                            }
                         </tbody>
+                      
                     </table>
                 </div>
             </div>

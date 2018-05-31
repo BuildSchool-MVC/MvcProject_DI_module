@@ -3,6 +3,8 @@
     ViewBag.Title = "detail";
     Layout = "~/Views/Shared/Main.cshtml";
     var list = ViewData["list"] as List<WebApplication.Models.ShppingCartModel>;
+    List<WebApplication.Models.ProductDetail> orderDetails = new List<WebApplication.Models.ProductDetail>();
+    var productDetail = new WebApplication.Models.ProductDetail();
 }
 <br>
 <br>
@@ -45,19 +47,19 @@
                 </tr>
                 @foreach (var item in list)
                 {
-                    <tr>
+                    <tr class="myitem">
                         <td class="clPhoto">
                             <a href="#">
                                 <img src=@item.Image height="150px">
                             </a>
                         </td>
                         <td class="clTag syHide HighFont"></td>
-                        <td name="ProductID" class="clTdMerNo text-center">@item.ProductID</td>
+                        <td id="ProductID" name="@item.ProductID" class="clTdMerNo text-center">@item.ProductID</td>
                         <td class="clTdMerName">@item.ProductName</td>
                         <td class="text-center clTdColor">@item.Color</td>
                         <td class="text-center clTdSize">@item.Size</td>
                         <td class="cltdNum">
-                            <select id="cmbNum1" name="cmbNum1" class="cmbNum">
+                            <select id="@item.ProductID" name="cmbNum1" class="cmbNum">
                                 @for (var i = 1; i < 6; i++)
                                 {
                                     if (i == item.Amount)
@@ -90,13 +92,35 @@
                     <td>
                         @if (list.Count != 0)
                         {
-                            <a href=@Url.Action("payment","ShoppingCart",new ModelsLibrary.DtO_Models.Order()) type="button" class="btn btn-dark" id="nextpay">下一步</a>
+                            <button type="button" class="btn btn-dark" id="nextpay">下一步</button>
                         }
                     </td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
+        @if(list.Count == 0)
+        {
+            <div class="col-12 text-center">購物車無商品</div>
+        }
     </div>
 </div>
+
+<script>
+    $(function () {
+        $("select").on('change', function () {
+            console.log($(this));
+
+            let id = $(this).attr("id");
+            let quantity = $(this).val();
+
+            $.ajax({
+                url: "@Url.Action("UpdateShoppingcart", "ShoppingCart")",
+                method: "post",
+                data: { ProductID: parseInt(id), Quantity: parseInt(quantity) },
+                success: function () { window.location.replace("/shoppingcart/detail"); }
+            });
+        });
+    });
+</script>
 

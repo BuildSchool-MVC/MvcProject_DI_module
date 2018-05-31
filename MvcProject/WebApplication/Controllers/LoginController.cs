@@ -59,7 +59,7 @@ namespace WebApplication.Controllers
                 Service.Create(model2);
                 return View();
             }
-            catch (Exception e)
+            catch
             {
                 ViewBag.Msg = "不可為空白";
                 return View();
