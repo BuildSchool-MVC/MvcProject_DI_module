@@ -8,9 +8,9 @@ using ModelsLibrary.DtO_Models;
 
 namespace WebApplication.Controllers
 {
-    [RoutePrefix("Admin")]
+    //[RoutePrefix("Admin")]
     public class AdminController : Controller
-    {   
+    {   /*
         //Get:Admin
         [Route("Index")]
         public ActionResult Index()
@@ -79,5 +79,6 @@ namespace WebApplication.Controllers
         {
             return View();
         }       
+    }*/
     }
 }
