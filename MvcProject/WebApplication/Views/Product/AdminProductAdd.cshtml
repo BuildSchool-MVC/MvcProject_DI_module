@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "AdminProductAdd";
+    Layout = "~/Views/Shared/AdminMain.cshtml";
+}
+
+
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <h3>更改產品資訊</h3>
+        <br>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="text-center">產品ID</th>
+                            <td class="text-center">4</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">產品名稱</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="格子襯衫" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">類別ID</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="1" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">單價</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="NT$220" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">庫存</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="44" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">尺寸</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="F" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">顏色</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="藍" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">說明</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="穿著舒適" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">圖片</th>
+                            <td class="text-center">
+                                <input type="text" name="名稱" size="30" value="" />
+                            </td>
+                            <td>
+                                <input type="file" name="upload" size="20" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col" style="text-align: left;">
+                <a href="product.html">
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-check"></i>&ensp;確認
+                    </button>
+                </a>&emsp;
+                <a href="product.html">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fas fa-times"></i>&ensp;取消
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
