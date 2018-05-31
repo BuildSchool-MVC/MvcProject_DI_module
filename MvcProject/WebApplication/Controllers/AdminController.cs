@@ -8,15 +8,15 @@ using ModelsLibrary.Services;
 
 namespace WebApplication.Controllers
 {
-    [RoutePrefix("Admin")]
+    //[RoutePrefix("Admin")]
     public class AdminController : Controller
     {   
         //Get:Admin
-        [Route("Index")]
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //[Route("Index")]
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         [Route("Chart")]
         public ActionResult Chart()
@@ -24,15 +24,15 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        [Route("commodity")]
-        public ActionResult commodity()
-        {
-            ProductsService ProductsService = new ProductsService();
-            var query = ProductsService.GetAll();
-            ViewData.Add("count", query.Count());
-            ViewData.Add("list", query);
-            return View();
-        }
+        //[Route("product")]
+        //public ActionResult product()
+        //{
+        //    ProductsService ProductsService = new ProductsService();
+        //    var query = ProductsService.GetAll();
+        //    ViewData.Add("count", query.Count());
+        //    ViewData.Add("list", query);
+        //    return View();
+        //}
 
         [Route("customer")]
         public ActionResult customer()
@@ -51,6 +51,12 @@ namespace WebApplication.Controllers
             var query = OrderService.GetAll();
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
+            return View();
+        }
+        [Route("orderdetail")]
+        public ActionResult orderdetail()
+        {
+            
             return View();
         }
 
