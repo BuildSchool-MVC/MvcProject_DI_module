@@ -24,7 +24,12 @@ namespace WebApplication.Controllers.Admin
         [Route("ProductAdd")]
         public ActionResult AdminProductAdd()
         {
-            
+            return View();
+        }
+
+        [Route("ProductUpdate")]
+        public ActionResult AdminProductUpdate()
+        {
             return View();
         }
     }

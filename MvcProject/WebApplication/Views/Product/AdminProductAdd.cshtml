@@ -5,90 +5,76 @@
 }
 
 
-<div class="section__content section__content--p30">
-    <div class="container-fluid">
-        <h3>更改產品資訊</h3>
-        <br>
-        <div class="row">
-            <div class="col">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th class="text-center">產品ID</th>
-                            <td class="text-center">4</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">產品名稱</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="格子襯衫" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">類別ID</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="1" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">單價</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="NT$220" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">庫存</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="44" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">尺寸</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="F" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">顏色</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="藍" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">說明</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="穿著舒適" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-center">圖片</th>
-                            <td class="text-center">
-                                <input type="text" name="名稱" size="30" value="" />
-                            </td>
-                            <td>
-                                <input type="file" name="upload" size="20" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <h3>新增產品</h3>
+            <br>
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-6">
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputProductName" class="col-sm-3 col-form-label">產品名稱：</label>
+                        <div class="col-sm-9">
+                            <input type="ProductName" class="form-control" id="inputProductName" placeholder="ProductName">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputCategoryID" class="col-sm-3 col-form-label">產品類別：</label>
+                        <div class="col-sm-9">
+                            <input type="CategoryID" class="form-control" id="inputCategoryID" placeholder="CategoryID">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputUnitPrice" class="col-sm-3 col-form-label">單&emsp;&emsp;價：</label>
+                        <div class="col-sm-9">
+                            <input type="UnitPrice" class="form-control" id="inputUnitPrice" placeholder="UnitPrice">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputUnitsInStock" class="col-sm-3 col-form-label">庫&emsp;&emsp;存：</label>
+                        <div class="col-sm-9">
+                            <input type="UnitsInStock" class="form-control" id="inputUnitsInStock" placeholder="UnitsInStock">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputSize" class="col-sm-3 col-form-label">尺&emsp;&emsp;寸：</label>
+                        <div class="col-sm-9">
+                            <input type="Size" class="form-control" id="inputSize" placeholder="Size">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputColor" class="col-sm-3 col-form-label">顏&emsp;&emsp;色：</label>
+                        <div class="col-sm-9">
+                            <input type="productColor" class="form-control" id="inputColor" placeholder="Color">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputProductDetails" class="col-sm-3 col-form-label">說&emsp;&emsp;明：</label>
+                        <div class="col-sm-9">
+                            <input type="ProductDetails" class="form-control" id="inputProductDetails" placeholder="ProductDetails">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="text-align: right;">
+                        <label for="inputPhotoPath" class="col-sm-3 col-form-label">圖&emsp;&emsp;片：</label>
+                        <div class="col-sm-9">
+                            <input type="PhotoPath" class="form-control" id="inputPhotoPath" placeholder="PhotoPath">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-9">
-            </div>
-            <div class="col" style="text-align: left;">
-                <a href="product.html">
-                    <button type="button" class="btn btn-primary">
-                        <i class="fas fa-check"></i>&ensp;確認
-                    </button>
-                </a>&emsp;
-                <a href="product.html">
-                    <button type="button" class="btn btn-danger">
-                        <i class="fas fa-times"></i>&ensp;取消
-                    </button>
-                </a>
+            <div class="row">
+                <div class="col-9">
+                </div>
+                <div class="col" style="text-align: left;">
+                    <a href="product.html">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-check"></i>&ensp;確認
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
