@@ -66,5 +66,6 @@ namespace ModelsLibrary.Repositories
             return connection.Query<OrderDetails>("SELECT * FROM [Order Details]");
 
         }
+
     }
 }
