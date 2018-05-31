@@ -78,9 +78,12 @@
                     </div>
                     <div class="col-4">
                         <h5>數量</h5>
-                        <input id="minus" type="button" class="minus" value="-" style="height: 30px;">
-                        <input id="theInput" class="input-text qty text" value="1" min="1" max="10" style="width: 30px;" name="num" readonly="readonly">
-                        <input id="plus" type="button" class="plus" value="+" style="height: 30px;">
+                        <select name="num" class="num">
+                            @for (var i = 1; i < 6; i++)
+                            {
+                                    <option value=@i>@i</option>
+                            }
+                        </select>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -128,26 +131,4 @@
     </div>
 </div>
 <br /><br /><br />
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".btnFollow").click(function () {
-            $("#chgicon").attr("src", $(this).attr("src"));
-        });
-
-        var input = document.getElementById('theInput');
-        document.getElementById('plus').onclick = function () {
-            if (input.value < 10)
-                input.value = parseInt(input.value, 10) + 1
-            else
-                input.value = 10
-        }
-        document.getElementById('minus').onclick = function () {
-            if (input.value > 1)
-                input.value = parseInt(input.value, 10) - 1
-            else
-                input.value = 1
-        }
-
-    });
-</script>
 
