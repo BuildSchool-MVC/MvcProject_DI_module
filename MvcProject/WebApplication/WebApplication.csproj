@@ -366,8 +366,8 @@
     <Content Include="Views\Product\AdminProduct.cshtml" />
     <Content Include="Views\Customer\AdminCustomer.cshtml" />
     <Content Include="Views\Product\AdminProductAdd.cshtml" />
-    <Content Include="Views\Order\AdminOrder.cshtml" />
     <Content Include="Views\Order\AdminOrderDetail.cshtml" />
+    <Content Include="Views\Order\AdminOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
