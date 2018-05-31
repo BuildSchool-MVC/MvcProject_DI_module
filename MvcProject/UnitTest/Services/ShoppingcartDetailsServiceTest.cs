@@ -48,5 +48,14 @@ namespace UnitTest.Repositories
 
             Assert.IsTrue(result == "OrderSuccess");
         }
+
+        [TestMethod]
+        public void CancelorderTest()
+        {
+            OrderService orderService = new OrderService();
+            var result=orderService.Cancelorder(1);
+
+            Assert.IsTrue(result == true);
+        }
     }
 }
