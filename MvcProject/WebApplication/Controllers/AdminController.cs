@@ -8,7 +8,7 @@ using ModelsLibrary.DtO_Models;
 
 namespace WebApplication.Controllers
 {
-    [RoutePrefix("Admin")]
+    //[RoutePrefix("Admin")]
     public class AdminController : Controller
     {   
         //Get:Admin
