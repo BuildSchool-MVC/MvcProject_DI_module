@@ -35,8 +35,8 @@
         <table class="table table-hover">
             <tbody>
                 <tr>
-                    <td class="clTdPhoto"></td>
                     <td class="clTag syHide HighFont"></td>
+                    <td class="clTdPhoto"></td>
                     <td class="clTdMerNo text-center">商品編號</td>
                     <td class="clTdMerName">商品名稱</td>
                     <td class="clTdColor text-center">顏色</td>
@@ -48,12 +48,12 @@
                 @foreach (var item in list)
                 {
                     <tr class="myitem">
+                        <td class="clTag syHide HighFont"></td>
                         <td class="clPhoto">
                             <a href="#">
                                 <img src=@item.Image height="150px">
                             </a>
                         </td>
-                        <td class="clTag syHide HighFont"></td>
                         <td id="ProductID" name="@item.ProductID" class="clTdMerNo text-center">@item.ProductID</td>
                         <td class="clTdMerName">@item.ProductName</td>
                         <td class="text-center clTdColor">@item.Color</td>
@@ -79,6 +79,20 @@
                                 <i class="far fa-trash-alt" style="color: black;"></i>
                             </a>
                         </td>
+                    </tr>
+                }
+                @if (list.Count == 0)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>總金額：</td>
+                        <td>NT$2000</td>
+                        <td></td>
                     </tr>
                 }
                 <tr>
