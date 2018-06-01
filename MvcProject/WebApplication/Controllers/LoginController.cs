@@ -26,6 +26,7 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Signup(SignupModel model)
         {
+          
             var Service = new CustomerService();
             var passwordSaltService = new PasswordSaltService();
             try
