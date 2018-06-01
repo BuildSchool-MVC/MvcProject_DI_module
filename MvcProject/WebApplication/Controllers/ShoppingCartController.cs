@@ -104,7 +104,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("payment")]
-        public ActionResult payment(string products)
+        public ActionResult payment()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -119,7 +119,37 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            return View("payment");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateOrder(string address, string payment, string transport)
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var customer_service = new CustomerService();
+
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            var order = new Order()
+            {
+                CustomerID = user.CustomerID,
+                OrderDay = DateTime.Now,
+                Address = address,
+                StatusUpdateDay = DateTime.Now,
+                Status = "處理中",
+                Transport = transport,
+                Payment = payment,
+            };
+
+            return View();
         }
 
         [Route("order")]
