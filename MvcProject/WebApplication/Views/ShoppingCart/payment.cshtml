@@ -31,125 +31,158 @@
 </div>
 <div class="container">
     <div class="row mt-5">
-        <h5>運送方式</h5>
-        <table class="table table-bordered">
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="row">
-                            <div class="col-1">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+        <div class="col-6">
+            <h5>付款方式</h5>
+            <table class="table table-bordered mt-3">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row ml-2">
+                                <div class="col-1">
+                                    <input class="form-check-input" type="radio" name="transport" id="transport" value="1">
+                                </div>
+                                <div class="col-3">
+                                    貨到付款
+                                </div>
                             </div>
-                            <div class="col-3">
-                                7-11 取貨付款
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row ml-2">
+                                <div class="col-1">
+                                    <input class="form-check-input" type="radio" name="transport" id="transport" value="2">
+                                </div>
+                                <div class="col-3">
+                                    線上付款
+                                </div>
                             </div>
-                            <div class="col-7">
-                            </div>
-                            <div class="col-1">
-                                $ 60
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="row">
-                            <div class="col-1">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                            </div>
-                            <div class="col-3">
-                                全家、OK、萊爾富 取貨付款
-                            </div>
-                            <div class="col-7">
-                            </div>
-                            <div class="col-1">
-                                $ 60
-                            </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>總金額NT$3640+運費NT$60=應付金額NT$3700</td>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-    <br>
-    <div class="row">
-        <div class="col">
-            <h5>訂購資料</h5>
-            <hr>
-            <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Name">
-                </div>
-            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="form-group row">
-                <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
-                </div>
-            </div>
+        <div class="col-6">
+            <h5>運送方式</h5>
+            <table class="table table-bordered mt-3">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-1 ml-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="payment" value="1">
+                                </div>
+                                <div class="col-3">
+                                    超商取貨
+                                </div>
+                                <div class="col-6">
+                                </div>
+                                <div class="col">
+                                    $ 60
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-1 ml-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="payment" value="2">
+                                </div>
+                                <div class="col-3">
+                                    宅配到府
+                                </div>
+                                <div class="col-6">
+                                </div>
+                                <div class="col">
+                                    $ 60
+                                </div>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+   </div>
+    <div class="text-right mr-3">
+        <p>總金額NT$3640+運費NT$60=應付金額NT$3700</p>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="form-group row">
-                <label for="inputPhone" class="col-sm-2 col-form-label">取貨門市</label>
-                <button type="button" class="btn btn-light">選擇門市</button>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <h5>發票資訊</h5>
-            <hr>
-            <label class="checkbox-inline">
-                <input type="radio" name="radio" value="">電子發票
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="radio" value="">電子發票/手機載具
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="radio" value="">捐贈發票
-            </label>
-            <label class="checkbox-inline">
-                <input type="radio" name="radio" value="">統編(公司戶)發票
-            </label>
-            <br />
-            <span>依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。</span>
-        </div>
-    </div>
-    <br />
-    @using (Html.BeginForm("order","ShoppingCart"))
-    {
+        <br>
         <div class="row">
             <div class="col">
+                <h5>訂購資料</h5>
+                <hr>
                 <div class="form-group row">
-                    <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
-                    <div class="col-sm-4">
-                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="ADDRESS">
+                    <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPassword" placeholder="Name">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
-                <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
-            </div>
-            <div class="col-10">
-            </div>
-            <div class="col-1">
-                <button type="submit" class="btn btn-dark">下一步</button>
+            <div class="col">
+                <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
+                    </div>
+                </div>
             </div>
         </div>
-    }
-</div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">取貨地址</label>
+                    <div class="col-sm-10">
+                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h5>發票資訊</h5>
+                <hr>
+                <label class="checkbox-inline">
+                    <input type="radio" name="radio" value="">電子發票
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="radio" value="">電子發票/手機載具
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="radio" value="">捐贈發票
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="radio" value="">統編(公司戶)發票
+                </label>
+                <br />
+                <span>依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。</span>
+            </div>
+        </div>
+        <br />
+        @using (Html.BeginForm("order", "ShoppingCart"))
+        {
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
+                        <div class="col-sm-4">
+                            <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
+                </div>
+                <div class="col-10">
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-dark">下一步</button>
+                </div>
+            </div>
+        }
+    </div>
