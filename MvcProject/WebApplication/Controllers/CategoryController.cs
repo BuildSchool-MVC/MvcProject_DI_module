@@ -14,13 +14,26 @@ namespace WebApplication.Controllers
     {
         // GET: Category
         [Route("Clothes")]
-        public ActionResult Clothes()
+        public ActionResult Clothes(string sortmethod)
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("上衣");
 
             var photo_list = new List<ProductPhoto>();
+
+            if(sortmethod != null)
+            {
+                if(sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
+
             foreach(var item in query)
             {
                 photo_list.Add(photoService.FindById(item.ProductID).First());
@@ -33,11 +46,23 @@ namespace WebApplication.Controllers
         }
 
         [Route("Pants")]
-        public ActionResult Pants()
+        public ActionResult Pants(string sortmethod)
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("下著");
+
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
 
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
@@ -52,11 +77,23 @@ namespace WebApplication.Controllers
         }
 
         [Route("Accessories")]
-        public ActionResult Accessories()
+        public ActionResult Accessories(string sortmethod)
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("飾品");
+
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
 
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
@@ -71,12 +108,24 @@ namespace WebApplication.Controllers
         }
 
         [Route("Shoes")]
-        public ActionResult Shoes()
+        public ActionResult Shoes(string sortmethod)
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("鞋子");
-           
+
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
+
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
             {
@@ -90,11 +139,23 @@ namespace WebApplication.Controllers
         }
 
         [Route("Bags")]
-        public ActionResult Bags()
+        public ActionResult Bags(string sortmethod)
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
             var query = service.ClassifyByCategoryName("包包");
+
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
 
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
@@ -109,7 +170,7 @@ namespace WebApplication.Controllers
         }
 
         [Route("Search")]
-        public ActionResult Search()
+        public ActionResult Search(string sortmethod)
         {
             var str = this.ControllerContext.HttpContext.Request.QueryString[0];
             var service = new ProductsService();
@@ -124,6 +185,19 @@ namespace WebApplication.Controllers
                     query.Add(item);
                 }
             }
+
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Time")
+                    query = query.OrderByDescending((x) => x.Uptime).ToList();
+                if (sortmethod == "TimeDESC")
+                    query = query.OrderBy((x) => x.Uptime).ToList();
+                if (sortmethod == "Price")
+                    query = query.OrderByDescending((x) => x.UnitPrice).ToList();
+                if (sortmethod == "PriceDESC")
+                    query = query.OrderBy((x) => x.UnitPrice).ToList();
+            }
+
             var photo_list = new List<ProductPhoto>();
             foreach (var item in query)
             {
