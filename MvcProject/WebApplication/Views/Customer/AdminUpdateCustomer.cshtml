@@ -1,0 +1,74 @@
+﻿@model ModelsLibrary.DtO_Models.Customer
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/AdminMain.cshtml";
+}
+
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <h3>修改客戶資料</h3>
+        <br>
+        @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="text-center" name="CustomerID">客戶ID</th>
+                            <td class="text-center">@Model.CustomerID</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">客戶名稱</th>
+                            <td class="text-center">
+                                <input type="text" name="CustomerName" size="30" value="@Model.CustomerName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">生日</th>
+                            <td class="text-center">
+                                <input type="text" name="Birthday" size="30" value="@string.Format("{0:yyyy-M-d}", Model.Birthday)" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">電話</th>
+                            <td class="text-center">
+                                <input type="text" name="Phone" size="30" value="@Model.Phone" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Email</th>
+                            <td class="text-center">
+                                <input type="text" name="Email" size="30" value="@Model.Email" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">購物金</th>
+                            <td class="text-center">
+                                <input type="text" name="ShoppingCash" size="30" value="@decimal.Round(Model.ShoppingCash)" />
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col" style="text-align: left;">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i>&ensp;確認
+                </button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("AdminCustomer", "customer")'">
+                    <i class="fas fa-times"></i>&ensp;取消
+                </button>
+            </div>
+        </div>
+}
+
+    </div>
+</div>
+
