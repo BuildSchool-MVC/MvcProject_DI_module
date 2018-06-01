@@ -26,45 +26,19 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Signup(SignupModel model)
         {
-          
             var Service = new CustomerService();
-            var passwordSaltService = new PasswordSaltService();
-            try
-            {
-                if (!passwordSaltService.Validate(model.Password))
-                {
-                    ViewBag.Msg = "密碼不符合規範";
-                    return View();
-                }
-                if (model.Password != model.Password2)
-                {
-                    ViewBag.Msg = "密碼與確認密碼不符";
-                    return View();
-                }
-                if (Service.GetAccount(model.Account) != null)
-                {
-                    ViewBag.Msg = "帳號名稱以存在";
-                    return View();
-                }
 
-
-                var model2 = new Customer()
-                {
-                    CustomerName = model.Name,
-                    Birthday = model.Birthday,
-                    Password = model.Password,
-                    Account = model.Account,
-                    Phone = model.Phone,
-                    Email = model.Email,
-                };
-                Service.Create(model2);
-                return View();
-            }
-            catch
+            var model2 = new Customer()
             {
-                ViewBag.Msg = "不可為空白";
-                return View();
-            }
+                CustomerName = model.Name,
+                Birthday = model.Birthday,
+                Password = model.Password,
+                Account = model.Account,
+                Phone = model.Phone,
+                Email = model.Email,
+            };
+            Service.Create(model2);
+            return View();
         }
 
         [Route("Login")]

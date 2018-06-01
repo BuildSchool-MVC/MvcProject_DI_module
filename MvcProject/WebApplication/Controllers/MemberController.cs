@@ -34,7 +34,7 @@ namespace WebApplication.Controllers
             ViewBag.Email = customer.Email;
             ViewBag.Phone = customer.Phone;
             ViewBag.Cash = customer.ShoppingCash;
-            ViewBag.birthday = customer.Birthday.ToString("yyyy-MM-dd");
+            ViewBag.birthday = customer.Birthday.ToString();
 
             var orders=orderservice.FindCustomerOrderByCustomerID(customer.CustomerID);
 
@@ -124,7 +124,7 @@ namespace WebApplication.Controllers
             ViewBag.Email = customer.Email;
             ViewBag.Phone = customer.Phone;
             ViewBag.Cash = customer.ShoppingCash;
-            ViewBag.birthday = customer.Birthday.ToString("yyyy-MM-dd");
+            ViewBag.birthday = customer.Birthday.ToString();
 
             return View();
         }
