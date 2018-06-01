@@ -26,6 +26,11 @@ namespace ModelsLibrary.Services
             var repository = new CustomerRepository();
             repository.Update(model);
         }
+        public void AdminUpdate(Customer model)
+        {
+            var repository = new CustomerRepository();
+            repository.AdminUpdate(model);
+        }
 
         public void UpdatePassword(Customer model)
         {
