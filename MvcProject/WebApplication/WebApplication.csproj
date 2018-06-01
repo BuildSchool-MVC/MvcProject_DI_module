@@ -361,7 +361,7 @@
     <Content Include="Views\Order\AdminOrderDetail.cshtml" />
     <Content Include="Views\Order\AdminOrder.cshtml" />
     <Content Include="Views\Product\AdminProductUpdate.cshtml" />
-    <Content Include="Views\Customer\UpdateCustomer.cshtml" />
+    <Content Include="Views\Customer\AdminUpdateCustomer.cshtml" />
     <Content Include="Views\Customer\AdminCustomerAdd.cshtml" />
     <Content Include="Views\Home\AdminHomeLogin.cshtml" />
   </ItemGroup>

@@ -48,6 +48,21 @@ namespace ModelsLibrary.Repositories
                     model.Phone
                 });
         }
+        public void AdminUpdate(Customer model)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Email=@Email,Phone=@Phone,Birthday=@Birthday,ShoppingCash=@ShoppingCash WHERE CustomerID=@CustomerID";
+            connection.Execute(sql,
+                new
+                {
+                    model.CustomerID,
+                    model.CustomerName,
+                    model.Email,
+                    model.Phone,
+                    model.Birthday,
+                    model.ShoppingCash
+                });
+        }
 
         public void UpdatePassword(Customer model)
         {
