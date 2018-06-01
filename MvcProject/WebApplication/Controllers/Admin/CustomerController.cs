@@ -29,5 +29,12 @@ namespace WebApplication.Controllers.Admin
             var user = CustomerService.FindByCustomerId(CustomerID);
             return View(user);
         }
+        [Route("customeradd")]
+        // GET: Customer
+        public ActionResult AdminCustomerAdd()
+        {
+            
+            return View();
+        }
     }
 }
