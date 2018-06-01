@@ -20,6 +20,11 @@ namespace ModelsLibrary.Services
             repository.Create(model);
         }
 
+        public void Update(Products model)
+        {
+            repository.Update(model);
+        }
+
         public void UpdateUnitPrice(Products model)
         {
             repository.UpdateUnitPrice(model);

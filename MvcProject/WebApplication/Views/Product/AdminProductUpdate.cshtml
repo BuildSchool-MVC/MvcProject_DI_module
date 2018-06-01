@@ -1,4 +1,4 @@
-﻿
+﻿@model WebApplication.Models.AdminProductUpdate
 @{
     ViewBag.Title = "AdminProductUpdate";
     Layout = "~/Views/Shared/AdminMain.cshtml"; ;
@@ -20,70 +20,84 @@
         </h3>
         <br>
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <table class="table">
-                    <tbody>
                         <tr>
-                            <td class="text-center">產品編號：</td>
-                            <td class="text-center">@list.ProductID</td>
+                            <td width="110px">產品編號：</td>
+                            <td>@list.ProductID</td>
                         </tr>
                         <tr>
-                            <td class="text-center">產品名稱：</td>
-                            <td class="text-center">
-                                <input type="text" class="form-control" name="ProductName" value="@list.ProductName">
+                            <td>產品名稱：</td>
+                            <td>
+                                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", value = list.ProductName })
+                                @Html.ValidationMessageFor(model => model.ProductName, null, new { @class = "text-danger" })
+                                @*<input type="text" class="form-control" name="ProductName" value="@list.ProductName">*@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">類別編號：</td>
-                            <td class="text-center">
+                            <td>類別編號：</td>
+                            <td>
                                 <input type="text" class="form-control" name="ProductName" value="@list.CategoryID">
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">單&emsp;&emsp;價：</td>
-                            <td class="text-center">
-                                <input type="text" class="form-control" name="ProductName" value="@list.UnitPrice">
+                            <td>單&emsp;&emsp;價：</td>
+                            <td>
+                                <input type="text" class="form-control" name="ProductName" value="@Decimal.Round(list.UnitPrice)">
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">庫&emsp;&emsp;存：</td>
-                            <td class="text-center">
+                            <td>庫&emsp;&emsp;存：</td>
+                            <td>
                                 <input type="text" class="form-control" name="ProductName" value="@list.UnitsInStock">
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">尺&emsp;&emsp;寸：</td>
-                            <td class="text-center">
+                            <td>尺&emsp;&emsp;寸：</td>
+                            <td>
                                 <input type="text" class="form-control" name="ProductName" value="@list.Size">
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">顏&emsp;&emsp;色：</td>
-                            <td class="text-center">
+                            <td>顏&emsp;&emsp;色：</td>
+                            <td>
                                 <input type="text" class="form-control" name="ProductName" value="@list.Color">
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-center">說&emsp;&emsp;明：</td>
-                            <td class="text-center">
+                            <td>說&emsp;&emsp;明：</td>
+                            <td>
                                 <input type="text" class="form-control" name="ProductName" value="@list.ProductDetails">
                             </td>
                         </tr>
+                </table>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <tr>
+                        <td width="110px">圖&emsp;&emsp;片：</td>
+                        <td>
+                            <input type="file" name="file">
+                        </td>
+                    </tr>
+                    @foreach (var item in photo)
+                    {
                         <tr>
-                            <td class="text-center">圖&emsp;&emsp;片：</td>
-                            @*@foreach(var item in photo)
-                                {
-                                <p>@item.PhotoID</p>
-                                <p>@item.PhotoPath</p>
-                                }*@
-                            <td class="text-center">
-                                <input type="text" class="form-control" name="ProductName" placeholder="ProductName">
+                            <td>
+                                <p>照片編號：</p>
                             </td>
                             <td>
-                                <input type="file" class="btn" name="upload" size="20" />
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="text" class="form-control" name="productphoto" value="@item.PhotoID" disabled>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="url" value="@item.PhotoPath">
+                                    </div>
+                                </div>
                             </td>
                         </tr>
-                    </tbody>
+                    }
                 </table>
             </div>
         </div>

@@ -37,7 +37,7 @@ namespace WebApplication.Controllers.Admin
             var items = photoservice.FindById(id);
             var result = new List<ProductPhoto>();
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 var photo = new ProductPhoto()
                 {
@@ -50,6 +50,14 @@ namespace WebApplication.Controllers.Admin
 
             ViewData.Add("list", product);
             ViewData.Add("photo", result);
+
+            return View();
+        }
+
+        [Route("ProductUpdate/{id}")]
+        [HttpPost]
+        public ActionResult AdminProductUpdate()
+        {
 
             return View();
         }
