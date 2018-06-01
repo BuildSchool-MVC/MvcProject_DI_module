@@ -1,8 +1,7 @@
-﻿
+﻿@model WebApplication.Models.Orderinfo
 @{
     ViewBag.Title = "payment";
     Layout = "~/Views/Shared/Main.cshtml";
-    
 }
 <script>console.log(@ViewBag.Test)</script>
 <br>
@@ -135,7 +134,9 @@
                 <div class="form-group row">
                     <label for="inputPhone" class="col-sm-2 col-form-label">取貨地址</label>
                     <div class="col-sm-10">
-                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
+                        @*<input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">*@
+                        @Html.TextBoxFor(model => Model.Address, new { @class = "form-control", @placeholder = "Address" })
+                        @Html.ValidationMessageFor(model => Model.Address, null, new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

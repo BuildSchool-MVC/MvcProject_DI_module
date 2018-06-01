@@ -37,5 +37,11 @@ namespace WebApplication.Controllers.Admin
 
             return View();  
         }
+        [Route("Login")]
+        // GET: Home
+        public ActionResult AdminHomeLogin()
+        {
+            return View();
+        }
     }
 }
