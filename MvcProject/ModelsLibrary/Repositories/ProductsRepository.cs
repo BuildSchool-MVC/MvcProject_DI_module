@@ -181,7 +181,8 @@ namespace ModelsLibrary.Repositories
                     model.UnitPrice,
                     model.UnitsInStock,
                     model.Color,
-                    model.ProductDetails
+                    model.ProductDetails,
+                    model.Size
                 });
         }
     }

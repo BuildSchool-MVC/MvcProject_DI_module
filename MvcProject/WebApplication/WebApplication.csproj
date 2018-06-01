@@ -157,7 +157,7 @@
     <Compile Include="Controllers\Admin\CustomerController.cs" />
     <Compile Include="Controllers\Admin\HomeController.cs" />
     <Compile Include="Controllers\Admin\OrderController.cs" />
-    <Compile Include="Controllers\Admin\ProductController.cs" />
+    <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -356,12 +356,12 @@
     <Content Include="vendor\slick\slick.scss" />
     <Content Include="Views\Member\SearchOrderdetail.cshtml" />
     <Content Include="Views\Home\AdminHome.cshtml" />
-    <Content Include="Views\Product\AdminProduct.cshtml" />
+    <Content Include="Views\AdminProduct\AdminProduct.cshtml" />
     <Content Include="Views\Customer\AdminCustomer.cshtml" />
-    <Content Include="Views\Product\AdminProductAdd.cshtml" />
+    <Content Include="Views\AdminProduct\AdminProductAdd.cshtml" />
     <Content Include="Views\Order\AdminOrderDetail.cshtml" />
     <Content Include="Views\Order\AdminOrder.cshtml" />
-    <Content Include="Views\Product\AdminProductUpdate.cshtml" />
+    <Content Include="Views\AdminProduct\AdminProductUpdate.cshtml" />
     <Content Include="Views\Customer\AdminUpdateCustomer.cshtml" />
     <Content Include="Views\Customer\AdminCustomerAdd.cshtml" />
   </ItemGroup>
