@@ -3,8 +3,7 @@
     ViewBag.Title = "detail";
     Layout = "~/Views/Shared/Main.cshtml";
     var list = ViewData["list"] as List<WebApplication.Models.ShppingCartModel>;
-    List<WebApplication.Models.ProductDetail> orderDetails = new List<WebApplication.Models.ProductDetail>();
-    var productDetail = new WebApplication.Models.ProductDetail();
+    var Total = list.Sum((x) => x.Total);
 }
 <br>
 <br>
@@ -81,7 +80,7 @@
                         </td>
                     </tr>
                 }
-                @if (list.Count == 0)
+                @if (list.Count != 0)
                 {
                     <tr>
                         <td></td>
@@ -91,7 +90,7 @@
                         <td></td>
                         <td></td>
                         <td>總金額：</td>
-                        <td>NT$2000</td>
+                        <td>NT$@Decimal.Round(Total)</td>
                         <td></td>
                     </tr>
                 }
