@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ModelsLibrary.Services;
+using ModelsLibrary.DtO_Models;
 
 namespace WebApplication.Controllers.Admin
 {
@@ -19,6 +20,14 @@ namespace WebApplication.Controllers.Admin
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
             return View();
+        }
+        [Route("Customer/{CustomerID}")]
+        // GET: Customer
+        public ActionResult UpdateCustomer(int CustomerID)
+        {
+            CustomerService CustomerService = new CustomerService();
+            var user = CustomerService.FindByCustomerId(CustomerID);
+            return View(user);
         }
     }
 }

@@ -14,24 +14,69 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>圖片</th>
-                                <th>商品名稱</th>
-                                <th>數量</th>
-                                <th>單價</th>
-                                <th>小記</th>
+                                <th class="text-center">訂單編號</th>
+                                <th class="text-center">訂購日期</th>
+                                <th class="text-center">付款方式</th>
+                                <th class="text-center">寄送方式</th>
+                                <th class="text-center" width="200px">地址</th>
+                                <th class="text-center" width="100px">狀態</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">2018-11-11</td>
+                                <td class="text-center">
+                                    <input type="text" name="名稱" size="15" value="貨到付款" />
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" name="名稱" size="15" value="全家" />
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" name="名稱" size="40" value="新竹市香山區五福路二段725號" />
+                                </td>
+                                <td class="text-center">
+                                    <select class="js-select2" name="property">
+                                        <option selected="selected">處理中</option>
+                                        <option value="">訂單已完成</option>
+                                        <option value="">已出貨</option>
+                                        <option value="">訂單已取消</option>
+                                        <option value="">退貨已完成</option>
+                                        <option value="">已到貨</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">圖片</th>
+                                <th class="text-center">商品名稱</th>
+                                <th class="text-center">數量</th>
+                                <th class="text-center">單價</th>
+                                <th class="text-center">小記</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
                                     <img src="https://github.com/BuildSchool-MVC/Bing-Shop/blob/master/Image/b1.jpg?raw=true" alt="" width="100px">
                                 </td>
-                                <td>格子襯衫</td>
-                                <td>
+                                <td class="text-center">格子襯衫</td>
+                                <td class="text-center">
                                     <input type="text" name="名稱" size="10" value="1" />
                                 </td>
-                                <td>$220</td>
-                                <td>NT$220</td>
+                                <td class="text-center">$220</td>
+                                <td class="text-center">NT$220</td>
                             </tr>
                         </tbody>
                     </table>
