@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelsLibrary.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,12 +14,19 @@ namespace WebApplication.Controllers.Admin
         // GET: Order
         public ActionResult AdminOrder()
         {
+            var service = new OrderService();
+            var Getall = service.GetAll();
+            ViewData.Add("count", Getall.Count());
+            ViewData.Add("list", Getall);
             return View();
         }
         [Route("OrderDetail")]
         // GET: Order
         public ActionResult AdminOrderDetail()
         {
+            var service = new OrderDetailsService();
+            var Getall = service.GetAll();
+            //var GetOrderDetaul = service.FindById();
             return View();
         }
     }
