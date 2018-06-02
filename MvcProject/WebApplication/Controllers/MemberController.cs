@@ -120,13 +120,16 @@ namespace WebApplication.Controllers
 
             var customer = service.FindByCustomerAccount(ticket.Name);
             ViewBag.User = customer.Account;
-            ViewBag.Name = customer.CustomerName;
-            ViewBag.Email = customer.Email;
-            ViewBag.Phone = customer.Phone;
-            ViewBag.Cash = customer.ShoppingCash;
             ViewBag.birthday = customer.Birthday.ToString();
 
-            return View();
+            var model = new UpdateMemberModel()
+            {
+                CustomerName = customer.CustomerName,
+                Email = customer.Email,
+                Phone = customer.Phone
+            };
+
+            return View(model);
         }
 
         [Route("UpdateMember")]
@@ -144,24 +147,15 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer = service.FindByCustomerAccount(ticket.Name);
-
-            try
-            {
-                var model2 = new Customer()
+                var customermodel = new Customer()
                 {
                     CustomerID = customer.CustomerID,
                     CustomerName = model.CustomerName,
                     Phone = model.Phone,
                     Email = model.Email,
                 };
-                service.Update(model2);
-                return RedirectToAction("SearchMember", "Member");
-            }
-            catch
-            {
-                ViewBag.Msg = "不可為空白";
-                return View();
-            }
+                service.Update(customermodel);
+                return RedirectToAction("SearchMember", "Member"); 
         }
 
         [Route("UpdatePassword")]
