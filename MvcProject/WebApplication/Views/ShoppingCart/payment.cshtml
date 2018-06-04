@@ -29,83 +29,91 @@
     </div>
 </div>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-6">
-            <h5>付款方式</h5>
-            <table class="table table-bordered mt-3">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="row ml-2">
-                                <div class="col-1">
-                                    <input class="form-check-input" type="radio" name="transport" id="transport" value="1">
+    @using (Html.BeginForm("CreateOrder","ShoppingCart"))
+    {
+        <div class="row mt-5">
+            <div class="col-6">
+                <h5>付款方式</h5>
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="row ml-2">
+                                    <div class="col-1">
+                                        @*<input class="form-check-input" type="radio" name="payment" id="payment" value="貨到付款">*@
+                                        @*@Html.TextBoxFor(model => Model.Payment, new { @class = "form-check-input", @type = "radio", @name = "payment", @id = "payment", @value = "貨到付款" })*@
+                                        @Html.RadioButtonFor(model => Model.Payment, "貨到付款")
+                                    </div>
+                                    <div class="col-3">
+                                        貨到付款
+                                    </div>
                                 </div>
-                                <div class="col-3">
-                                    貨到付款
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row ml-2">
+                                    <div class="col-1">
+                                        @Html.RadioButtonFor(model => Model.Payment, "線上付款")
+                                    </div>
+                                    <div class="col-3">
+                                        線上付款
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row ml-2">
-                                <div class="col-1">
-                                    <input class="form-check-input" type="radio" name="transport" id="transport" value="2">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @Html.ValidationMessageFor(model => Model.Payment, null, new { @class = "text-danger" })
+            </div>
+            <div class="col-6">
+                <h5>運送方式</h5>
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-1 ml-3">
+                                        @*<input class="form-check-input" type="radio" name="payment" id="payment" value="1">*@
+                                        @*@Html.TextBoxFor(model => Model.Transport, new { @class = "form-check-input", @type = "radio", @name = "Transport", @id = "Transport", @value = "超商取貨" })*@
+                                        @Html.RadioButtonFor(model => Model.Transport, "超商取貨")
+                                    </div>
+                                    <div class="col-3">
+                                        超商取貨
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col">
+                                        $ 60
+                                    </div>
                                 </div>
-                                <div class="col-3">
-                                    線上付款
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-1 ml-3">
+                                        @Html.RadioButtonFor(model => Model.Transport, "宅配到府")
+                                    </div>
+                                    <div class="col-3">
+                                        宅配到府
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col">
+                                        $ 60
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @Html.ValidationMessageFor(model => Model.Transport, null, new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-6">
-            <h5>運送方式</h5>
-            <table class="table table-bordered mt-3">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <div class="col-1 ml-3">
-                                    <input class="form-check-input" type="radio" name="payment" id="payment" value="1">
-                                </div>
-                                <div class="col-3">
-                                    超商取貨
-                                </div>
-                                <div class="col-6">
-                                </div>
-                                <div class="col">
-                                    $ 60
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row">
-                                <div class="col-1 ml-3">
-                                    <input class="form-check-input" type="radio" name="payment" id="payment" value="2">
-                                </div>
-                                <div class="col-3">
-                                    宅配到府
-                                </div>
-                                <div class="col-6">
-                                </div>
-                                <div class="col">
-                                    $ 60
-                                </div>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="text-right mr-3">
+            <p>總金額NT$3640+運費NT$60=應付金額NT$3700</p>
         </div>
-   </div>
-    <div class="text-right mr-3">
-        <p>總金額NT$3640+運費NT$60=應付金額NT$3700</p>
-    </div>
         <br>
         <div class="row">
             <div class="col">
@@ -114,7 +122,8 @@
                 <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPassword" placeholder="Name">
+                        @Html.TextBoxFor(model => Model.Name, new { @class = "form-control", @placeholder = "Name" })
+                        @Html.ValidationMessageFor(model => Model.Name, null, new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -124,7 +133,8 @@
                 <div class="form-group row">
                     <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
+                        @Html.TextBoxFor(model => Model.Phone, new { @class = "form-control", @placeholder = "Phone" })
+                        @Html.ValidationMessageFor(model => Model.Phone, null, new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -163,33 +173,26 @@
             </div>
         </div>
         <br />
-        @using (Html.BeginForm("order", "ShoppingCart"))
-        {
-            <div class="row">
-                <div class="col">
-                    <div class="form-group row">
-                        <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
-                        <div class="col-sm-4">
-                            <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
-                        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
+                    <div class="col-sm-4">
+                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-1">
-                    <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
-                </div>
-                <div class="col-10">
-                </div>
-                <div class="col-1">
-                    <button type="submit" class="btn btn-dark">下一步</button>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
             </div>
-        }
-    </div>
-
-<script>
-    $(function () {
-        $
-    });
-</script>
+            <div class="col-10">
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-dark">下一步</button>
+            </div>
+        </div>
+     }
+</div>
