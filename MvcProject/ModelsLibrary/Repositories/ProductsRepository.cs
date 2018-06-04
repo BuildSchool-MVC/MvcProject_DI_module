@@ -161,5 +161,29 @@ namespace ModelsLibrary.Repositories
                                                 from Products
                                                 order by Uptime desc");
         }
+
+        public void Update(Products model)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "UPDATE Products SET ProductName = @ProductName" +
+                            ", CategoryID = @CategoryID" +
+                            ", UnitPrice = @UnitPrice" +
+                            ", UnitsInStock = @UnitsInStock" +
+                            ", Size = @Size, Color = @Color" +
+                            ", ProductDetails = @ProductDetails" +
+                            " WHERE ProductID = @ProductID";
+            connection.Execute(sql,
+                new
+                {
+                    model.ProductID,
+                    model.ProductName,
+                    model.CategoryID,
+                    model.UnitPrice,
+                    model.UnitsInStock,
+                    model.Color,
+                    model.ProductDetails,
+                    model.Size
+                });
+        }
     }
 }

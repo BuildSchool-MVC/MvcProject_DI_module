@@ -1,0 +1,124 @@
+﻿@model WebApplication.Models.AdminProductUpdate
+@{
+    ViewBag.Title = "AdminProductUpdate";
+    Layout = "~/Views/Shared/AdminMain.cshtml";
+}
+
+<style>
+    .table td,
+    .table th {
+        vertical-align: baseline;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <h3>
+            更改產品資訊
+            <a href=@Url.Action("DeleteProduct","AdminProduct", new { ProductID = ViewBag.productid }) class="btn btn-sm btn-danger ml-5">商品下架</a>
+        </h3>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <tr>
+                        <td width="110px">產品編號：</td>
+                        <td>@Html.TextBoxFor(model => model.ProductID, new { @class = "form-control", @readonly = true}) </td>
+                    </tr>
+                    <tr>
+                        <td>產品名稱：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProductName, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>類別編號：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.CategoryID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryID, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>單&emsp;&emsp;價：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.UnitPrice, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UnitPrice, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>庫&emsp;&emsp;存：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.UnitsInStock, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UnitsInStock, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>尺&emsp;&emsp;寸：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Size, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Size, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>顏&emsp;&emsp;色：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Color, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>說&emsp;&emsp;明：</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ProductDetails, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProductDetails, null, new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <tr>
+                        <td width="110px">圖&emsp;&emsp;片：</td>
+                        <td>
+                            <input type="file" name="file">
+                        </td>
+                    </tr>
+                    @*@foreach (var item in Model.ProductPhotoes)
+        {
+            <tr>
+                <td>
+                    <p>照片編號：</p>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="productphoto" value="@item.PhotoID" readonly>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="url" value="@item.PhotoPath">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }*@
+                </table>
+            </div>
+        </div>
+                <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col mt-5 mb-5" style="text-align: left;">
+                <button type="submit" class="btn btn-primary mr-2">
+                    <i class="fas fa-check"></i>&ensp;確認
+                </button>
+                <a href="/Admin/Product" class="btn btn-danger mr-2">
+                    <i class="fas fa-times"></i>&ensp;取消
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+}

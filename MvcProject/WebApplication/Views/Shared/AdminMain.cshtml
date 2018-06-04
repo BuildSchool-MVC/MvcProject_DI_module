@@ -62,7 +62,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li >
+                        <li>
                             <a class="js-arrow" href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>儀表板
                             </a>
@@ -97,7 +97,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li >
+                        <li>
                             <a class="js-arrow" href="/Admin/Index">
                                 <i class="fas fa-tachometer-alt"></i>儀表板
                             </a>
@@ -186,7 +186,7 @@
             <!-- HEADER DESKTOP-->
             <!-- MAIN CONTENT-->
             <div class="main-content">
-                @RenderBody()             
+                @RenderBody()
             </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
@@ -216,7 +216,10 @@
 
     <!-- Main JS-->
     <script src="~/Scripts/main.js"></script>
-
+    @Scripts.Render("/bundles/jquery");
+    @Scripts.Render("/bundles/jqueryval");
+    @Scripts.Render("/bundles/bootstrap");
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
