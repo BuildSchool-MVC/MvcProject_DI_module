@@ -123,7 +123,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateOrder(string address, string payment, string transport)
+        public ActionResult CreateOrder(Orderinfo order)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -138,16 +138,8 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
-            var order = new Order()
-            {
-                CustomerID = user.CustomerID,
-                OrderDay = DateTime.Now,
-                Address = address,
-                StatusUpdateDay = DateTime.Now,
-                Status = "處理中",
-                Transport = transport,
-                Payment = payment,
-            };
+            var neworder = new Order();
+            
 
             return View();
         }
