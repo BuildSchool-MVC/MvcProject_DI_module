@@ -106,6 +106,7 @@ namespace WebApplication.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
+            Response.Redirect("/Log/Login");
             return RedirectToAction("Login", "Login");
         }
     }
