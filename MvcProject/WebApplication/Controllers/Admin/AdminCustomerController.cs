@@ -11,7 +11,7 @@ using WebApplication.Models;
 namespace WebApplication.Controllers.Admin
 {
     [RoutePrefix("Admin")]
-    public class CustomerController : Controller
+    public class AdminCustomerController : Controller
     {
         [Route("customer")]
         // GET: Customer
@@ -46,6 +46,15 @@ namespace WebApplication.Controllers.Admin
                 Birthday=Customer.Birthday,
                 ShoppingCash=Customer.ShoppingCash
             });
+            ViewBag.CustomerID = Customer.CustomerID;
+            return RedirectToAction("AdminCustomer");
+        }
+        [Route("Customer/DeleteCustomer")]
+        // GET: Customer
+        public ActionResult DeleteCustomer(int CustomerID)
+        {
+            CustomerService CustomerService = new CustomerService();
+            CustomerService.Delete(new Customer { CustomerID = CustomerID });
             return RedirectToAction("AdminCustomer");
         }
         [Route("CustomerAdd")]
@@ -71,9 +80,7 @@ namespace WebApplication.Controllers.Admin
                     Phone = customer.Phone,
                     Email =customer.Email,
             });
-
             return RedirectToAction("AdminCustomer");
-
         }
     }
 }

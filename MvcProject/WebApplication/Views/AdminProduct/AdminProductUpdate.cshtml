@@ -1,7 +1,7 @@
 ﻿@model WebApplication.Models.AdminProductUpdate
 @{
     ViewBag.Title = "AdminProductUpdate";
-    Layout = "~/Views/Shared/AdminMain.cshtml"; ;
+    Layout = "~/Views/Shared/AdminMain.cshtml";
 }
 
 <style>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <h3>
             更改產品資訊
-            <a href=@Url.Action("DeleteProduct","AdminProduct", new { ProductID = Model.ProductID }) class="btn btn-sm btn-danger ml-5">商品下架</a>
+            <a href=@Url.Action("DeleteProduct","AdminProduct", new { ProductID = ViewBag.productid }) class="btn btn-sm btn-danger ml-5">商品下架</a>
         </h3>
         <br>
         <div class="row">

@@ -5,10 +5,24 @@ namespace WebApplication.Models
 {
     public class Orderinfo
     {
-        public Order Order { get; set; }
+        [Display(Name = "運送方式")]
+        [Required]
+        public string Transport { get; set; }
 
-        [Display(Name = "Address")]
-        [StringLength(50,ErrorMessage = "必須填入地址"),MinLength(1)]
+        [Display(Name = "付款方式")]
+        [Required]
+        public string Payment { get; set; }
+
+        [Display(Name = "收件人")]
+        [Required]
+        public string Name { get; set; }
+
+        [Display(Name = "聯絡電話")]
+        [Required]
+        public string Phone { get; set; }
+
+        [Display(Name = "地址")]
+        [Required]
         public string Address { get; set; }
     }
 }

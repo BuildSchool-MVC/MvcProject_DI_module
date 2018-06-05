@@ -3,7 +3,6 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
 <br />
 <br />
 <br />
@@ -15,42 +14,34 @@
         <button type="button" class="btn btn-dark btn-lg">會員登入</button>
         <a class="btn btn-light btn-lg" href="/Log/Signup">註冊會員</a>
     </div>
-    @if (ViewBag.IsAuthenticated)
+    @using (Html.BeginForm())
     {
-        <h1>@ViewBag.User</h1>
-        <a href=@Url.Action("Logout","Login") class="btn btn-dark">登出</a>
-    }
-    else
-    {
-        using (Html.BeginForm())
-        {
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    <br />
-                    <br>
-                    <br>
-                    <br>
-                    <div class="form-group row">
-                        <label for="inputAccount" class="col-sm-3 col-form-label" style="text-align: right;">會員帳號：</label>
-                        <div class="col-sm-9">
-                            <input name="User" type="text" class="form-control" id="inputAccount" placeholder="Account">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label" style="text-align: right;">會員密碼：</label>
-                        <div class="col-sm-9">
-                            <input name="Password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-                        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <br />
+                <br>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="inputAccount" class="col-sm-3 col-form-label" style="text-align: right;">會員帳號：</label>
+                    <div class="col-sm-9">
+                        <input name="User" type="text" class="form-control" id="inputAccount" placeholder="Account">
                     </div>
                 </div>
-                <div class="col-3"></div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-3 col-form-label" style="text-align: right;">會員密碼：</label>
+                    <div class="col-sm-9">
+                        <input name="Password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
             </div>
-            <br>
-            <div style="text-align:center;">
-                <button type="submit" class="btn btn-dark" style="width: 100px">登入</button>
-            </div>
-        }
+            <div class="col-3"></div>
+        </div>
+        <br>
+        <div style="text-align:center;">
+            <button type="submit" class="btn btn-dark" style="width: 100px">登入</button>
+        </div>
     }
 </div>
 

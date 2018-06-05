@@ -83,6 +83,7 @@ namespace WebApplication.Controllers.Admin
                 UnitsInStock = product.UnitsInStock,
                 ProductPhotoes=result
             };
+            ViewBag.productid = id;
 
             return View(model);
         }

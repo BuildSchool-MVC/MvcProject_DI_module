@@ -1,9 +1,9 @@
 ﻿
-@if (ViewBag.Log == false)
+@if (ViewBag.Log == false || ViewBag.Log == null)
 {
     <a class="dropdown-item" href="/Log/Login">登入</a>
 }
-else
+else if (ViewBag.Log == true)
 {
     <a class="dropdown-item" href="/Member/SearchMember">會員中心</a>
     <a class="dropdown-item" href="/Member/UpdateMember">修改會員資料</a>

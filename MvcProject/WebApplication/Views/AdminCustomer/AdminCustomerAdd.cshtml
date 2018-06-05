@@ -1,18 +1,15 @@
 ﻿@model WebApplication.Models.SignupModel
 @{
-
     ViewBag.Title = "AdminCustomerAdd";
     Layout = "~/Views/Shared/AdminMain.cshtml";
 }
 
-    <div class="main-content">
-        <div class="section__content section__content--p30">
-            @using (Html.BeginForm())
-            {
+<div class="section__content section__content--p30">
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
         <div class="container-fluid">
-            <h3>新增客戶</h3>
+            <h3 align="center">新增客戶</h3>
             <span style="color:red">@ViewBag.Msg</span>
             <br>
             <div class="row">
@@ -26,25 +23,25 @@
                         </div>
                     </div>
                     <div class="form-group row" style="text-align: right;">
-                        <label for="inputbirthday" class="col-sm-3 col-form-label">生&emsp;&emsp;日：</label>
+                        <label for="inputbirthday" class="col-sm-3 col-form-label">生日：</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" Name="Birthday">
                         </div>
                     </div>
                     <div class="form-group row" style="text-align: right;">
-                        <label for="inputAccount" class="col-sm-3 col-form-label">帳&emsp;&emsp;號：</label>
+                        <label for="inputAccount" class="col-sm-3 col-form-label">帳號：</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="Account">
                         </div>
                     </div>
                     <div class="form-group row" style="text-align: right;">
-                        <label for="inputpassword" class="col-sm-3 col-form-label">密&emsp;&emsp;碼：</label>
+                        <label for="inputpassword" class="col-sm-3 col-form-label">密碼：</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="Password">
                         </div>
                     </div>
                     <div class="form-group row" style="text-align: right;">
-                        <label for="inputphone" class="col-sm-3 col-form-label">電&emsp;&emsp;話：</label>
+                        <label for="inputphone" class="col-sm-3 col-form-label">電話：</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="Phone">
                         </div>
@@ -64,16 +61,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-9">
-                </div>
-                <div class="col" style="text-align: center;">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-check"></i>&ensp;確認
+                <div class="col" align="center">
+                    <button class="btn btn-primary" type="submit" id="insert">
+                        <i class="fas fa-check"></i>確認
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("AdminCustomer", "AdminCustomer")'">
+                        <i class="fas fa-times"></i>取消
                     </button>
                 </div>
             </div>
         </div>
-            }
-        </div>
-    </div>
+    }
+</div>
+<script type="text/javascript">
+    document.getElementById("insert").onclick = function () {
+        if (window.confirm('您確定要新增嗎？') == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 
