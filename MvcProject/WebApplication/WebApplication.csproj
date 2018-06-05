@@ -154,7 +154,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Admin\CustomerController.cs" />
+    <Compile Include="Controllers\Admin\AdminCustomerController.cs" />
     <Compile Include="Controllers\Admin\HomeController.cs" />
     <Compile Include="Controllers\Admin\OrderController.cs" />
     <Compile Include="Controllers\Admin\AdminProductController.cs" />
@@ -359,17 +359,18 @@
     <Content Include="Views\Member\SearchOrderdetail.cshtml" />
     <Content Include="Views\Home\AdminHome.cshtml" />
     <Content Include="Views\AdminProduct\AdminProduct.cshtml" />
-    <Content Include="Views\Customer\AdminCustomer.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductAdd.cshtml" />
     <Content Include="Views\Order\AdminOrderDetail.cshtml" />
     <Content Include="Views\Order\AdminOrder.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductUpdate.cshtml" />
-    <Content Include="Views\Customer\AdminUpdateCustomer.cshtml" />
-    <Content Include="Views\Customer\AdminCustomerAdd.cshtml" />
     <Content Include="Views\Home\AdminHomeLogin.cshtml" />
+    <Content Include="Views\AdminCustomer\AdminCustomer.cshtml" />
+    <Content Include="Views\AdminCustomer\AdminUpdateCustomer.cshtml" />
+    <Content Include="Views\AdminCustomer\AdminCustomerAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Londing\" />
   </ItemGroup>
   <ItemGroup>
