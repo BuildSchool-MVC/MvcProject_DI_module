@@ -102,6 +102,24 @@ namespace ModelsLibrary.Repositories
             SqlConnection connection = new SqlConnection(sqlstr);
             return connection.Query<Order>("SELECT * FROM [Order]");
         }
+
+        public void Update(Order model)  //修改訂單狀態
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"UPDATE [Order] 
+                        SET Transport = @Transport,Payment = @Payment ,Status = @Status , StatusUpdateDay = GETDATE(),Address = @Address
+                        WHERE OrderID = @OrderID";
+            connection.Execute(sql,
+                new
+                {
+                    model.OrderID,
+                    model.Transport,
+                    model.Payment,
+                    model.Status,
+                    model.Address
+                });
+
+        }
     }
 }
 

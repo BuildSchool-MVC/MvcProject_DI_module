@@ -76,6 +76,13 @@ namespace ModelsLibrary.Services
             {
                 return false;
             }
+
+        }
+
+        public void Update(Order model)
+        {
+            var repository = new OrderRepository();
+            repository.Update(model);
         }
     }
 }

@@ -120,5 +120,10 @@ namespace ModelsLibrary.Services
         {
             return repository.GetNewProducts();
         }
+
+        public Products FindByName2(string ProductName)
+        {
+            return repository.FindByName2(ProductName);
+        }
     }
 }

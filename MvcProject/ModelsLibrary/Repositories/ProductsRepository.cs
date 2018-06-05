@@ -185,5 +185,14 @@ namespace ModelsLibrary.Repositories
                     model.Size
                 });
         }
+
+        public Products FindByName2(string ProductName)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = "SELECT ProductID FROM Products WHERE ProductName = @ProductName";
+            var result = connection.QueryMultiple(sql, new { ProductName });
+            var products = result.Read<Products>().Single();
+            return products;
+        }
     }
 }
