@@ -103,7 +103,7 @@ namespace ModelsLibrary.Repositories
             return connection.Query<Order>("SELECT * FROM [Order]");
         }
 
-        public void Update(Order model)  //修改訂單狀態
+        public void Update(Order model)  //修改訂單
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"UPDATE [Order] 

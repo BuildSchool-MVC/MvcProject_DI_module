@@ -78,6 +78,7 @@ namespace WebApplication.Controllers.Admin
             };
             serviceOR.Update(order);
 
+            
             var orderdetail = new OrderDetails()
             {
                 OrderID = model.OrderId,
@@ -85,8 +86,10 @@ namespace WebApplication.Controllers.Admin
                 Quantity = model.Quantity
             };
             serviceOD.Update(orderdetail);
-
+            
             return View();
         }
+
+
     }
 }
