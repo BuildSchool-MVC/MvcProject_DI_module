@@ -135,13 +135,31 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer_service = new CustomerService();
+            var shopping_service = new ShoppingcartDetailsService();
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
 
             var neworder = new Order();
-            
 
-            return View();
+            neworder.Address = order.Address;
+            neworder.Payment = order.Payment;
+            neworder.Transport = order.Transport;
+            neworder.OrderDay = DateTime.Now;
+            neworder.StatusUpdateDay = DateTime.Now;
+            neworder.Status = "處理中";
+            neworder.CustomerID = user.CustomerID;
+
+            var ShoppingcartList = shopping_service.FindByCustomer(user.CustomerID).ToList(); ;
+
+            var status = shopping_service.ConfirmOrders(ShoppingcartList, neworder);
+            if(status == "OrderSuccess")
+            {
+                return RedirectToAction("order");
+            }
+            else
+            {
+                return RedirectToAction("detail");
+            }
         }
 
         [Route("order")]

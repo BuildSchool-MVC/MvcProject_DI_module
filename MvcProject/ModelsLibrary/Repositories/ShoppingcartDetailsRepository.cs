@@ -55,14 +55,14 @@ namespace ModelsLibrary.Repositories
             });
         }
 
-        public void DeleteAllForUser(ShoppingcartDetails model)
+        public void DeleteAllForUser(int CustomerID)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = "DELETE FROM [Shoppingcart Details] WHERE CustomerID = @CustomerID";
 
             connection.Execute(sql, new
             {
-                model.CustomerID
+                CustomerID
             });
         }
 

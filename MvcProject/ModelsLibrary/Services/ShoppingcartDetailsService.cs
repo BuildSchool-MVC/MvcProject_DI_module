@@ -26,10 +26,10 @@ namespace ModelsLibrary.Services
             shoppingcarRepository.Update(model);
         }
 
-        public void DeleteAllForUser(ShoppingcartDetails model)
+        public void DeleteAllForUser(int CustomerID)
         {
             var shoppingcarRepository = new ShoppingcartDetailsRepository();
-            shoppingcarRepository.DeleteAllForUser(model);
+            shoppingcarRepository.DeleteAllForUser(CustomerID);
         }
 
         public void DeleteOneForUser(ShoppingcartDetails model)
@@ -96,7 +96,6 @@ namespace ModelsLibrary.Services
             var orderRepository = new OrderRepository();
             var orderDetailsRepository = new OrderDetailsRepository();
 
-
             SqlConnection connection = new SqlConnection(sqlstr);
             connection.Open();
             var transactition = connection.BeginTransaction();
@@ -112,6 +111,9 @@ namespace ModelsLibrary.Services
                 }
 
                 orderRepository.Create(order);//新增訂單
+
+
+
                 var orderid = orderRepository.FindIDByCustomerID(order.CustomerID);
                 foreach (var item in shoppingcar)//新增訂單明細
                 {
@@ -134,36 +136,15 @@ namespace ModelsLibrary.Services
                 }
                 //刪購物車內容
                 //先判斷購物車商品數量與訂單商品數量
-                var shoppingcartDetails = shoppingcarRepository.FindByCustomer(order.CustomerID);
-                foreach (var item in shoppingcar)
-                {
-                    foreach (var bag in shoppingcartDetails)
-                    {
-                        var shoppingcart = new ShoppingcartDetails()
-                        {
-                            ProductID = item.ProductID,
-                            CustomerID = item.CustomerID,
-                            Quantity = item.Quantity
-                        };
 
-                        if (bag.ProductID == item.ProductID && bag.Quantity == item.Quantity)
-                        {
-                            shoppingcarRepository.DeleteOneForUser(shoppingcart);
-                            break;
-                        }
-                        else
-                        {
-                            shoppingcarRepository.Updateminus(shoppingcart);
-                            break;
-                        }
-                    }
-                }
+                shoppingcarRepository.DeleteAllForUser(order.CustomerID);
+
                 transactition.Commit();
             }
             catch(SqlException e)
             {
                 transactition.Rollback();
-                return "Error!";
+                return e.Message;
             }
             connection.Close();
 
