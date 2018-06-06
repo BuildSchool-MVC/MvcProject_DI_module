@@ -10,7 +10,7 @@
         vertical-align: baseline;
     }
 </style>
-@using (Html.BeginForm())
+@using (Html.BeginForm("ProductAdd", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     <div class="section__content section__content--p30">
         <div class="container-fluid">
@@ -78,11 +78,8 @@
                             </tr>
                             <tr>
                                 <td class="text-center">圖&emsp;&emsp;片：</td>
-                                <td class="text-center">
-                                    <input type="text" class="form-control" name="ProductName">
-                                </td>
                                 <td>
-                                    <input type="file" class="btn" name="upload" size="20" />
+                                    <input type="file" name="Files" id="file" multiple />
                                 </td>
                             </tr>
                         </tbody>

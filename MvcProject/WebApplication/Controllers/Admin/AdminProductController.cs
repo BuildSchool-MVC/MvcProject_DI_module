@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,7 +32,7 @@ namespace WebApplication.Controllers.Admin
 
         [Route("ProductAdd")]
         [HttpPost]
-        public ActionResult AdminProductAdd(AdminProductUpdate model)
+        public ActionResult AdminProductAdd(AdminProductUpdate model, IEnumerable<HttpPostedFileBase> files)
         {
             var productservice = new ProductsService();
             var photoservice = new ProductPhotoService();
@@ -44,9 +45,25 @@ namespace WebApplication.Controllers.Admin
                 Size = model.Size,
                 Color = model.Color,
                 UnitsInStock = model.UnitsInStock,
-                Uptime=model.Uptime
+                Uptime = model.Uptime
             };
             productservice.Create(product);
+
+            foreach (var file in files)
+            {
+                if (file == null)
+                {
+                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://dummyimage.com/470x470/ddd/fff.jpg?text=%E6%9A%AB%E7%84%A1%E7%85%A7%E7%89%87" });
+                }
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    file.SaveAs(path);
+                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://github.com/BuildSchool-MVC/MvcProject_DI_module/blob/master/MvcProject/WebApplication/Images/" + fileName + "?raw=true" });
+                }
+            }
 
             return View();
         }
@@ -59,7 +76,7 @@ namespace WebApplication.Controllers.Admin
             var product = productservice.FindByID(id);
             var items = photoservice.FindById(id);
             var result = new List<ProductPhoto>();
-            
+
             foreach (var item in items)
             {
                 var photo = new ProductPhoto()
@@ -80,9 +97,10 @@ namespace WebApplication.Controllers.Admin
                 ProductDetails = product.ProductDetails,
                 Size = product.Size,
                 Color = product.Color,
-                UnitsInStock = product.UnitsInStock,
-                ProductPhotoes=result
+                UnitsInStock = product.UnitsInStock
             };
+
+            ViewBag.list = result;
             ViewBag.productid = id;
 
             return View(model);
@@ -90,7 +108,7 @@ namespace WebApplication.Controllers.Admin
 
         [Route("ProductUpdate/{id}")]
         [HttpPost]
-        public ActionResult AdminProductUpdate(AdminProductUpdate model)
+        public ActionResult AdminProductUpdate(AdminProductUpdate model, IEnumerable<HttpPostedFileBase> files)
         {
             var productservice = new ProductsService();
             var photoservice = new ProductPhotoService();
@@ -105,18 +123,20 @@ namespace WebApplication.Controllers.Admin
                 Color = model.Color,
                 UnitsInStock = model.UnitsInStock
             };
-
-            
-
-            var photo = new ProductPhoto()
-            {
-                PhotoID = model.ProductID,
-                PhotoPath = ""
-            };
             productservice.Update(product);
 
+            foreach (var file in files)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    file.SaveAs(path);
+                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://github.com/BuildSchool-MVC/MvcProject_DI_module/blob/master/MvcProject/WebApplication/Images/" + fileName + "?raw=true" });
+                }
+            }
 
-            return View();
+            return RedirectToAction("Product", "admin");
         }
 
         [Route("Product/DeleteProduct")]
@@ -125,6 +145,14 @@ namespace WebApplication.Controllers.Admin
             var productservice = new ProductsService();
             productservice.UpdateDowntime(new Products { ProductID = ProductID, Downtime = DateTime.Now });
             return RedirectToAction("Product", "admin");
+        }
+
+        [Route("Product/DeletePhoto")]
+        public ActionResult DeletePhoto(int PhotoID, int ProductID)
+        {
+            var productPhotoService = new ProductPhotoService();
+            productPhotoService.Delete(new ProductPhoto { PhotoID = PhotoID });
+            return RedirectToAction("ProductUpdate/" + ProductID, "admin");
         }
     }
 }
