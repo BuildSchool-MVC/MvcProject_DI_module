@@ -105,6 +105,14 @@ namespace WebApplication.Controllers.Admin
                 Color = model.Color,
                 UnitsInStock = model.UnitsInStock
             };
+
+            
+
+            var photo = new ProductPhoto()
+            {
+                PhotoID = model.ProductID,
+                PhotoPath = ""
+            };
             productservice.Update(product);
 
 
