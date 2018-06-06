@@ -59,6 +59,7 @@ namespace ModelsLibrary.Services
         {
             ProductPhotoRepository productPhotoRepository = new ProductPhotoRepository();
             var items = repository.FindByName(ProductName).ToList();
+            items = items.Where((x) => x.Downtime == null).ToList();
             ProductList productList = new ProductList()
             {
                 ProductName = items[0].ProductName,

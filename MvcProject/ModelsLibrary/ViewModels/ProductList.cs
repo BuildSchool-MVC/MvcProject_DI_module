@@ -14,6 +14,6 @@ namespace ModelsLibrary.ViewModels
         public List<string> Size { get; set; }
         public List<string> Color { get; set; }
         public string ProductDetails { get; set; }
-
+        public DateTime? Downtime { get; set; }
     }
 }

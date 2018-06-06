@@ -46,7 +46,6 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Product");
             }
 
-
             ShoppingcartDetailsService.Create(new ShoppingcartDetails()
             {
                 CustomerID = user.CustomerID,

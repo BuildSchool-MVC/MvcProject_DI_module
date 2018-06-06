@@ -18,8 +18,8 @@ namespace WebApplication.Controllers
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
-            var query = service.ClassifyByCategoryName("上衣");
-
+            var query = service.ClassifyByCategoryNameAndNullDownTime("上衣");
+            query = query.Where((x) => x.Downtime==null).ToList();
             var photo_list = new List<ProductPhoto>();
 
             if(sortmethod != null)
@@ -50,8 +50,7 @@ namespace WebApplication.Controllers
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
-            var query = service.ClassifyByCategoryName("下著");
-
+            var query = service.ClassifyByCategoryNameAndNullDownTime("下著");
             if (sortmethod != null)
             {
                 if (sortmethod == "Time")
@@ -81,8 +80,8 @@ namespace WebApplication.Controllers
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
-            var query = service.ClassifyByCategoryName("飾品");
-
+            var query = service.ClassifyByCategoryNameAndNullDownTime("飾品");
+            query = query.Where((x) => x.Downtime == null).ToList();
             if (sortmethod != null)
             {
                 if (sortmethod == "Time")
@@ -112,8 +111,8 @@ namespace WebApplication.Controllers
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
-            var query = service.ClassifyByCategoryName("鞋子");
-
+            var query = service.ClassifyByCategoryNameAndNullDownTime("鞋子");
+            query = query.Where((x) => x.Downtime == null).ToList();
             if (sortmethod != null)
             {
                 if (sortmethod == "Time")
@@ -143,8 +142,8 @@ namespace WebApplication.Controllers
         {
             var service = new CategoriesService();
             var photoService = new ProductPhotoService();
-            var query = service.ClassifyByCategoryName("包包");
-
+            var query = service.ClassifyByCategoryNameAndNullDownTime("包包");
+            query = query.Where((x) => x.Downtime == null).ToList();
             if (sortmethod != null)
             {
                 if (sortmethod == "Time")
@@ -176,7 +175,6 @@ namespace WebApplication.Controllers
             var service = new ProductsService();
             var photoService = new ProductPhotoService();
             var list = service.GetAll().ToList();
-
             var query = new List<Products>();
             foreach (var item in list)
             {
