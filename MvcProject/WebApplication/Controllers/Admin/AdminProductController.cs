@@ -15,14 +15,28 @@ namespace WebApplication.Controllers.Admin
     {
         [Route("Product")]
         // GET: Product
-        public ActionResult AdminProduct()
+        public ActionResult AdminProduct(string sortmethod)
         {
             ProductsService ProductsService = new ProductsService();
+
             var query = ProductsService.GetAll();
+            if (sortmethod != null)
+            {
+                if (sortmethod == "Product")
+                    query = query.OrderBy((x) => x.ProductID).ToList();
+                if (sortmethod == "Category")
+                    query = query.OrderBy((x) => x.CategoryID).ToList();
+                if (sortmethod == "Stock")
+                    query = query.OrderBy((x) => x.UnitsInStock).ToList();
+            }
+            
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
+
             return View();
         }
+
+
 
         [Route("ProductAdd")]
         public ActionResult AdminProductAdd()
