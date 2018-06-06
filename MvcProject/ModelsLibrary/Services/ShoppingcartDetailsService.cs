@@ -114,7 +114,7 @@ namespace ModelsLibrary.Services
 
 
 
-                var orderid = orderRepository.FindIDByCustomerID(order.CustomerID);
+                var orderid = orderRepository.FindLastOrderByCustomerID(order.CustomerID);
                 foreach (var item in shoppingcar)//新增訂單明細
                 {
                     var orderDetails = new OrderDetails()
