@@ -1,9 +1,16 @@
 ﻿@model ModelsLibrary.ViewModels.ProductList
 @{
     Layout = "~/Views/Shared/Main.cshtml";
+    
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@if ((bool?)TempData["NoItem"] == true)
+{
+    <script>
+        $(document).ready(function () {
+            $("#NoItem").modal();
+        });
+        </script>
+}
 @if ((bool?)TempData["HasItem"] != null)
 {
     if ((bool)TempData["HasItem"] == true)
@@ -12,16 +19,16 @@
             $(document).ready(function () {
                 $("#myModalf").modal();
             });
-        </script>
-    }
-    if ((bool)TempData["HasItem"] == false)
-    {
-        <script>
-            $(document).ready(function () {
-                $("#myModals").modal();
-            });
-        </script>
-    }
+    </script>
+}
+if ((bool)TempData["HasItem"] == false)
+{
+    <script>
+                    $(document).ready(function () {
+                    $("#myModals").modal();
+                });
+    </script>
+}
 }
 <br />
 <br />
@@ -121,6 +128,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="NoItem" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>您選擇此商品的<b>尺寸或顏色</b>為缺貨狀態!</p>
+                                    <p>可以再選擇其他的尺寸或顏色再加入購物車。</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-dark" data-dismiss="modal">確認</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             }
@@ -132,10 +155,10 @@
 </div>
 <br /><br /><br />
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(".btnFollow").click(function () {
-            $("#chgicon").attr("src", $(this).attr("src"));
-        });
-    });
+        $(document).ready(function () {
+                $(".btnFollow").click(function () {
+                    $("#chgicon").attr("src", $(this).attr("src"));
+                });
+            });
 </script>
 
