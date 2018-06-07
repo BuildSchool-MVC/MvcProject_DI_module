@@ -34,7 +34,7 @@ namespace WebApplication.Controllers
             ViewBag.Email = customer.Email;
             ViewBag.Phone = customer.Phone;
             ViewBag.Cash = customer.ShoppingCash;
-            ViewBag.birthday = customer.Birthday.ToString();
+            ViewBag.birthday = DateTime.Parse(customer.Birthday.ToString()).ToShortDateString();
 
             var orders=orderservice.FindCustomerOrderByCustomerID(customer.CustomerID);
 
@@ -120,7 +120,8 @@ namespace WebApplication.Controllers
 
             var customer = service.FindByCustomerAccount(ticket.Name);
             ViewBag.User = customer.Account;
-            ViewBag.birthday = customer.Birthday.ToString();
+            
+            ViewBag.birthday = DateTime.Parse(customer.Birthday.ToString()).ToShortDateString();
 
             var model = new UpdateMemberModel()
             {

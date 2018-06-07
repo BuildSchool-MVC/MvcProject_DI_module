@@ -185,5 +185,12 @@ namespace ModelsLibrary.Repositories
                     model.Size
                 });
         }
+
+        public int GetNewProductID()
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var result = connection.QueryMultiple("select TOP 1 ProductID from Products order by ProductID desc");
+            return result.Read<Products>().ToList().First().ProductID;
+        }
     }
 }

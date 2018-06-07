@@ -82,10 +82,20 @@ namespace WebApplication.Controllers
 
             if (passwordSaltService.PasswordsCheck(service.FindByCustomerAccount(model.User), model.Password))
             {
+                FormsAuthentication.SignOut();
+
+                var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+                if (cookie != null)
+                {
+                    cookie.Expires = DateTime.Now;
+                    Response.Cookies.Add(cookie);
+                }
+
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.User, DateTime.Now, DateTime.Now.AddMinutes(30), false, "abcdefg");
 
                 var ticketData = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
+                cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration; //設定Cookie到期日與憑證同時
 
                 Response.Cookies.Add(cookie);

@@ -149,7 +149,12 @@ namespace WebApplication.Controllers
             neworder.Status = "處理中";
             neworder.CustomerID = user.CustomerID;
 
-            var ShoppingcartList = shopping_service.FindByCustomer(user.CustomerID).ToList(); ;
+            var ShoppingcartList = shopping_service.FindByCustomer(user.CustomerID).ToList();
+
+            if(ShoppingcartList.Count == 0)
+            {
+                return RedirectToAction("detail");
+            }
 
             var status = shopping_service.ConfirmOrders(ShoppingcartList, neworder);
             if(status == "OrderSuccess")
@@ -164,9 +169,24 @@ namespace WebApplication.Controllers
 
         [Route("order")]
         // GET: ShoppingCart
-        public ActionResult order(string Address)
+        public ActionResult order()
         {
-            return View();
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+            var order_service = new OrderService();
+            var customer_service = new CustomerService();
+            var user = customer_service.FindByCustomerAccount(ticket.Name);
+
+            var OrderID = order_service.FindLastOrderByCustomerID(user.CustomerID);
+
+            return View(OrderID); ;
         }
     }
 }

@@ -122,5 +122,10 @@ namespace ModelsLibrary.Services
         {
             return repository.GetNewProducts();
         }
+
+        public int GetNewProductID()
+        {
+            return repository.GetNewProductID();
+        }
     }
 }
