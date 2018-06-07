@@ -21,7 +21,6 @@ namespace WebApplication.Controllers
             var query = service.ClassifyByCategoryNameAndNullDownTime("上衣");
             query = query.Where((x) => x.Downtime==null).ToList();
             var photo_list = new List<ProductPhoto>();
-
             if(sortmethod != null)
             {
                 if(sortmethod == "Time")

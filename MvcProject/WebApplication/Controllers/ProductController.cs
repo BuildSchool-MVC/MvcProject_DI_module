@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
             var user = customerservice.FindByCustomerAccount(ticket.Name);
             var product = productservice.FindIdByName(ProductList.ProductName, ProductList.Size, ProductList.Color);
             //var stock = productservice.CheckStock(product.ProductID, ProductList.Num);
-            if (product.Downtime != null)
+            if (product.Downtime != null||product.UnitsInStock==0)
             {
                 TempData.Add("NoItem", true);
                 return RedirectToAction("Product");
