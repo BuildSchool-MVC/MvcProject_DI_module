@@ -1,5 +1,6 @@
 ﻿using ModelsLibrary.DtO_Models;
 using ModelsLibrary.Repositories;
+using ModelsLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,9 @@ namespace ModelsLibrary.Services
             return repository.GetAll();
         }
 
-
+        public IEnumerable<AdminOrderModel> FindOrderDetail(int OrderId)
+        {
+            return repository.FindOrderDetail(OrderId);
+        }
     }
 }

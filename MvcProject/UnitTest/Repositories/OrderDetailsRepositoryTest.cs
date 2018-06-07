@@ -70,6 +70,14 @@ namespace UnitTest
             Assert.IsTrue(orderdetails != null);
         }
 
+        [TestMethod]
+        public void FindOrderDetail()
+        {
+            var repository = new OrderDetailsRepository();
+            var orderdetails = repository.FindOrderDetail(9);
+            Assert.IsTrue(orderdetails.Count() == 3);
+        }
+
     }
     
 }

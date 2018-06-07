@@ -57,7 +57,7 @@ namespace UnitTest.Repositories
             var shoppingcar = repository.GetAll();
             Assert.IsTrue(shoppingcar.Count() > 0);
         }
-
+/*
 
         [TestMethod()]
         public void DeleteAllForUserTest()
@@ -71,7 +71,7 @@ namespace UnitTest.Repositories
             var shoppingcar = repository.FindByCustomer(1);
             Assert.IsTrue(shoppingcar.Count() == 0);
         }
-
+        */
         [TestMethod()]
         public void DeleteOneForUserTest()
         {

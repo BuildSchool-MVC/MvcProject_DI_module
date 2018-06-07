@@ -84,5 +84,17 @@ namespace ModelsLibrary.Services
             var repository = new OrderRepository();
             repository.Update(model);
         }
+
+        public List<string> Status()
+        {
+            var StatusList = new List<string>();
+            StatusList.Add("處理中");
+            StatusList.Add("已到貨");
+            StatusList.Add("申請退貨");
+            StatusList.Add("訂單已取消");
+            StatusList.Add("訂單完成結案");
+            StatusList.Add("已出貨");
+            return StatusList;
+        }
     }
 }

@@ -2,127 +2,102 @@
 @{
     ViewBag.Title = "AdminOrderDetail";
     Layout = "~/Views/Shared/AdminMain.cshtml";
-    var list = ViewData["list"] as List<WebApplication.Models.AOrderDetailModel>;
-    var count = Convert.ToInt32(ViewData["count"]);
+
 }
 
 @using (Html.BeginForm())
 {
-        <div class="section__content section__content--p30">
-            <div class="container-fluid">
-                <h3>更改訂單</h3>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">訂單編號</th>
-                                    <th class="text-center">訂購日期</th>
-                                    <th class="text-center">付款方式</th>
-                                    <th class="text-center">寄送方式</th>
-                                    <th class="text-center" width="200px">地址</th>
-                                    <th class="text-center" width="100px">狀態</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="orderid" class="text-center">@list[0].OrderId</td>
-                                    <td id="orderday" class="text-center">@list[0].OrderDay</td>
-                                    <td class="text-center">
-                                        <input id="payment" type="text" name="名稱" size="15" value="@list[0].Payment" />
-                                    </td>
-                                    <td class="text-center">
-                                        <input id="transport" type="text" name="名稱" size="15" value="@list[0].Transport" />
-                                    </td>
-                                    <td class="text-center">
-                                        <input id="address" type="text" name="名稱" size="40" value="@list[0].Address" />
-                                    </td>
-                                    <td class="text-center">
-                                        <select id="status" class="js-select2" name="property">
-                                            <option selected="selected">@list[0].Status</option>
-                                            <option value="">處理中</option>
-                                            <option value="">訂單已完成</option>
-                                            <option value="">已出貨</option>
-                                            <option value="">訂單已取消</option>
-                                            <option value="">退貨已完成</option>
-                                            <option value="">已到貨</option>
-                                        </select>
-                                        <div class="dropDownSelect2"></div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <h3>更改訂單</h3>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">訂單編號</th>
+                                <th class="text-center">訂購日期</th>
+                                <th class="text-center">付款方式</th>
+                                <th class="text-center">寄送方式</th>
+                                <th class="text-center" width="200px">地址</th>
+                                <th class="text-center" width="100px">狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" name="OrderId" value="@Model.OrderId">@Model.OrderId</td>
+                                
+                                <td class="text-center" name="OrderDay" value="@Model.OrderDay">@Model.OrderDay</td>
+                                <td class="text-center">
+                                    <input id="payment" type="text" name="Payment" size="15" value="@Model.Payment " />
+                                </td>
+                                <td class="text-center">
+                                    <input id="transport" type="text" name="Transport" size="15" value="@Model.Transport" />
+                                </td>
+                                <td class="text-center">
+                                    <input id="address" type="text" name="Address" size="40" value="@Model.Address" />
+                                </td>
+                                <td class="text-center">
+                                    @Html.DropDownListFor(model => model.Status, (IEnumerable<SelectListItem>)ViewBag.status, new { @class = "form-control" })
+                                    <div class="dropDownSelect2"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <br>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">圖片</th>
+                                <th class="text-center">商品名稱</th>
+                                <th class="text-center">數量</th>
+                                <th class="text-center">單價</th>
+                                <th class="text-center">小計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Data)
+                            {
                                 <tr>
-                                    <th class="text-center">圖片</th>
-                                    <th class="text-center">商品名稱</th>
-                                    <th class="text-center">數量</th>
-                                    <th class="text-center">單價</th>
-                                    <th class="text-center">小計</th>
+                                    <td class="text-center">
+                                        <img src="@item.PhotoPath" alt="" width="100px">
+                                    </td>
+                                    <td class="text-center" name="ProductName" value="@item.ProductName">@item.ProductName</td>
+                                    <td class="text-center">
+                                        <input type="text" name="名稱" size="10" value="@item.Quantity" />
+                                    </td>
+                                    <td class="text-center" name="Unitprice" value="@item.Unitprice">$@item.Unitprice</td>
+                                    <td class="text-center" name="Total" value="@item.Total">NT$@item.Total</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @for (var i = 0; i < count; i++)
-                                {
-                                    <tr>
-                                        <td class="text-center">
-                                            <img src="@list[i].PhotoPath" alt="" width="100px">
-                                        </td>
-                                        <td class="text-center">@list[i].ProductName</td>
-                                        <td class="text-center">
-                                            <input type="text" name="名稱" size="10" value="@list[i].Quantity" />
-                                        </td>
-                                        <td class="text-center">$@list[i].UnitPrice</td>
-                                        <td class="text-center">NT$@list[i].Total</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-                <div class="row">
-                    <div class="col-9">
-                    </div>
-                    <div class="col" style="text-align: left;">
-                     
-                            <button id="save" type="submit" class="btn btn-primary">
-                                <i class="fas fa-check"></i>&ensp;確認
-                            </button>
-                        &emsp;
-                     
-                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("order", "Admin")'">
-                                <i class="fas fa-times"></i>&ensp;取消
-                            </button>
-                       
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                </div>
+                <div class="col" style="text-align: left;">
+                    <button id="save" type="submit" class="btn btn-primary">
+                        <i class="fas fa-check"></i>&ensp;確認
+                    </button>
+                    &emsp;
+
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("order", "Admin")'">
+                        <i class="fas fa-times"></i>&ensp;取消
+                    </button>
+
                 </div>
             </div>
         </div>
-
-<script>
-    $("#save").click(function () {
-        $.ajax({
-            type: "GET",
-            url: this.url,
-            data: {
-                _Orderid = $("#orderid").val(),
-                _Orderday = $("#orderday").val(),
-                _Payment = $("#payment").val(),
-                _Transport = $("#transport").val(),
-                _Address = $("#address").val(),
-                _status = $("#status:selected").text()
-            }
-        })
-    }
-</script>
-
+    </div>
 }
+
+

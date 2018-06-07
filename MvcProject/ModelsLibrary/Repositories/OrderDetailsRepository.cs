@@ -1,6 +1,7 @@
 ﻿using Abstracts;
 using Dapper;
 using ModelsLibrary.DtO_Models;
+using ModelsLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -67,6 +68,19 @@ namespace ModelsLibrary.Repositories
 
         }
 
+        public IEnumerable<AdminOrderModel> FindOrderDetail(int OrderId)
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"select p.ProductID,ph.PhotoPath,p.ProductName,od.Quantity,p.UnitPrice,(p.UnitPrice*od.Quantity) as Total
+                        from [Order] o
+                        inner join [Order Details] od on o.OrderID = od.OrderID 
+                        inner join [Product Photo] ph on od.ProductID = ph.ProductID
+                        inner join Products p on p.ProductID = ph.ProductID
+                        Where o.OrderID = @OrderID";
+            var result = connection.Query<AdminOrderModel>(sql, new { OrderId });
+
+            return result;
+        }
 
     }
 }

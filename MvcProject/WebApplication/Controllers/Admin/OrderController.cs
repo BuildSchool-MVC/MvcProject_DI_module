@@ -22,52 +22,49 @@ namespace WebApplication.Controllers.Admin
             ViewData.Add("list", Getall);
             return View();
         }
+
         [Route("OrderDetail/{id}")]
         // GET: Order
         public ActionResult AdminOrderDetail(int id)
         {
-            var serviceOD = new OrderDetailsService();
-            var serviceOR = new OrderService();
-            var servicePro = new ProductsService();
-            var servicePic = new ProductPhotoService();
-            var OrderDetail = serviceOD.FindById(id);
-            var Order = serviceOR.FindById(id);
-            var OrderDetailList = new List<AOrderDetailModel>();
+            var serviceOrderDetails = new OrderDetailsService();
+            var serviceOrder = new OrderService();
+            var servicePhoto = new ProductPhotoService();
+            var _OrderDetail = serviceOrderDetails.FindOrderDetail(id);
+            var _Order = serviceOrder.FindById(id);
 
-            foreach (var item in OrderDetail)
+            var model = new AOrderDetailModel();
+            model.OrderId = id;
+            model.OrderDay = _Order.OrderDay;
+            model.Transport = _Order.Transport;
+            model.Payment = _Order.Payment;
+            model.Address = _Order.Address;
+            model.Status = _Order.Status;
+            model.Data = _OrderDetail;
+
+            var status = serviceOrder.Status();
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var s in status)
             {
-                var Product = servicePro.FindByID(item.ProductID);
-                var _Photo = servicePic.FindPicById(item.ProductID);
-
-                var model = new AOrderDetailModel()
+                items.Add(new SelectListItem()
                 {
-                    OrderId = id,
-                    OrderDay = Order.OrderDay,
-                    Transport = Order.Transport,
-                    Payment = Order.Payment,
-                    Address = Order.Address,
-                    Status = Order.Status,
-                    PhotoPath = _Photo.PhotoPath,
-                    ProductName = Product.ProductName,
-                    Quantity = item.Quantity,
-                    UnitPrice = Product.UnitPrice,
-                    Total = Decimal.Round(item.Quantity * Product.UnitPrice)
-
-                };
-                OrderDetailList.Add(model);
+                    Text = s,
+                    Value = s
+                });
             }
-            ViewData.Add("list", OrderDetailList);
-            ViewData.Add("count", OrderDetailList.Count());
-            return View();
+            ViewBag.status = items;
+            
+            return View(model);
+
         }
 
         [Route("OrderDetail/{id}")]
         [HttpPost]
         public ActionResult AdminOrderDetail(AOrderDetailModel model)
         {
-            var serviceOD = new OrderDetailsService();
+           var serviceOD = new OrderDetailsService();
             var serviceOR = new OrderService();
-            var servicePro = new ProductsService();
+            /*
             var order = new Order()
             {
                 OrderID = model.OrderId,
@@ -86,10 +83,10 @@ namespace WebApplication.Controllers.Admin
                 Quantity = model.Quantity
             };
             serviceOD.Update(orderdetail);
-            
+           */
             return View();
         }
 
-
+    
     }
 }
