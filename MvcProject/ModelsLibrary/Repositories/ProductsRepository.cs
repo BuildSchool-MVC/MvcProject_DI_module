@@ -135,7 +135,7 @@ namespace ModelsLibrary.Repositories
         public Products FindIdByName(string ProductName, string Size, string Color)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "select ProductID from Products where ProductName = @ProductName and Size = @Size and Color = @Color";
+            var sql = "select * from Products where ProductName = @ProductName and Size = @Size and Color = @Color";
             var result = connection.QueryMultiple(sql, new { ProductName, Size, Color });
             var products = result.Read<Products>().ToList().First();
             return products;
@@ -186,13 +186,11 @@ namespace ModelsLibrary.Repositories
                 });
         }
 
-        public Products FindByName2(string ProductName)
+        public int GetNewProductID()
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "SELECT ProductID FROM Products WHERE ProductName = @ProductName";
-            var result = connection.QueryMultiple(sql, new { ProductName });
-            var products = result.Read<Products>().Single();
-            return products;
+            var result = connection.QueryMultiple("select TOP 1 ProductID from Products order by ProductID desc");
+            return result.Read<Products>().ToList().First().ProductID;
         }
     }
 }

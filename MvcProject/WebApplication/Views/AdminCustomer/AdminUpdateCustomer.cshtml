@@ -8,7 +8,7 @@
     <div class="container-fluid">
         @using (Html.BeginForm())
     {
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("DeleteCustomer","AdminCustomer", new { CustomerID = ViewBag.CustomerID })'">
+        <button type="button" id="del" class="btn btn-primary"  >
             <i class="far fa-times-circle"></i>
             刪除客戶
         </button>
@@ -77,6 +77,17 @@
     document.getElementById("check").onclick = function () {
         if (window.confirm('您確定要修改嗎？') == true) {
             return true;
+        } else {
+            return false;
+        }
+    }
+    document.getElementById("del").onclick = function () {
+        if (window.confirm('您確定要刪除嗎？') == true) {
+            @*onclick = "location.href='@Url.Action("DeleteCustomer","AdminCustomer", new { CustomerID = ViewBag.CustomerID })'"*@
+            $.ajax({
+                url:'@Url.Action("DeleteCustomer", "AdminCustomer", new { CustomerID = ViewBag.CustomerID })'
+            });
+            window.location.href = '@Url.Action("AdminCustomer", "AdminCustomer")';
         } else {
             return false;
         }

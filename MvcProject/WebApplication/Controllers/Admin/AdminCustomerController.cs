@@ -15,10 +15,30 @@ namespace WebApplication.Controllers.Admin
     {
         [Route("customer")]
         // GET: Customer
-        public ActionResult AdminCustomer()
+        public ActionResult AdminCustomer(string sort)
         {
             CustomerService CustomerService = new CustomerService();
             var query = CustomerService.GetAll();
+            if (sort != null)
+            {
+                if (sort == "Id")
+                {
+                    query=query.OrderBy((x) => x.CustomerID).ToList();
+                }
+                if (sort == "Name")
+                {
+                    query=query.OrderBy((x) => x.CustomerName).ToList();
+                }
+                if (sort == "Account")
+                {
+                    query=query.OrderBy((x) => x.Account).ToList();
+                }
+                if (sort == "Birthday")
+                {
+                    query=query.OrderBy((x) => x.Birthday).ToList();
+                }
+
+            }
             ViewData.Add("count", query.Count());
             ViewData.Add("list", query);
             return View();

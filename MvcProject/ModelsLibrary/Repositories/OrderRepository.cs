@@ -78,7 +78,7 @@ namespace ModelsLibrary.Repositories
             return result.Single();         
         }
 
-        public int FindIDByCustomerID(int customerID) //用id查詢
+        public int FindLastOrderByCustomerID(int customerID) //用id查詢
         {
             SqlConnection connection = new SqlConnection(sqlstr);
             var sql = @"SELECT TOP 1 * FROM [Order] 

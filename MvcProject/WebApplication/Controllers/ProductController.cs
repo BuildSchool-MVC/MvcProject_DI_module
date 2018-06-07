@@ -38,25 +38,29 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             var user = customerservice.FindByCustomerAccount(ticket.Name);
             var product = productservice.FindIdByName(ProductList.ProductName, ProductList.Size, ProductList.Color);
-            var stock = productservice.CheckStock(product.ProductID, ProductList.Num);
-
-            if (ShoppingcartDetailsService.FindByCustomer(user.CustomerID).Any((x) => x.ProductID == product.ProductID))
+            //var stock = productservice.CheckStock(product.ProductID, ProductList.Num);
+            if (product.Downtime != null||product.UnitsInStock==0)
             {
-                TempData.Add("HasItem",true);
+                TempData.Add("NoItem", true);
                 return RedirectToAction("Product");
             }
 
+                if (ShoppingcartDetailsService.FindByCustomer(user.CustomerID).Any((x) => x.ProductID == product.ProductID))
+                {
+                    TempData.Add("HasItem", true);
+                    return RedirectToAction("Product");
+                }
 
-            ShoppingcartDetailsService.Create(new ShoppingcartDetails()
-            {
-                CustomerID = user.CustomerID,
-                ProductID = product.ProductID,
-                Quantity = ProductList.Num
-            });
+                ShoppingcartDetailsService.Create(new ShoppingcartDetails()
+                {
+                    CustomerID = user.CustomerID,
+                    ProductID = product.ProductID,
+                    Quantity = ProductList.Num
+                });
 
-            TempData.Add("HasItem", false);
-
-            return RedirectToAction("Product");
+                TempData.Add("HasItem", false);
+                return RedirectToAction("Product");
+            
         }
     }
 }

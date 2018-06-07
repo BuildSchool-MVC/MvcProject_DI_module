@@ -36,6 +36,12 @@ namespace ModelsLibrary.Services
             return repository.FindById(orderId);
         }
 
+        public int FindLastOrderByCustomerID(int customerID)
+        {
+            var repository = new OrderRepository();
+            return repository.FindLastOrderByCustomerID(customerID);
+        }
+
         public IEnumerable<Order> FindCustomerOrderByCustomerID(int customerID)
         {
             var repository = new OrderRepository();

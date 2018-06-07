@@ -64,5 +64,29 @@ namespace ModelsLibrary.Services
             }
             return real_result;
         }
+
+        public IEnumerable<Products> ClassifyByCategoryNameAndNullDownTime(string name)
+        {
+            var Product_repository = new ProductsRepository();
+            var list = Product_repository.GetAll();
+
+            var Category_repository = new CategoriesRepository();
+            var model = Category_repository.GetByName(name);
+
+            var result = new List<Products>();
+            var real_result = new List<Products>();
+
+            result = list.Where((x) => x.CategoryID == model.CategoryID).ToList();
+            result = result.Where((x) => x.Downtime == null).ToList();
+
+            foreach (var items in result)
+            {
+                if (real_result.Any((x) => x.ProductName == items.ProductName) == false)
+                {
+                    real_result.Add(items);
+                }
+            }
+            return real_result;
+        }
     }
 }

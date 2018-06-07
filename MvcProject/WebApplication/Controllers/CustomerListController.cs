@@ -39,6 +39,12 @@ namespace WebApplication.Controllers
             {
                 var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
+                if(ticket == null)
+                {
+                    ViewBag.Count = 0;
+                    return PartialView();
+                }
+
                 var customer_service = new CustomerService();
                 var shopping_service = new ShoppingcartDetailsService();
 

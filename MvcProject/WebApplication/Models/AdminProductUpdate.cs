@@ -44,7 +44,5 @@ namespace WebApplication.Models
         [Display(Name = "產品敘述")]
         [Required]
         public string ProductDetails { get; set; }
-
-        public List<ProductPhoto> ProductPhotoes { get; set; }
     }
 }

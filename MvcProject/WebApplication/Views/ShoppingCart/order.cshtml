@@ -1,4 +1,4 @@
-﻿
+﻿@model int
 @{
     ViewBag.Title = "order";
     Layout = "~/Views/Shared/Main.cshtml";
@@ -27,7 +27,7 @@
 
         </div>
         <div class="col">
-            <p class="lead">已完成訂單，訂單編號為<span>xxxxxxxx</span></p>
+            <p class="lead">已完成訂單，訂單編號為<span>@Model</span></p>
             <p class="lead">非常感謝您購買BING SHOP的商品</p>
             <p class="lead">如果想查詢訂單，可以至<a href="/Member/SearchMember">會員中心</a>查詢訂單狀態。</p>
             <br />

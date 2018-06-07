@@ -15,13 +15,18 @@
                 <div class="table-data__tool">
                     <div class="table-data__tool-left">
                         <div class="rs-select2--light rs-select2--md">
-                            <select class="js-select2" name="property">
-                                <option selected="selected">排序方式</option>
-                                <option value="">客戶ID</option>
-                                <option value="">客戶姓名</option>
-                                <option value="">帳號</option>
-                                <option value="">生日</option>
-                            </select>
+                            <div class="dropdown mr-3">
+                                <button class="btn btghn-lit dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    排序方式
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href=@Url.Action("customer","Admin",new { sort="Id"})>客戶ID</a>
+                                    <a class="dropdown-item" href=@Url.Action("customer","Admin",new { sort="Name"})>客戶姓名</a>
+                                    <a class="dropdown-item" href=@Url.Action("customer","Admin",new { sort="Account"})>帳號</a>
+                                    <a class="dropdown-item" href=@Url.Action("customer","Admin",new { sort="Birthday"})>生日</a>
+                                </div>
+                            </div>
                             <div class="dropDownSelect2"></div>
                         </div>
                     </div>
@@ -30,7 +35,6 @@
                             <i class="fas fa-plus"></i>
                             &nbsp;新增客戶
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -73,7 +77,6 @@
                                 if (count == 0) { break; }
                             }
                         </tbody>
-
                     </table>
                 </div>
             </div>

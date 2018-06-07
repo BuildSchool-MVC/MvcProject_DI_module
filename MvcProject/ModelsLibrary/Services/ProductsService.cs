@@ -57,14 +57,16 @@ namespace ModelsLibrary.Services
 
         public ProductList FindByName(string ProductName)
         {
+            string[] sizes = new[] { "XS", "S", "M", "L", "XL", "XXL" };
             ProductPhotoRepository productPhotoRepository = new ProductPhotoRepository();
             var items = repository.FindByName(ProductName).ToList();
+            items = items.Where((x) => x.Downtime == null).ToList();
             ProductList productList = new ProductList()
             {
                 ProductName = items[0].ProductName,
                 UnitPrice = decimal.Round(items[0].UnitPrice),
                 ProductDetails = items[0].ProductDetails,
-                Size = items.Select(x => x.Size).Distinct().ToList(),
+                Size = items.Select(x => x.Size).Distinct().OrderBy(x=>sizes.Contains(x)?"0":"1").ThenBy(x=>Array.IndexOf(sizes,x)).ThenBy(x=>x).ToList(),
                 Color = items.Select(x => x.Color).Distinct().ToList(),
             };
             productList.PhotoPath = new List<string>();
@@ -121,9 +123,9 @@ namespace ModelsLibrary.Services
             return repository.GetNewProducts();
         }
 
-        public Products FindByName2(string ProductName)
+        public int GetNewProductID()
         {
-            return repository.FindByName2(ProductName);
+            return repository.GetNewProductID();
         }
     }
 }
