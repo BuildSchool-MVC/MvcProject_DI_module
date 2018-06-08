@@ -38,7 +38,7 @@ namespace WebApplication.Controllers.Admin
 
             return View();
         }
-        [Route("Login")]
+        [Route("")]
         // GET: Home
         public ActionResult AdminHomeLogin()
         {
@@ -53,7 +53,7 @@ namespace WebApplication.Controllers.Admin
             return View();
         }
 
-        [Route("Login")]
+        [Route("")]
         [HttpPost]
         public ActionResult AdminHomeLogin(string Account, string Password)
         {
