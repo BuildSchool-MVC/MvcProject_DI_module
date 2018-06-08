@@ -120,6 +120,17 @@ namespace ModelsLibrary.Repositories
                 });
 
         }
+
+        public IEnumerable<Order> ChoiceStatus(string Status) //查詢訂單狀態
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"SELECT *
+                        FROM [Order]
+                        WHERE Status = @Status";
+            var result = connection.Query<Order>(sql, new { Status });
+            return result;
+
+        }
     }
 }
 

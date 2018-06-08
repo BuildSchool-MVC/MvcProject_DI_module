@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AdminOrder";
+    Layout = "~/Views/Shared/AdminMain.cshtml";
+    var list = ViewData["list"] as List<ModelsLibrary.DtO_Models.Order>;
+    int count = Convert.ToInt32(ViewData["count"]);
+    int k = 0;
+}
+
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3 class="title-5 m-b-35">訂單管理</h3>
+                <div class="table-data__tool">
+                    <div class="table-data__tool-left">
+                        <div class="rs-select2--light rs-select2--md">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                訂單排序
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "OrderID" })>訂單ID</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "OrderDay" })>訂單日期</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "CustomerID" })>客戶ID</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Transport" })>運送方式</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Payment" })>付款方式</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Finish" })>訂單完成結案</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Working" })>訂單處理中</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "transport" })>訂單出貨中</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Ready" })>訂單已到貨</a>
+                                <a class="dropdown-item" href=@Url.Action("Order", "Admin", new { Sorting = "Delete" })>訂單申請退貨</a>
+                            </div>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                    </div>
+                    <div class="table-data__tool-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <div class="table-responsive table--no-card m-b-30">
+                    <table class="table table-borderless table-striped table-earning">
+                        <thead>
+                            <tr>
+                                <th class="text-center">更改資料</th>
+                                <th class="text-center">訂單ID</th>
+                                <th>訂單日期</th>
+                                <th class="text-center">客戶ID</th>
+                                <th class="text-center">運算方式</th>
+                                <th class="text-center">付款方式</th>
+                                <th class="text-center">狀態</th>
+                                <th class="text-center">更新日期</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @while (true)
+                            {
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.RouteUrl(new {Controller="AdminOrder",Action="AdminOrderDetail",id = list[k].OrderID })'">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">@list[k].OrderID</td>
+                                    <td>@list[k].OrderDay</td>
+                                    <td class="text-center">@list[k].CustomerID</td>
+                                    <td class="text-center">@list[k].Transport</td>
+                                    <td class="text-center">@list[k].Payment</td>
+                                    <td class="text-center">@list[k].Status</td>
+                                    <td>@list[k].StatusUpdateDay</td>
+
+                                </tr>
+
+                                k = k + 1;
+                                count = count - 1;
+                                if (count == 0) { break; }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
