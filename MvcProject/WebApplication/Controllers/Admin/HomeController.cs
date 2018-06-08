@@ -15,6 +15,11 @@ namespace WebApplication.Controllers.Admin
         // GET: Home
         public ActionResult AdminHome()
         {
+            if ((bool?)Session["AdminLogin"] == null)
+            {
+                return RedirectToAction("AdminHomeLogin");
+            }
+
             var serviceCus = new CustomerService();
             var serviceOd = new OrderDetailsService();
             var serviceOr = new OrderService();
