@@ -15,6 +15,11 @@ namespace WebApplication.Controllers.Admin
         // GET: Home
         public ActionResult AdminHome()
         {
+            if ((bool?)Session["AdminLogin"] == null)
+            {
+                return RedirectToAction("AdminHomeLogin");
+            }
+
             var serviceCus = new CustomerService();
             var serviceOd = new OrderDetailsService();
             var serviceOr = new OrderService();
@@ -38,7 +43,7 @@ namespace WebApplication.Controllers.Admin
 
             return View();
         }
-        [Route("Login")]
+        [Route("")]
         // GET: Home
         public ActionResult AdminHomeLogin()
         {
@@ -53,7 +58,7 @@ namespace WebApplication.Controllers.Admin
             return View();
         }
 
-        [Route("Login")]
+        [Route("")]
         [HttpPost]
         public ActionResult AdminHomeLogin(string Account, string Password)
         {
