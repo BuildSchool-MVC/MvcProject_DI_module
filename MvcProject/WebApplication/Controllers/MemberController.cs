@@ -27,16 +27,16 @@ namespace WebApplication.Controllers
             }
 
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            
+
             var customer = service.FindByCustomerAccount(ticket.Name);
             ViewBag.User = customer.Account;
             ViewBag.Name = customer.CustomerName;
             ViewBag.Email = customer.Email;
             ViewBag.Phone = customer.Phone;
             ViewBag.Cash = customer.ShoppingCash;
-            ViewBag.birthday = DateTime.Parse(customer.Birthday.ToString()).ToShortDateString();
+            ViewBag.birthday = customer.Birthday.ToString("yyyy-MM-dd");
 
-            var orders=orderservice.FindCustomerOrderByCustomerID(customer.CustomerID);
+            var orders = orderservice.FindCustomerOrderByCustomerID(customer.CustomerID);
 
             return View(orders);
         }
@@ -90,7 +90,7 @@ namespace WebApplication.Controllers
         public ActionResult Cancelorder(int orderid)
         {
             var order_service = new OrderService();
-            var status=order_service.FindById(orderid).Status;
+            var status = order_service.FindById(orderid).Status;
             if (status == "處理中")
             {
                 order_service.UpdateStatus(new Order { OrderID = orderid, Status = "申請取消" });
@@ -120,14 +120,16 @@ namespace WebApplication.Controllers
 
             var customer = service.FindByCustomerAccount(ticket.Name);
             ViewBag.User = customer.Account;
-            
-            ViewBag.birthday = DateTime.Parse(customer.Birthday.ToString()).ToShortDateString();
+
+            if (customer.Birthday != null)
+                ViewBag.birthday = DateTime.Parse(customer.Birthday.ToString()).ToShortDateString();
 
             var model = new UpdateMemberModel()
             {
                 CustomerName = customer.CustomerName,
                 Email = customer.Email,
-                Phone = customer.Phone
+                Phone = customer.Phone,
+                Birthday = customer.Birthday
             };
 
             return View(model);
@@ -148,15 +150,16 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer = service.FindByCustomerAccount(ticket.Name);
-                var customermodel = new Customer()
-                {
-                    CustomerID = customer.CustomerID,
-                    CustomerName = model.CustomerName,
-                    Phone = model.Phone,
-                    Email = model.Email,
-                };
-                service.Update(customermodel);
-                return RedirectToAction("SearchMember", "Member"); 
+            var customermodel = new Customer()
+            {
+                CustomerID = customer.CustomerID,
+                CustomerName = model.CustomerName,
+                Phone = model.Phone,
+                Email = model.Email,
+                Birthday = model.Birthday
+            };
+            service.Update(customermodel);
+            return RedirectToAction("SearchMember", "Member");
         }
 
         [Route("UpdatePassword")]

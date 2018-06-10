@@ -26,7 +26,9 @@ namespace WebApplication.Models
 
         public string Email { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        [Display(Name = "生日")]
+        [Required]
+        public DateTime Birthday { get; set; }
 
 
         [Display(Name = "電話")]

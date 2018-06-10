@@ -83,8 +83,8 @@ namespace UnitTest.Repositories
         public void FindIDByCustomerID()
         {
             var repository = new OrderRepository();
-            var order = repository.FindIDByCustomerID(1);
-            Assert.IsTrue(order > 0);
+            var order = repository.FindCustomerOrderByCustomerID(1);
+            Assert.IsTrue(order.Count() > 0);
         }
     }
 }
