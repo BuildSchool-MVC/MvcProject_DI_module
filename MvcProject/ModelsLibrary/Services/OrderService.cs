@@ -102,5 +102,11 @@ namespace ModelsLibrary.Services
             StatusList.Add("已出貨");
             return StatusList;
         }
+
+        public IEnumerable<Order> ChoiceStatus(string Status)
+        {
+            var repository = new OrderRepository();
+            return repository.ChoiceStatus(Status);
+        }
     }
 }

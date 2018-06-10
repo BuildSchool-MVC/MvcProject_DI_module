@@ -1,7 +1,6 @@
 ﻿using ModelsLibrary.DtO_Models;
 using System;
 using System.Collections.Generic;
-
 namespace WebApplication.Models
 {
     public class AOrderDetailModel
