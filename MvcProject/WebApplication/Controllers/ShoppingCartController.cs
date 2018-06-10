@@ -116,8 +116,16 @@ namespace WebApplication.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
             var customer_service = new CustomerService();
+            var shopping_service = new ShoppingcartDetailsService();
+            var product_service = new ProductsService();
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
+            var items = shopping_service.FindByCustomer(user.CustomerID);
+
+            foreach(var item in items)
+            {
+                ViewBag.Total = product_service.FindByID(item.ProductID).UnitPrice * item.Quantity;
+            }
 
             return View();
         }

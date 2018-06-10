@@ -60,8 +60,12 @@ namespace WebApplication.Controllers
             var order_service = new OrderService();
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
-
             var items = orderdetail_service.FindById(orderid);
+
+            if (user.CustomerID != order_service.FindById(orderid).CustomerID)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             var result = new List<SearchOrderdetailModel>();
 
