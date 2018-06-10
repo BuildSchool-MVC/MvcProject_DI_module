@@ -121,11 +121,14 @@ namespace WebApplication.Controllers
 
             var user = customer_service.FindByCustomerAccount(ticket.Name);
             var items = shopping_service.FindByCustomer(user.CustomerID);
+            var result = new List<decimal>();
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
-                ViewBag.Total = product_service.FindByID(item.ProductID).UnitPrice * item.Quantity;
+                result.Add(product_service.FindByID(item.ProductID).UnitPrice * item.Quantity);
             }
+
+            ViewBag.Total = result.Sum();
 
             return View();
         }
