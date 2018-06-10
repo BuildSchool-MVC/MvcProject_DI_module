@@ -8,6 +8,7 @@ namespace ModelsLibrary.ViewModels
 {
     public class AdminOrderModel
     {
+        public int ProductID { get; set; }
         public string ProductName { get; set; }
         public string PhotoPath { get; set; }
         public int Quantity { get; set; }

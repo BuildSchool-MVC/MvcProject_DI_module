@@ -156,7 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\AdminCustomerController.cs" />
     <Compile Include="Controllers\Admin\HomeController.cs" />
-    <Compile Include="Controllers\Admin\OrderController.cs" />
+    <Compile Include="Controllers\Admin\AdminOrderController.cs" />
     <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
@@ -361,8 +361,8 @@
     <Content Include="Views\Home\AdminHome.cshtml" />
     <Content Include="Views\AdminProduct\AdminProduct.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductAdd.cshtml" />
-    <Content Include="Views\Order\AdminOrderDetail.cshtml" />
-    <Content Include="Views\Order\AdminOrder.cshtml" />
+    <Content Include="Views\AdminOrder\AdminOrderDetail.cshtml" />
+    <Content Include="Views\AdminOrder\AdminOrder.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductUpdate.cshtml" />
     <Content Include="Views\Home\AdminHomeLogin.cshtml" />
     <Content Include="Views\AdminCustomer\AdminCustomer.cshtml" />
