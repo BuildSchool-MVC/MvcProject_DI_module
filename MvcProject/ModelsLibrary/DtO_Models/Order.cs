@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.DtO_Models
 {
-    public class Order : IModel
+    public class Order
     {
         public int OrderID { get; set; }
         public DateTime OrderDay { get; set; }

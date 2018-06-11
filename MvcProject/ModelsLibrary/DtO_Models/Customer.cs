@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.DtO_Models
 {
-    public class Customer : IModel
+    public class Customer
     {
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
