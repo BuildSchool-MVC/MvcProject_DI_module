@@ -133,10 +133,9 @@ namespace WebApplication.Controllers
         {//redirect_uri=重導向 HttpUtility.UrlEncode(重新編碼) scope
             var redirectUrl = "https://accounts.google.com/o/oauth2/v2/auth?"
                 + "client_id=" + ConfigurationManager.AppSettings["google:key"]
-                + "&redirect_uri=" + HttpUtility.UrlEncode("http://bingshop.azurewebsites.net/Log/google")
+                + "&redirect_uri=" + HttpUtility.UrlEncode("https://bingshop.azurewebsites.net/Log/google")
                 + "&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
                 + "&response_type=code";
-
             return Redirect(redirectUrl);
         }
 
@@ -149,7 +148,7 @@ namespace WebApplication.Controllers
             var tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token";
             var payload = $"client_id={ConfigurationManager.AppSettings["google:key"]}"
                 + $"&client_secret={ConfigurationManager.AppSettings["google:secret"]}"
-                + $"&redirect_uri={HttpUtility.UrlEncode("http://bingshop.azurewebsites.net/Log/google")}"
+                + $"&redirect_uri={HttpUtility.UrlEncode("https://bingshop.azurewebsites.net/Log/google")}"
                 + $"&code={code}"
                 + $"&grant_type=authorization_code";
 
