@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using ModelsLibrary.Services;
 using ModelsLibrary.DtO_Models;
 using System.Web.Security;
-using WebApplication.Models;
 
 namespace WebApplication.Controllers.Admin
 {
@@ -17,25 +16,26 @@ namespace WebApplication.Controllers.Admin
         // GET: Customer
         public ActionResult AdminCustomer(string sort)
         {
-            CustomerService CustomerService = new CustomerService();
-            var query = CustomerService.GetAll();
+            CustomerService CustomerService = new CustomerService();         
+            var query = CustomerService.GetAllCustomerTotal();
+
             if (sort != null)
             {
                 if (sort == "Id")
                 {
                     query=query.OrderBy((x) => x.CustomerID).ToList();
                 }
-                if (sort == "Name")
-                {
-                    query=query.OrderBy((x) => x.CustomerName).ToList();
-                }
                 if (sort == "Account")
                 {
                     query=query.OrderBy((x) => x.Account).ToList();
                 }
-                if (sort == "Birthday")
+                if (sort == "Cash")
                 {
-                    query=query.OrderBy((x) => x.Birthday).ToList();
+                    query = query.OrderByDescending((x) => x.ShoppingCash).ToList();
+                }
+                if (sort == "Total")
+                {
+                    query = query.OrderByDescending((x) => x.Total).ToList();
                 }
 
             }

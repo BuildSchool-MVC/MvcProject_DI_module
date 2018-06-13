@@ -4,13 +4,9 @@
     Layout = "~/Views/Shared/Main.cshtml";
 
 }
-<br />
-<br />
-<br />
-<br />
-<br />
+
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-2">
         </div>
         <div class="col-6">
@@ -23,12 +19,12 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" style="text-align:center">訂單編號</th>
-                                <th scope="col" style="text-align:center">訂購日期</th>
-                                <th scope="col" style="text-align:center">狀態</th>
-                                <th scope="col" style="text-align:center">付款方式</th>
-                                <th scope="col" style="text-align:center">寄送方式</th>
-                                <th scope="col" style="text-align:center">取消訂單</th>
+                                <th scope="col">訂單編號</th>
+                                <th scope="col">訂購日期</th>
+                                <th scope="col">狀態</th>
+                                <th scope="col">付款方式</th>
+                                <th scope="col">寄送方式</th>
+                                <th scope="col">取消訂單</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,13 +59,13 @@
                     @if (Model.Count() == 0)
                     {
                     <div class="text-center">
-                        <span style="color:dimgray">目前沒有訂單歷史紀錄</span>
+                        <span >目前沒有訂單歷史紀錄</span>
                     </div>
                     }
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row mb-5">
+                <div class="col ">
                     <h4>個人資料</h4>
                     <hr>
                     <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
@@ -88,7 +84,7 @@
                     <label for="inputPhone" class="col-sm-2 col-form-label">NT$@Decimal.Round(ViewBag.Cash)</label>
                     <br />
                     <br />
-                    <a class="btn btn-dark" style="width: 180px" href="/Member/UpdateMember">修改個人資料及密碼</a>
+                    <a class="btn btn-dark" id="UpdateMember" href="/Member/UpdateMember">修改個人資料及密碼</a>
                 </div>
             </div>
         </div>

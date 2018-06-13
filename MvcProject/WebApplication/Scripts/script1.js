@@ -62,13 +62,14 @@ $(function(){
 				}
 			});
 
-			btnPrev.click(function(){
-				if(!(selfUl.is(':animated'))){
+            btnPrev.click(function () {        
+                if (!(selfUl.is(':animated'))) {
 					var setActive = pagination.find('.pnActive'),
 					pnIndex = pnPoint.index(setActive),
 					pnNum = pnIndex+1;
 
-					if(1 == pnNum){
+                    if (1 == pnNum) {
+                        console.log("12");
 						pnLast.click();
 					} else {
 						setActive.prev('a').click();
@@ -76,5 +77,12 @@ $(function(){
 				}
 			});
 		}
-	});
+    });
+
+    $(".menu-toggle").on("click", function (e) { 
+        e.preventDefault();
+        $(this).siblings("ul").slideToggle();
+        $(this).find("i").toggleClass("fa-caret-down")
+            .toggleClass("fa-caret-up");
+    });
 });

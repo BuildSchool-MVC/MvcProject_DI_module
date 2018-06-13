@@ -9,14 +9,8 @@
 {
     @Html.AntiForgeryToken()
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="container">
-        <div style="text-align:center;">
+    <div class="container mt-5">
+        <div>
             <button type="button" class="btn btn-dark btn-lg">個人資料修改</button>
             <a href="/Member/UpdatePassword" class="btn btn-light btn-lg">密碼修改</a>
         </div>
@@ -24,9 +18,7 @@
             <div class="col-3"></div>
             <div class="col-6">
                 <br />
-                <br>
-                <br>
-                <br>
+
                 <h3>個人資料修改</h3>
                 <hr>
                 <div class="form-group row">
@@ -58,9 +50,7 @@
                         @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
                     </div>
                 </div>
-                <div style="text-align:center;">
-                    <button type="submit" class="btn btn-dark" style="width: 100px">確定修改</button>
-                </div>
+                    <button type="submit" class="btn btn-dark mb-5" style="width: 100px">確定修改</button>
             </div>
         </div>
     </div>

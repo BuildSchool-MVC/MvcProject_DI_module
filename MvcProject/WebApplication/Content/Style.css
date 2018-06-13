@@ -1,0 +1,335 @@
+﻿/*Main 主板*/
+.menu-toggle {
+    display:none;
+    text-decoration: none;
+}
+.navbar {
+    padding-right: 10%;
+    position: relative;
+}
+.menu {
+    display: none;
+}
+
+.navbar .logo {
+    position: absolute;
+    top: 2%;
+    left: 0;
+}
+
+    .navbar .collapse img {
+        width: 20px;
+    }
+
+.baseFooter {
+    padding:5px 5px;
+    background-color: #f8f9fa;
+}
+
+.footer_i {
+    font-size: 3em;
+    color: rgb(24, 23, 23);
+}
+
+.baseFooter p {
+    text-align: center;
+}
+/*Main 主板*/
+/*Index*/
+.slidePanel img {
+    width: 250px;
+    height: 250px;
+}
+/*Index*/
+/*Login*/
+/*Signup*/
+.form-group label {
+    text-align: right;
+}
+
+.btndiv {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+    .btndiv .btn {
+        width: 200px;
+    }
+
+.login {
+    text-align: center;
+}
+
+.form-group div {
+    text-align: center;
+}
+/*Login*/
+/*Signup*/
+.container div {
+    text-align: center;
+}
+
+#joinMember {
+    width: 200px;
+}
+/*Product*/
+.product {
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
+
+.product img {
+     width: 200px;
+     height: 200px;
+     transform: scale(1);
+     transition: all 1s ease 0s;
+}
+
+.product a:hover img {
+    transform: scale(1.4);
+    transition: all 1s ease 0s;
+}
+.product p {
+    bottom: 0;
+}
+
+.btnFollow {
+    max-width: 100%;
+}
+
+#chgicon {
+    max-width: 100%;
+}
+/*Product*/
+#addcart {
+    width: 400px;
+}
+/*Product*/
+/*Member*/
+#UpdateMember {
+    width: 180px;
+}
+/*Member*/
+.table th {
+    text-align: center;
+}
+
+/* ------------------------------
+   DESIGN/LAYOUT ELEMENTS
+------------------------------ */
+#wrapper {
+    margin: 0 auto;
+    padding: 25px 0;
+    text-align: left;
+}
+
+/* ------------------------------
+   CHAPTER ELEMENTS
+------------------------------ */
+.slidePanel {
+    margin: 0 auto;
+    width: 1100px;
+    height: 300px;
+    text-align: left;
+    position: relative;
+}
+
+.slideWrap {
+    width: 1100px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slidePanel ul {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.slidePanel2 .slidePanel ul li {
+    padding: 0 10px;
+    width: 280px;
+    text-align: center;
+    float: left;
+    display: block;
+    box-sizing: border-box;
+}
+
+.slidePanel ul li {
+    padding: 0 10px;
+    width: 280px;
+    text-align: center;
+    float: left;
+    display: block;
+    box-sizing: border-box;
+}
+
+    .slidePanel ul li p {
+        padding: 5px 0;
+        font-size: 12px;
+    }
+
+/* SideNavi
+------------------------- */
+.slidePanel .btnPrev,
+.slidePanel .btnNext {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+}
+
+.slidePanel .btnPrev {
+    top: 100px;
+    left: -40px;
+    background: transparent url("https://github.com/BuildSchool-MVC/Bing-Shop/blob/master/Image/btnPrev2.png?raw=true") no-repeat top left;
+}
+
+.slidePanel .btnNext {
+    top: 100px;
+    right: -40px;
+    background: transparent url("https://github.com/BuildSchool-MVC/Bing-Shop/blob/master/Image/btnNext2.png?raw=true") no-repeat top left;
+}
+
+    .slidePanel .btnPrev:hover,
+    .slidePanel .btnNext:hover {
+        opacity: 0.6;
+    }
+
+
+/* ------------------------------
+   CLEARFIX ELEMENTS
+------------------------------ */
+.slidePanel ul:before,
+.slidePanel ul:after {
+    content: " ";
+    display: table;
+}
+
+.slidePanel ul:after {
+    clear: both;
+}
+
+.slidePanel ul {
+    *zoom: 1;
+}
+
+@media screen and (max-width:1140px){
+    .navbar {
+        padding-right: 0;
+        position: relative;
+    }
+
+    .slidePanel img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .slidePanel {
+        width: 800px;
+    }
+
+    .slideWrap {
+        width: 800px;
+    }
+
+    .slidePanel .btnNext {
+        right: -80px;
+    }
+    .product {
+        width: 170px;
+        height: 170px;
+    }
+   .product img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width:578px) {   
+    .slidePanel .btnPrev {
+        top: 40px;
+        left: -25px;
+    }
+    .slidePanel .btnNext {
+        top: 40px;
+        right: -25px;
+    }
+    .slideWrap {
+        width: 500px;
+        height:150px;
+     }
+    .slidePanel {
+        width: 500px;
+        height: 150px;
+    }
+    .slidePanel ul li {
+       width:130px;
+    }
+    .slidePanel2 .slidePanel ul li {
+        width: 130px;
+    }
+    h3 {
+        font-size:18px;
+    }
+    .product {
+        width: 120px;
+        height: 120px;
+    }
+    .slidePanel img {
+        width: 100px;
+        height: 100px;
+    }
+    .footer__newsletter  {
+        display: none;
+    }
+    .footer_i {
+        display: none;
+    }
+    .footer__contact {
+       margin-left:200px;
+    }
+    .menu-toggle {
+        display:block;
+        margin-left:250px
+    }
+}
+@media screen and (max-width:376px) {
+    .slidePanel .btnPrev {
+        left: -45px;
+    }
+
+    .slidePanel .btnNext {
+        right: -50px;
+    }
+    .slideWrap {
+        width: 280px;
+        height: 120px;
+    }
+
+    .slidePanel {
+        width: 280px;
+        height: 120px;
+    }
+    .slidePanel img {
+        width: 80px;
+        height: 80px;
+   }
+   .slidePanel ul li {
+            width: 100px;
+    }
+    .slidePanel2 .slidePanel ul li {
+        width: 100px;
+    }
+    .footer__contact {
+        
+        margin-left: 100px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+}

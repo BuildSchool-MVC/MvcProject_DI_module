@@ -3,14 +3,8 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="container">
-    <div style="text-align:center;">
+<div class="container mt-5">
+    <div>
         <button type="button" class="btn btn-dark btn-lg">會員登入</button>
         <a class="btn btn-light btn-lg" href="/Log/Signup">註冊會員</a>
     </div>
@@ -30,17 +24,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-3 col-form-label" style="text-align: right;">會員密碼：</label>
+                    <label for="inputPassword" class="col-sm-3 col-form-label">會員密碼：</label>
                     <div class="col-sm-9">
                         <input name="Password" type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                 </div>
             </div>
-            <div class="col-3"></div>
         </div>
         <br>
-        <div style="text-align:center;">
-            <button type="submit" class="btn btn-dark" style="width: 100px">登入</button>
+        <div class="btndiv">
+            <button type="submit" class="btn btn-dark">登入</button>
         </div>
     }
 </div>

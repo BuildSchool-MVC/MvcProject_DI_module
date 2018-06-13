@@ -75,6 +75,7 @@
     <Compile Include="Services\ProductPhotoService.cs" />
     <Compile Include="Services\ProductsService.cs" />
     <Compile Include="Services\ShoppingcartDetailsService.cs" />
+    <Compile Include="ViewModels\AdminCustomer.cs" />
     <Compile Include="ViewModels\AdminOrderModel.cs" />
     <Compile Include="ViewModels\ProductList.cs" />
   </ItemGroup>

@@ -9,6 +9,7 @@ using ModelsLibrary.DtO_Models;
 using Dapper;
 using Abstracts;
 using System.Configuration;
+using ModelsLibrary.ViewModels;
 
 namespace ModelsLibrary.Repositories
 {
@@ -126,6 +127,21 @@ namespace ModelsLibrary.Repositories
             var sql = "SELECT Account FROM Customer WHERE Account=@Account";
             var result = connection.QueryFirstOrDefault<Customer>(sql, new { Account });
             return result;
+        }
+
+        public IEnumerable<AdminCustomer> GetAllCustomerTotal()
+        {
+            SqlConnection connection = new SqlConnection(sqlstr);
+            var sql = @"select c.CustomerID,c.CustomerName,c.Account,c.Birthday,c.Email,c.Phone,c.ShoppingCash,(
+                        select ISNULL(sum(p.UnitPrice*od.Quantity),0) as total
+                        from [Order Details] as od
+                        inner join [Order] as o on o.OrderID=od.OrderID
+                        inner join Products as p on p.ProductID=od.ProductID
+                        where o.CustomerID=c.CustomerID and o.Status not in ('訂單已取消')
+                        ) as total
+                        from Customer as c";
+            return connection.Query<AdminCustomer>(sql);
+             
         }
 
     }

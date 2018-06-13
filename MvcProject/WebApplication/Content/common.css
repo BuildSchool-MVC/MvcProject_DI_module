@@ -167,30 +167,6 @@ body {
 .cfx {*zoom: 1;}
 
 
-.product {
-	display: block;
-	margin: 0 auto;
-	width: 200px;
-	height: 200px;
-	overflow: hidden;
-}
-
-.product img {
-	width: 180px;
-	height: 180px;
-	transform: scale(1);
-	transition: all 1s ease 0s;
-}
-
-.product a:hover img {
-	transform: scale(1.4);
-	transition: all 1s ease 0s;
-}
-
-.product p {
-	bottom: 0;
-}
-
 td {
     text-align: center;
     vertical-align: middle;

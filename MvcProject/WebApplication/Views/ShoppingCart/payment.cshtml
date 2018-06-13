@@ -4,12 +4,8 @@
     Layout = "~/Views/Shared/Main.cshtml";
 }
 <script>console.log(@ViewBag.Test)</script>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="step-container" style="margin-top: 25px; margin-left: 15%;">
+
+<div class="step-container mt-5" style="margin-top: 25px; margin-left: 15%;">
     <div class="step4" style="text-align:center;">
         <span style="font-size:30px;">購物車明細</span>
     </div>
@@ -176,7 +172,7 @@
 
         <div class="row">
             <div class="col">
-                <div class="form-group row">
+                <div class="form-group row" >
                     <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
                     <div class="col-sm-4">
                         <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
@@ -184,7 +180,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-1">
                 <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
             </div>
