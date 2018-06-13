@@ -13,9 +13,7 @@
     var NewProductsName = ViewData["NewProductsName"] as List<ModelsLibrary.DtO_Models.Products>;
 }
 <div class="container-fluid">
-    <div class="row mt-5">
-    </div>
-    <div class="row mt-5">
+    <div class="row">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -78,7 +76,7 @@
                 {
                     <li>
                         <a href="/Product/@NewProductsName[i].ProductName">
-                            <img src=@NewProductsPath[i] width="250" height="280" alt="">
+                            <img src=@NewProductsPath[i]>
                         </a>
                     </li>
                 }
@@ -100,7 +98,6 @@
     </div>
 </div>
 <div class="container">
-
     <div id="wrapper">
         <div class="slidePanel2">
             <div class="slidePanel">
@@ -109,7 +106,7 @@
                     {
                 <li>
                     <a href="/Product/@BestProductsName[i].ProductName">
-                        <img src=@BestProductsPath[i] width="250" height="280" alt="">
+                        <img src=@BestProductsPath[i]>
                     </a>
                 </li>
                     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModelsLibrary.ViewModels;
 
 namespace ModelsLibrary.Services
 {
@@ -76,6 +77,11 @@ namespace ModelsLibrary.Services
         {
             var repository = new CustomerRepository();
             return repository.GetAccount(Account);
+        }
+        public IEnumerable<AdminCustomer> GetAllCustomerTotal()
+        {
+            var repository = new CustomerRepository();
+            return repository.GetAllCustomerTotal();
         }
     }
 }

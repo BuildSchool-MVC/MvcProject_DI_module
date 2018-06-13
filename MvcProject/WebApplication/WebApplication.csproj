@@ -191,6 +191,7 @@
     <Content Include="Content\common.css" />
     <Content Include="Content\admincss\font-face.css" />
     <Content Include="Content\admincss\theme.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="Content\style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

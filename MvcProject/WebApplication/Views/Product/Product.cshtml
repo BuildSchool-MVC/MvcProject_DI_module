@@ -30,25 +30,20 @@ if ((bool)TempData["HasItem"] == false)
     </script>
 }
 }
-<br />
-<br />
-<br />
-<br />
-<br />
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-2">
             @foreach (var item in Model.PhotoPath)
             {
                 <div class="row">
                     <div class="col">
-                        <img class="btnFollow" style="max-width: 100%;" src=@item />
+                        <img class="btnFollow" src=@item />
                     </div>
                 </div>
             }
         </div>
         <div class="col-4">
-            <img id="chgicon" class="btnFollow" style="max-width: 100%;" src=@Model.PhotoPath[0] />
+            <img id="chgicon" class="btnFollow" src=@Model.PhotoPath[0] />
         </div>
         <div class="col-4">
             <h3>@Model.ProductName </h3>
@@ -67,7 +62,7 @@ if ((bool)TempData["HasItem"] == false)
                 <div class="row">
                     <div class="col-4">
                         <h5>尺寸</h5>
-                        <select style="height: 30px;" name="size">
+                        <select name="size">
                             @foreach (var item in @Model.Size)
                             {
                                 <option value="@item" id="size">@item</option>
@@ -76,7 +71,7 @@ if ((bool)TempData["HasItem"] == false)
                     </div>
                     <div class="col-4">
                         <h5>顏色</h5>
-                        <select style="height: 30px;" name="color">
+                        <select name="color">
                             @foreach (var item in @Model.Color)
                             {
                                 <option value="@item" id="size">@item</option>
@@ -94,7 +89,7 @@ if ((bool)TempData["HasItem"] == false)
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <button type="submit" class="btn btn-dark" style="width: 500px;">
+                    <button type="submit" class="btn btn-dark" id="addcart">
                         加入購物車
                     </button>
                     <!-- Modal -->
@@ -147,9 +142,6 @@ if ((bool)TempData["HasItem"] == false)
 
                 </div>
             }
-        </div>
-        <div class="col-1">
-
         </div>
     </div>
 </div>

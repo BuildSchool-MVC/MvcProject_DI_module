@@ -97,6 +97,13 @@ namespace CustomerTest
             var account = Repository.GetAccount("2036");
             Assert.IsNull(account);
         }
+        [TestMethod]
+        public void GetAllCustomerTotal()
+        {
+            var Repository = new CustomerRepository();
+            var list = Repository.GetAllCustomerTotal();
+            Assert.IsTrue(list.Count()>0);
+        }
     }
     
 }
