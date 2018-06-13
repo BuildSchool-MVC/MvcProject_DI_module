@@ -18,5 +18,10 @@ namespace WebApplication.Models
 
         [Required]
         public string Email { get; set; }
+
+        [Display(Name = "生日")]
+        [DataType(DataType.Date)]
+        [Required]
+        public DateTime Birthday { get; set; }
     }
 }

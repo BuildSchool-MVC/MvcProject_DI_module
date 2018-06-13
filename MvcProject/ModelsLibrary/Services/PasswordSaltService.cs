@@ -32,7 +32,7 @@ namespace ModelsLibrary.Services
             container.Register<IPasswordValidationService, PasswordValidationService>();
             return container;
         }
-
+        
         public Customer PasswordsSalt(string password)
         {
             var service = Simpleinject();
@@ -65,6 +65,12 @@ namespace ModelsLibrary.Services
             var service = Simpleinject();
 
             return service.Validate(password);
+        }
+
+        public string GeneratePassword()
+        {
+            var service = Simpleinject();
+            return service.GeneratePassword();
         }
     }
 }

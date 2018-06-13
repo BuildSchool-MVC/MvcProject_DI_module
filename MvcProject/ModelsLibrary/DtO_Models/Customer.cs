@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ModelsLibrary.DtO_Models
 {
-    public class Customer : IModel
+    public class Customer
     {
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
-        public DateTime? Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public string Password { get; set; }
         public decimal ShoppingCash { get; set; }
         public string Account { get; set; }

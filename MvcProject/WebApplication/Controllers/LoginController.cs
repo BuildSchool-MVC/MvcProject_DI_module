@@ -1,11 +1,16 @@
 ﻿using ModelsLibrary.DtO_Models;
 using ModelsLibrary.Repositories;
 using ModelsLibrary.Services;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using WebApplication.Models;
 
@@ -79,6 +84,10 @@ namespace WebApplication.Controllers
             {
                 return RedirectToAction("Login");
             };
+            if (model.Password == "******")
+            {
+                return RedirectToAction("Login");
+            }
 
             if (passwordSaltService.PasswordsCheck(service.FindByCustomerAccount(model.User), model.Password))
             {
@@ -119,5 +128,68 @@ namespace WebApplication.Controllers
             Response.Redirect("/Log/Login");
             return RedirectToAction("Login", "Login");
         }
+
+        [Route("Auth")]
+        public ActionResult Auth()
+        {//redirect_uri=重導向 HttpUtility.UrlEncode(重新編碼) scope
+            var redirectUrl = "https://accounts.google.com/o/oauth2/v2/auth?"
+                + "client_id=" + ConfigurationManager.AppSettings["google:key"]
+                + "&redirect_uri=" + HttpUtility.UrlEncode("https://bingshop.azurewebsites.net/Log/google")
+                + "&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+                + "&response_type=code";
+            return Redirect(redirectUrl);
+        }
+
+        [Route("google")]
+        // GET: Authentication
+        public ActionResult Google()
+        {
+            var customerservice = new CustomerService();
+            var code = Request.QueryString["code"];
+            var tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token";
+            var payload = $"client_id={ConfigurationManager.AppSettings["google:key"]}"
+                + $"&client_secret={ConfigurationManager.AppSettings["google:secret"]}"
+                + $"&redirect_uri={HttpUtility.UrlEncode("https://bingshop.azurewebsites.net/Log/google")}"
+                + $"&code={code}"
+                + $"&grant_type=authorization_code";
+
+            var client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            client.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+
+            var response = client.UploadString(tokenEndpoint, payload);//UploadString(目標網址,資料)
+            var o = JObject.Parse(response);
+            var accessToken = o.Property("access_token").Value.ToString();
+            var profile = client.DownloadString("https://www.googleapis.com/plus/v1/people/me?access_token=" + accessToken);
+
+            var java = new JavaScriptSerializer();
+            var user = java.Deserialize<People>(profile);
+
+            var user_id = user.id;
+            var user_email = user.emails[0].value;
+            var user_name = user.displayName;
+
+            if (customerservice.GetAll().Any((x) => x.Account == user_id) == false)//沒有此帳號
+            {
+                var user_password = "******";
+                customerservice.Create(new Customer { Account = user_id, Email = user_email, CustomerName = user_name, Password = user_password, Phone = "未登記", Birthday = new DateTime(2000, 01, 01) });
+            }
+            //cookie
+
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user_id, DateTime.Now, DateTime.Now.AddMinutes(30), false, "abcdefg");
+
+            var ticketData = FormsAuthentication.Encrypt(ticket);
+            cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
+            cookie.Expires = ticket.Expiration;
+
+            Response.Cookies.Add(cookie);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

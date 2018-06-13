@@ -57,23 +57,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in list)
+                            @foreach (var item in list)
                             {
-                            <tr>
-                                <td><img src="@item.Image" alt="" width="80px"></td>
-                                <td scope="row">@item.ProductID</td>
-                                <td>@item.ProductName</td>
-                                <td>@item.Color</td>
-                                <td>@item.Size</td>
-                                <td>@item.Amount</td>
-                                <td>NT$@Decimal.Round(item.UnitPrice)</td>
-                                <td>NT$@Decimal.Round(item.Total)</td>
-                            </tr>
+                                <tr>
+                                    <td><img src="@item.Image" alt="" width="80px"></td>
+                                    <td scope="row">@item.ProductID</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.Color</td>
+                                    <td>@item.Size</td>
+                                    <td>@item.Amount</td>
+                                    <td>NT$@Decimal.Round(item.UnitPrice)</td>
+                                    <td>NT$@Decimal.Round(item.Total)</td>
+                                </tr>
                             }
                         </tbody>
                     </table>
                     <hr />
-                    <p class="text-right">總金額 NT$@Decimal.Round(list.Sum((x) => x.Total))</p>
+                    <p class="text-right">總金額 ( 含運費 ) = NT$@Decimal.Round(list.Sum((x) => x.Total) + 60)</p>
                 </div>
             </div>
         </div>

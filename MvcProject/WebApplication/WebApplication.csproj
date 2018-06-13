@@ -156,12 +156,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\AdminCustomerController.cs" />
     <Compile Include="Controllers\Admin\HomeController.cs" />
-    <Compile Include="Controllers\Admin\OrderController.cs" />
+    <Compile Include="Controllers\Admin\AdminOrderController.cs" />
     <Compile Include="Controllers\Admin\AdminProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -174,6 +173,7 @@
     <Compile Include="Models\AOrderDetailModel.cs" />
     <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\Orderinfo.cs" />
+    <Compile Include="Models\People.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\SearchOrderdetailModel.cs" />
     <Compile Include="Models\UpdateMemberModel.cs" />
@@ -362,8 +362,8 @@
     <Content Include="Views\Home\AdminHome.cshtml" />
     <Content Include="Views\AdminProduct\AdminProduct.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductAdd.cshtml" />
-    <Content Include="Views\Order\AdminOrderDetail.cshtml" />
-    <Content Include="Views\Order\AdminOrder.cshtml" />
+    <Content Include="Views\AdminOrder\AdminOrderDetail.cshtml" />
+    <Content Include="Views\AdminOrder\AdminOrder.cshtml" />
     <Content Include="Views\AdminProduct\AdminProductUpdate.cshtml" />
     <Content Include="Views\Home\AdminHomeLogin.cshtml" />
     <Content Include="Views\AdminCustomer\AdminCustomer.cshtml" />
@@ -373,7 +373,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Londing\" />
   </ItemGroup>
   <ItemGroup>

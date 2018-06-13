@@ -39,14 +39,15 @@ namespace ModelsLibrary.Repositories
         public void Update(Customer model)
         {
             SqlConnection connection = new SqlConnection(sqlstr);
-            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Email=@Email,Phone=@Phone WHERE CustomerID=@CustomerID";
+            var sql = "UPDATE Customer SET CustomerName=@CustomerName,Email=@Email,Phone=@Phone,Birthday=@Birthday WHERE CustomerID=@CustomerID";
             connection.Execute(sql,
                 new
                 {
                     model.CustomerID,
                     model.CustomerName,
                     model.Email,
-                    model.Phone
+                    model.Phone,
+                    model.Birthday
                 });
         }
         public void AdminUpdate(Customer model)

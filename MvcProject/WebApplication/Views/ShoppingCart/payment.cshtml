@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="text-right mr-3">
-            <p>總金額NT$3640+運費NT$60=應付金額NT$3700</p>
+            <p>總金額NT$@Decimal.Round(ViewBag.Total)+運費NT$60=應付金額NT$@Decimal.Round(ViewBag.Total+60)</p>
         </div>
         <br>
         <div class="row">
@@ -148,7 +148,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col">
                 <h5>發票資訊</h5>
                 <hr>
@@ -168,19 +168,7 @@
                 <span>依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。</span>
             </div>
         </div>
-        <br />
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group row" >
-                    <label for="inputPhone" class="col-sm-2 col-form-label">中獎發票寄送位置</label>
-                    <div class="col-sm-4">
-                        <input name="Address" type="text" class="form-control" id="InputAddress" placeholder="Address">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-5">
+        <div class="row mt-5">
             <div class="col-1">
                 <a href=@Url.Action("detail", "ShoppingCart") class="btn btn-dark">返回購物車</a>
             </div>
