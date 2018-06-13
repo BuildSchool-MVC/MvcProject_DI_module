@@ -166,13 +166,13 @@ namespace WebApplication.Controllers
             var user_email = user.Values().ToList()[3].Values().ToList()[0].First.ToString();
             var user_name = user.Values().ToList()[6].ToString();
 
-            if(customerservice.GetAll().Any((x) => x.Account == user_id) == false)//沒有此帳號
+            if (customerservice.GetAll().Any((x) => x.Account == user_id) == false)//沒有此帳號
             {
                 var user_password = "******";
-                customerservice.Create(new Customer { Account = user_id, Email = user_email, CustomerName = user_name,Password=user_password,Phone="未登記",Birthday=new DateTime(2000,01,01) });
+                customerservice.Create(new Customer { Account = user_id, Email = user_email, CustomerName = user_name, Password = user_password, Phone = "未登記", Birthday = new DateTime(2000, 01, 01) });
             }
             //cookie
-            
+
 
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -180,7 +180,7 @@ namespace WebApplication.Controllers
 
             var ticketData = FormsAuthentication.Encrypt(ticket);
             cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
-            cookie.Expires = ticket.Expiration; 
+            cookie.Expires = ticket.Expiration;
 
             Response.Cookies.Add(cookie);
 
