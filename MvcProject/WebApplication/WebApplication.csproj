@@ -173,6 +173,7 @@
     <Compile Include="Models\AOrderDetailModel.cs" />
     <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\Orderinfo.cs" />
+    <Compile Include="Models\People.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\SearchOrderdetailModel.cs" />
     <Compile Include="Models\UpdateMemberModel.cs" />

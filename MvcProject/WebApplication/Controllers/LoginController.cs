@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using WebApplication.Models;
 
@@ -161,10 +162,12 @@ namespace WebApplication.Controllers
             var accessToken = o.Property("access_token").Value.ToString();
             var profile = client.DownloadString("https://www.googleapis.com/plus/v1/people/me?access_token=" + accessToken);
 
-            var user = JObject.Parse(profile);
-            var user_id = user.Values().ToList()[5].ToString();
-            var user_email = user.Values().ToList()[3].Values().ToList()[0].First.ToString();
-            var user_name = user.Values().ToList()[6].ToString();
+            var java = new JavaScriptSerializer();
+            var user = java.Deserialize<People>(profile);
+
+            var user_id = user.id;
+            var user_email = user.emails[0].value;
+            var user_name = user.displayName;
 
             if (customerservice.GetAll().Any((x) => x.Account == user_id) == false)//沒有此帳號
             {
