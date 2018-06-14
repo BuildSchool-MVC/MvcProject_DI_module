@@ -33,7 +33,7 @@ namespace WebApplication.Controllers
         {
             var Service = new CustomerService();
 
-            var model2 = new Customer()
+            var newCustomer = new Customer()
             {
                 CustomerName = model.Name,
                 Birthday = model.Birthday,
@@ -42,8 +42,15 @@ namespace WebApplication.Controllers
                 Phone = model.Phone,
                 Email = model.Email,
             };
-            Service.Create(model2);
-            return View();
+
+            if(Service.GetAll().Any((x) => x.Account == newCustomer.Account))
+            {
+                ViewBag.HasAccount = true;
+                return View();
+            }
+
+            Service.Create(newCustomer);
+            return RedirectToAction("Login");
         }
 
         [Route("Login")]
