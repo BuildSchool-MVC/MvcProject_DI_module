@@ -10,6 +10,7 @@ namespace WebApplication.Controllers
     public class LinebotController : Controller
     {
         // GET: Linebot
+        [Route("linebot")]
         public ActionResult Index()
         {
             return View();
