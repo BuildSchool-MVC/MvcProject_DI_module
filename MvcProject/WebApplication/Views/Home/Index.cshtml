@@ -12,7 +12,7 @@
     var NewProductsPath = ViewData["NewProductsList2"] as List<string>;
     var NewProductsName = ViewData["NewProductsName"] as List<ModelsLibrary.DtO_Models.Products>;
 }
-<div class="container-fluid">
+
     <div class="row">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
             <ol class="carousel-indicators">
@@ -56,64 +56,60 @@
         </div>
     </div>
     <br>
-</div>
-<div class="row mt-5">
-    <div class="col">
-        <hr />
-    </div>
-    <div class="col-2" align="center">
-        <h3>New Arrivals</h3>
-    </div>
-    <div class="col">
-        <hr />
-    </div>
-</div>
-<div class="container">
-    <div id="wrapper">
-        <div class="slidePanel">
-            <ul>
-                @for (int i = 0; i < Newcount; i++)
-                {
-                    <li>
-                        <a href="/Product/@NewProductsName[i].ProductName">
-                            <img src=@NewProductsPath[i]>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </div>
-        <!--/.slidePanel-->
-    </div>
-</div>
 
-<div class="row mt-2">
-    <div class="col">
-        <hr />
+    <div class="row mt-5">
+        <div class="col">
+            <hr />
+        </div>
+        <div class="col">
+            <h3>New Arrivals</h3>
+        </div>
+        <div class="col">
+            <hr />
+        </div>
     </div>
-    <div class="col-2" align="center">
-        <h3>Best Sellers</h3>
-    </div>
-    <div class="col">
-        <hr />
-    </div>
-</div>
-<div class="container">
-    <div id="wrapper">
-        <div class="slidePanel2">
+        <div id="wrapper">
             <div class="slidePanel">
                 <ul>
-                    @for (int i = 0; i < Bestcount; i++)
+                    @for (int i = 0; i < Newcount; i++)
                     {
-                <li>
-                    <a href="/Product/@BestProductsName[i].ProductName">
-                        <img src=@BestProductsPath[i]>
-                    </a>
-                </li>
+                        <li>
+                            <a href="/Product/@NewProductsName[i].ProductName">
+                                <img src=@NewProductsPath[i]>
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>
+            <!--/.slidePanel-->
+        </div>
+    <div class="row mt-2">
+        <div class="col">
+            <hr />
+        </div>
+        <div class="col" align="center">
+            <h3>Best Sellers</h3>
+        </div>
+        <div class="col">
+            <hr />
         </div>
     </div>
-</div>
+        <div id="wrapper">
+            <div class="slidePanel2">
+                <div class="slidePanel">
+                    <ul>
+                        @for (int i = 0; i < Bestcount; i++)
+                        {
+                            <li>
+                                <a href="/Product/@BestProductsName[i].ProductName">
+                                    <img src=@BestProductsPath[i]>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 
 

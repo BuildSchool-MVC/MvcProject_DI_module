@@ -1,6 +1,3 @@
-////////////////////////////////////////
-//　SCRIPT
-////////////////////////////////////////
 $(function(){
 	var setElm = $('.slidePanel'),
 	slideSpeed = 500;
@@ -37,9 +34,7 @@ $(function(){
 			pnPoint.click(function(){
 				if(!(selfUl.is(':animated'))){
 					var showCont = pnPoint.index(this);
-
 					selfUl.animate({left: '-' + ((listWidth*moveCount)*showCont)},slideSpeed);
-
 					pnPoint.removeClass('pnActive');
 					$(this).addClass('pnActive');
 				}
@@ -69,7 +64,6 @@ $(function(){
 					pnNum = pnIndex+1;
 
                     if (1 == pnNum) {
-                        console.log("12");
 						pnLast.click();
 					} else {
 						setActive.prev('a').click();
@@ -79,7 +73,7 @@ $(function(){
 		}
     });
 
-    $(".menu-toggle").on("click", function (e) { 
+    $(".menu-toggle").on("click", function (e) {   
         e.preventDefault();
         $(this).siblings("ul").slideToggle();
         $(this).find("i").toggleClass("fa-caret-down")
