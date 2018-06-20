@@ -9,48 +9,57 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="container mt-5">
-        <div>
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-5"></div>
+        <div class="col">
             <button type="button" class="btn btn-dark btn-lg">個人資料修改</button>
             <a href="/Member/UpdatePassword" class="btn btn-light btn-lg">密碼修改</a>
         </div>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <br />
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <br />
 
-                <h3>個人資料修改</h3>
-                <hr>
-                <div class="form-group row">
-                    @Html.LabelFor(model => model.Birthday, new { @class = "col-sm-2 col-form-label" })
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Birthday, null, new { @class = "text-danger" })
-                    </div>
+            <h3 style="text-align:center;">個人資料修改</h3>
+            <hr>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Birthday, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Birthday, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Birthday, null, new { @class = "text-danger" })
                 </div>
-                <div class="form-group row">
-                    @Html.LabelFor(model=>model.CustomerName,new { @class = "col-sm-2 col-form-label" })
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CustomerName, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    @Html.LabelFor(model => model.Phone, new { @class = "col-sm-2 col-form-label" })
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                    <button type="submit" class="btn btn-dark mb-5" style="width: 100px">確定修改</button>
             </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CustomerName, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CustomerName, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Phone, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                </div>
+            </div>
+           
         </div>
     </div>
-}
+    <div class="row mt-5">
+        <div class="col-6"></div>
+        <div class="col">
+            <button type="submit" class="btn btn-dark mb-5" style="width: 100px">確定修改</button>
+        </div>
+    </div>
+</div>
+        }

@@ -5,41 +5,40 @@
     var list = ViewData["list"] as List<WebApplication.Models.ShppingCartModel>;
     var Total = list.Sum((x) => x.Total);
 }
-<div class="step-container mt-5" style="margin-top: 25px;margin-left:15%">
-    <div class="step1" style="text-align:center;">
-        <span style="font-size:30px;">購物車明細</span>
-    </div>
-    <div class="step2" style="text-align:center;">
-        <span style="font-size:30px;">付款與運送方式</span>
-    </div>
-    <div class="step3" style="text-align:center;">
-        <span style="font-size:30px;">訂單成立</span>
-    </div>
-</div>
-<br>
 <div class="container-fluid">
-    <div class="row mt-4">
-        <div class="col text-center">
-            <h5>訂單建立後商品明細、金額皆無法更改並無合併訂單處理，請您再三確認後再完成結帳</h5>
+    <div class="step-container mt-5" style="margin-top: 25px;margin-left:15%">
+        <div class="step1" style="text-align:center;">
+            <span style="font-size:30px;">購物車明細</span>
+        </div>
+        <div class="step2" style="text-align:center;">
+            <span style="font-size:30px;">付款與運送方式</span>
+        </div>
+        <div class="step3" style="text-align:center;">
+            <span style="font-size:30px;">訂單成立</span>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row mt-5">
-        <table class="table table-hover">
-            <tbody>
-                <tr>
-                    <td class="clTag syHide HighFont"></td>
-                    <td class="clTdPhoto"></td>
-                    <td class="clTdMerNo text-center">商品編號</td>
-                    <td class="clTdMerName">商品名稱</td>
-                    <td class="clTdColor text-center">顏色</td>
-                    <td class="clTdNum text-center">尺寸</td>
-                    <td class="clTdPrice text-center">數量</td>
-                    <td class="clTdSub text-center">小計</td>
-                    <td class="clTdDelete text-center">刪除</td>
-                </tr>
-                @foreach (var item in list)
+    <br>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col text-center">
+                <h5>訂單建立後商品明細、金額皆無法更改並無合併訂單處理，請您再三確認後再完成結帳</h5>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td class="clTag syHide HighFont"></td>
+                        <td class="clTdPhoto"></td>
+                        <td class="clTdMerNo text-center">商品編號</td>
+                        <td class="clTdMerName">商品名稱</td>
+                        <td class="clTdColor text-center">顏色</td>
+                        <td class="clTdNum text-center">尺寸</td>
+                        <td class="clTdPrice text-center">數量</td>
+                        <td class="clTdSub text-center">小計</td>
+                        <td class="clTdDelete text-center">刪除</td>
+                    </tr>
+                    @foreach (var item in list)
                 {
                     <tr class="myitem">
                         <td class="clTag syHide HighFont"></td>
@@ -55,16 +54,16 @@
                         <td class="cltdNum">
                             <select id="@item.ProductID" name="cmbNum1" class="cmbNum">
                                 @for (var i = 1; i < 6; i++)
+                            {
+                                if (i == item.Amount)
                                 {
-                                    if (i == item.Amount)
-                                    {
-                                        <option selected value=@i>@i</option>
-                                    }
-                                    else
-                                    {
-                                        <option value=@i>@i</option>
-                                    }
-                                }
+                                    <option selected value=@i>@i</option>
+                            }
+                            else
+                            {
+                                <option value=@i>@i</option>
+                        }
+                    }
                             </select>
                         </td>
                         <td class="coNum coPrice">NT$@Decimal.Round(@item.Total)</td>
@@ -74,8 +73,8 @@
                             </a>
                         </td>
                     </tr>
-                }
-                @if (list.Count != 0)
+            }
+                    @if (list.Count != 0)
                 {
                     <tr>
                         <td></td>
@@ -88,29 +87,30 @@
                         <td>NT$@Decimal.Round(Total)</td>
                         <td></td>
                     </tr>
-                }
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        @if (list.Count != 0)
+            }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @if (list.Count != 0)
                         {
-                            <a href=@Url.Action("payment","ShoppingCart") type="submit" class="btn btn-dark">下一步</a>
-                        }
-                    </td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        @if(list.Count == 0)
+                            <a href=@Url.Action("payment","ShoppingCart") class="btn btn-dark">下一步</a>
+                    }
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            @if (list.Count == 0)
         {
             <div class="col-12 text-center">購物車無商品</div>
-        }
+    }
+        </div>
     </div>
 </div>
 

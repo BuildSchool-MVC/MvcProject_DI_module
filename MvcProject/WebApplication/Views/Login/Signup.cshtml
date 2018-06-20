@@ -15,85 +15,89 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="container mt-5">
-        <div>
-            <a href="/Log/Login" class="btn btn-light btn-lg">會員登入</a>
-            <button type="button" class="btn btn-dark btn-lg">註冊會員</button>
-            <br>
-            <div>
-                <br>
-                <span style="color:red">@ViewBag.Msg</span>
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-5">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-            </div>
-            <div class="col-6">
-                <br />
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
-                        @Html.ValidationMessageFor(model => model.Name,null,new {@class="text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputAccount" class="col-sm-2 col-form-label">帳號</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Account, new { @class = "form-control", @placeholder = "Account" })
-                        @Html.ValidationMessageFor(model => model.Account, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">密碼</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Password, new {@type = "password", @class = "form-control", @placeholder = "Password" })
-                        @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputCheckPassword" class="col-sm-2 col-form-label">確認密碼</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Password2, new {@type = "password", @class = "form-control", @placeholder = "Password" })
-                        @Html.ValidationMessageFor(model => model.Password2, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
-                        @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputBirthday" class="col-sm-2 col-form-label">生日</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control", @placeholder = "Birthday" })
-                        @Html.ValidationMessageFor(model => model.Birthday, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Phone" })
-                        @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-
-            </div>
-        </div>
-        <div class="row mt-5 mb-5">
             <div class="col">
-                <div class="form-group">                 
-                      <input type="submit" value="加入會員" name="joinMember" id="joinMember" class="btn btn-dark" />               
+                <a href="/Log/Login" class="btn btn-light btn-lg">會員登入</a>
+                <button type="button" class="btn btn-dark btn-lg">註冊會員</button>
+                <div>
+                    <br>
+                    <span style="color:red">@ViewBag.Msg</span>
                 </div>
             </div>
-        </div>
-        <br>
-    </div>
-}
+            </div>
+            <div class="row ">
+                <div class="col-3">
+                </div>
+                <div class="col-6">
+                    <br />
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">姓名</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+                            @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAccount" class="col-sm-2 col-form-label">帳號</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Account, new { @class = "form-control", @placeholder = "Account" })
+                            @Html.ValidationMessageFor(model => model.Account, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">密碼</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Password, new { @type = "password", @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputCheckPassword" class="col-sm-2 col-form-label">確認密碼</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Password2, new { @type = "password", @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.Password2, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">電子郵件</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputBirthday" class="col-sm-2 col-form-label">生日</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control", @placeholder = "Birthday" })
+                            @Html.ValidationMessageFor(model => model.Birthday, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPhone" class="col-sm-2 col-form-label">電話</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Phone" })
+                            @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5"> </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="submit" value="加入會員" name="joinMember" id="joinMember" class="btn btn-dark" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        }
 
 
 
