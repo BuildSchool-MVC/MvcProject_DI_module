@@ -208,6 +208,31 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\a1.jpg" />
+    <Content Include="Images\a10.jpg" />
+    <Content Include="Images\a2.jpg" />
+    <Content Include="Images\a3.jpg" />
+    <Content Include="Images\a4.jpg" />
+    <Content Include="Images\a5.jpg" />
+    <Content Include="Images\a6.jpg" />
+    <Content Include="Images\a7.jpg" />
+    <Content Include="Images\a8.jpg" />
+    <Content Include="Images\a9.jpg" />
+    <Content Include="Images\b1.jpg" />
+    <Content Include="Images\b10.jpg" />
+    <Content Include="Images\b11.jpg" />
+    <Content Include="Images\b12.jpg" />
+    <Content Include="Images\b13.jpg" />
+    <Content Include="Images\b14.jpg" />
+    <Content Include="Images\b2.jpg" />
+    <Content Include="Images\b3.jpg" />
+    <Content Include="Images\b4.jpg" />
+    <Content Include="Images\b5.jpg" />
+    <Content Include="Images\b6.jpg" />
+    <Content Include="Images\b7.jpg" />
+    <Content Include="Images\b8.jpg" />
+    <Content Include="Images\b9.jpg" />
+    <Content Include="Images\fff.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -384,7 +409,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Views\Londing\" />
   </ItemGroup>
   <ItemGroup>
