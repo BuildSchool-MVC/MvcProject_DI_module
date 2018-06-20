@@ -116,16 +116,16 @@
     display: block;
     margin: 0 auto;
     overflow: hidden;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
 }
 
-.product img {
-     width: 200px;
-     height: 200px;
-     transform: scale(1);
-     transition: all 1s ease 0s;
-}
+    .product img {
+        width: 180px;
+        height: 180px;
+        transform: scale(1);
+        transition: all 1s ease 0s;
+    }
 
 .product a:hover img {
     transform: scale(1.4);
@@ -304,12 +304,12 @@
             background: #f8f9fa;
             display: none;
         }
-            .slidePanel .btnPrev {
-        top: 40px;
+        .slidePanel .btnPrev {
+        top: 30px;
         left: -25px;
     }
     .slidePanel .btnNext {
-        top: 40px;
+        top: 30px;
         right: -25px;
     }
     .slideWrap {
@@ -350,11 +350,11 @@
 }
 @media screen and (max-width:376px) {
     .slidePanel .btnPrev {
-        left: -45px;
+        left: -30px;
     }
 
     .slidePanel .btnNext {
-        right: -50px;
+        right: -30px;
     }
     .slideWrap {
         width: 280px;
