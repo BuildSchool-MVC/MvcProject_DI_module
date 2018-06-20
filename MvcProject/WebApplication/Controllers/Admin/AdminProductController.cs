@@ -75,7 +75,7 @@ namespace WebApplication.Controllers.Admin
                     var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);
-                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://github.com/BuildSchool-MVC/MvcProject_DI_module/blob/master/MvcProject/WebApplication/Images/" + fileName + "?raw=true" });
+                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://bingshop.azurewebsites.net/Images/" + fileName});
                 }
             }
 
@@ -146,7 +146,7 @@ namespace WebApplication.Controllers.Admin
                     var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);
-                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://github.com/BuildSchool-MVC/MvcProject_DI_module/blob/master/MvcProject/WebApplication/Images/" + fileName + "?raw=true" });
+                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://bingshop.azurewebsites.net/Images/" + fileName });
                 }
             }
 
