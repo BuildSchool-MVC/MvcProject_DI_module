@@ -146,7 +146,7 @@ namespace WebApplication.Controllers.Admin
                     var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images"), fileName);
                     file.SaveAs(path);
-                    photoservice.Create(new ProductPhoto { ProductID = productservice.GetNewProductID(), PhotoPath = "https://bingshop.azurewebsites.net/Images/" + fileName });
+                    photoservice.Create(new ProductPhoto { ProductID = model.ProductID, PhotoPath = "https://bingshop.azurewebsites.net/Images/" + fileName });
                 }
             }
 
