@@ -78,7 +78,7 @@ namespace ModelsLibrary.Repositories
                         inner join Products p on p.ProductID = ph.ProductID
                         Where o.OrderID = @OrderID";
 
-             var result = connection.Query<AdminOrderModel>(sql, new { OrderId }).AsList();
+            var result = connection.Query<AdminOrderModel>(sql, new { OrderId }).AsList();
             return result;
 
         }
